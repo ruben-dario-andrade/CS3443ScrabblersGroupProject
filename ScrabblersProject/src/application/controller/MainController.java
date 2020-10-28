@@ -26,6 +26,15 @@ public class MainController {
 		
 	}
 	
+	@FXML
+	public void gameScreen(ActionEvent event) throws IOException{
+		mainPane = FXMLLoader.load(getClass().getResource("../view/gameScreen.fxml"));
+		Scene scene = new Scene(mainPane);
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
+	
 	/*
 	@FXML
 	public void addLog(ActionEvent event) throws IOException{
