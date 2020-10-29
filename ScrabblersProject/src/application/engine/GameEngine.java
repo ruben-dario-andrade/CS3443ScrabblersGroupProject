@@ -1,24 +1,10 @@
 package application.engine;
 
-import java.util.LinkedList;
-
 import application.components.GameBoard;
 import application.components.GamePiece;
 
 public class GameEngine {
-	
-	class GameEnginePiece{
-		char letter;
-		int row;
-		int column;
-		GameEnginePiece(char letter, int row, int column){
-			this.letter = letter;
-			this.row = row;
-			this.column = column;
-		}
-	}
-	
-	
+		
 	public static GameBoard gameBoard;
 	
 	public static char[][] boardPiece = new char[15][15];
