@@ -22,7 +22,7 @@ public class GameEngine {
 	}
 
 	public static void spook() {
-		System.out.println("spook");
+		System.out.println("spook2");
 	}
 
 }
