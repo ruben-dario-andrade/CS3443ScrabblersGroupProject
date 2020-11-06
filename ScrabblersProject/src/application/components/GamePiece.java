@@ -1,8 +1,14 @@
 package application.components;
 
 import application.engine.GameEngine;
+import application.engine.PieceEvent;
+import application.engine.PieceEventBoard;
+import application.engine.PieceEventHandler;
+import application.engine.PieceEventTray;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
@@ -12,13 +18,20 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.text.Font;
 
-public class GamePiece extends Label{
+public class GamePiece extends Button{
 	
-	private String letter;
+	private char letter;
+	boolean inTray;
+	int row = 1;
+	int col = 1;
 	
-	public GamePiece(String letter) {
+	public GamePiece(char letter, boolean inTray, int row, int col) {
 		
 		this.letter = letter;
+		this.inTray = inTray;
+		this.row = row;
+		this.col = col;
+		
 		
 		Border border = new Border(new BorderStroke(null,
 				BorderStrokeStyle.SOLID,
@@ -31,26 +44,62 @@ public class GamePiece extends Label{
 		this.setPrefSize(36, 36);
 		this.setMinSize(36, 36);
 		this.setPadding(new Insets(1, 1, 0 ,0));
-		this.setText(letter);
+		this.setText(Character.toString(letter));
 		this.setFont(new Font("Verdana", 25));
 		
-		this.addClick();
+		this.setOnAction((ActionEvent event) ->  {
+			this.fireEvent(new PieceEventTray(letter, inTray));
+			this.fireEvent(new PieceEventBoard(row, col, inTray));
+		});
+		
+		this.addEventHandler(PieceEvent.CUSTOM_EVENT_TYPE, new PieceEventHandler() {
+			
+			@Override
+			public void onEvent1(char letter, boolean inTray) {
+				if (inTray) {
+					GameEngine.receiveLetter(letter);
+				}
+			}
+			
+			@Override
+			public void onEvent2(int row, int col, boolean inTray) {
+				if (!inTray) {
+					GameEngine.receivePosition(row, col);
+				}
+			}
+		});
 		
 	}
-	
-	public void addClick() {
-		EventHandler<MouseEvent> clickDetected = new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent e) {
-				GameEngine.spook();
-			}
-		};
-		this.addEventFilter(MouseEvent.MOUSE_CLICKED, clickDetected);
-	}
-	
-	public String getLetter() {
-		return letter;
+
+
+	public char getLetter() {
+		return this.letter;
 	}
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

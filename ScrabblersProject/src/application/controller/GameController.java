@@ -5,7 +5,7 @@ import java.util.Properties;
 
 import application.components.GameBoard;
 import application.components.GamePiece;
-import application.components.GameTile;
+import application.components.GamePlayerTray;
 import application.engine.GameEngine;
 
 import java.io.File;
@@ -22,18 +22,40 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class GameController {
-
+	
 	@FXML
 	private AnchorPane mainPane;
 	
 	@FXML
 	public void initialize(){
 		GameBoard gameBoard = new GameBoard();
+		GamePlayerTray gamePlayerTray = new GamePlayerTray();
+		gamePlayerTray.setLayoutX(50);
+		gamePlayerTray.setLayoutY(650);
 		mainPane.getChildren().add(gameBoard);
+		mainPane.getChildren().add(gamePlayerTray);
 		GameEngine.addBoard(gameBoard);
+		GameEngine.addTray(gamePlayerTray);
 		GameEngine.start();
-		//gameBoard.getGameTile(4, 4).getChildren().add(new GamePiece("F"));
 	}
 	
 	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -35,19 +35,4 @@ public class MainController {
 		window.show();
 	}
 	
-	/*
-	@FXML
-	public void addLog(ActionEvent event) throws IOException{
-		Properties properties = new Properties();
-		File file = new File("data.properties");
-		FileOutputStream writer = new FileOutputStream(file, true);
-		properties.setProperty("spook", "2");
-		properties.store(writer, null);
-		properties.store(writer, "pressed button");
-		System.out.println("spook");
-	}
-	*/
-
-	
-	
 }
