@@ -6,13 +6,17 @@ public class GameBoard extends GridPane{
 	public GameBoard() {
 		for(int i = 0; i < 15; i++) {
 			for(int j = 0; j < 15; j++) {
-				this.add(new GameTile(), i, j);
+				this.add(new GamePiece(' ', false, i, j), i, j);
 			}
 		}
 	}
 	
-	public GameTile getGameTile(final int rows, final int columns) {
-		return (GameTile)this.getChildren().get(rows*15 + columns);
+	public GamePiece getGameTile(final int rows, final int columns) {
+		return (GamePiece)this.getChildren().get(rows*15 + columns);
+	}
+
+	public void addPiece(int row, int col, char letter) {
+		this.add(new GamePiece(letter, false, row, col), row, col);
 	}
 	
 }
