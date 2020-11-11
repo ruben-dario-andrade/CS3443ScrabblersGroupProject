@@ -43,6 +43,9 @@ public class GameController implements Initializable {
     @FXML
     private ListView<String> WordDisplayLV;
     
+    @FXML
+    private Button EndTurnButton;
+    
     ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
 	
 	@Override
