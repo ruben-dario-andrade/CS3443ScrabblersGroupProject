@@ -64,7 +64,7 @@ public class GamePiece extends Button{
 			@Override
 			public void onEvent2(int row, int col, boolean inTray) {
 				if (!inTray) {
-					GameEngine.receivePosition(row, col);
+					GameEngine.movePiece(row, col);
 				}
 			}
 		});

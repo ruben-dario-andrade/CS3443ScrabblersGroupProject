@@ -45,21 +45,11 @@ public class GameController implements Initializable {
     
     ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
 	
-	@FXML
-	public void initialize(){
-		GameBoard gameBoard = new GameBoard();
-		GamePlayerTray gamePlayerTray = new GamePlayerTray();
-		gamePlayerTray.setLayoutX(50);
-		gamePlayerTray.setLayoutY(650);
-		mainPane.getChildren().add(gameBoard);
-		mainPane.getChildren().add(gamePlayerTray);
-		GameEngine.addBoard(gameBoard);
-		GameEngine.addTray(gamePlayerTray);
-		GameEngine.start();
-	}
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		/* This code block is needed for game board to appear. 
+		 * Will need to be fit into proper model class 
+		 * */
 		GameBoard gameBoard = new GameBoard();
 		GamePlayerTray gamePlayerTray = new GamePlayerTray();
 		gamePlayerTray.setLayoutX(50);

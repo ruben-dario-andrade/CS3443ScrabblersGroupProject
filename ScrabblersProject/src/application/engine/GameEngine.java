@@ -43,11 +43,12 @@ public class GameEngine {
 	
 	
 
-	public static void receivePosition(int row, int col) {
+	public static void movePiece(int row, int col) {
 		if (currentLetter != ' ') {
 			if (gameBoard.getGameTile(row, col).getLetter() == ' ') {
 				gameBoard.addPiece(row, col, currentLetter);
 				boardPiece[row][col] = currentLetter;
+				gamePlayerTray.removePiece(currentLetter);;
 			}
 		}
 		currentLetter = ' ';

@@ -36,8 +36,6 @@ public class GamePlayerTray extends GridPane{
 	}
 	
 	public void addPiece(char letter) {
-		//this.add(new GamePiece('A', true, -1, -1), 1, 0);
-		
 		if (hand.size() <= 8) {
 			this.hand.add(letter+"");
 			for (int i = 0; i < hand.size(); i++) {
@@ -47,8 +45,17 @@ public class GamePlayerTray extends GridPane{
 		
 	}
 	
-	public void removePiece() {
-		
+	public void removePiece(char letter) {
+		for (int i = 0; i < hand.size(); i++) {
+			if (hand.get(i).charAt(0) == letter) {
+				hand.remove(i);
+			}
+		}
+		this.addPiece(' ');
+	}
+	
+	public LinkedList<String> getPlayerHand(){
+		return this.hand;
 	}
 	
 }
