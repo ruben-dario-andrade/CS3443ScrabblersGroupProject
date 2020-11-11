@@ -55,7 +55,6 @@ public class GameEngine {
 	
 	public static void receiveLetter(char letter) {
 		currentLetter = letter;
-		gamePlayerTray.addPiece('A');
 	}
 
 }

@@ -60,7 +60,15 @@ public class GameController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		GameBoard gameBoard = new GameBoard();
+		GamePlayerTray gamePlayerTray = new GamePlayerTray();
+		gamePlayerTray.setLayoutX(50);
+		gamePlayerTray.setLayoutY(650);
+		mainPane.getChildren().add(gameBoard);
+		mainPane.getChildren().add(gamePlayerTray);
+		GameEngine.addBoard(gameBoard);
+		GameEngine.addTray(gamePlayerTray);
+		GameEngine.start();
 		// Code below is commented out for future use (will be used to read from text file)
 		/*try {
 			Scanner scan = new Scanner(new File("sample.txt"));
