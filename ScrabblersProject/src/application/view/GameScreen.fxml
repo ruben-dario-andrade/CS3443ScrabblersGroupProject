@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
       <AnchorPane fx:id="WordHelperPane" layoutX="745.0" layoutY="62.0" prefHeight="400.0" prefWidth="400.0">
@@ -19,5 +18,7 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="UndoButton" layoutX="385.0" layoutY="662.0" mnemonicParsing="false" text="Undo" />
+      <Button fx:id="EndTurnButton" layoutX="385.0" layoutY="628.0" mnemonicParsing="false" text="End Turn" />
    </children>
 </AnchorPane>

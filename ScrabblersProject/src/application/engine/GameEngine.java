@@ -8,7 +8,7 @@ import application.components.GamePlayerTray;
 public class GameEngine {
 		
 	public static GameBoard gameBoard;
-	public static GamePlayerTray gamePlayerTray;
+	private static GamePlayerTray gamePlayerTray;
 	
 	public static char[][] boardPiece = new char[15][15];
 	public static LinkedList<String> pilePieces;
@@ -27,7 +27,7 @@ public class GameEngine {
 			pilePieces.add(letter+"");
 		}
 		
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 7; i++) {
 			gamePlayerTray.addPiece(pilePieces.pop().charAt(0));
 		}
 		
@@ -57,6 +57,11 @@ public class GameEngine {
 	public static void receiveLetter(char letter) {
 		currentLetter = letter;
 	}
+	
+	public static GamePlayerTray getTray() {
+		return gamePlayerTray;
+	} 
+	
 
 }
 

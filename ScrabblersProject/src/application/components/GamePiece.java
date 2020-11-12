@@ -1,10 +1,10 @@
 package application.components;
 
 import application.engine.GameEngine;
-import application.engine.PieceEvent;
-import application.engine.PieceEventBoard;
-import application.engine.PieceEventHandler;
-import application.engine.PieceEventTray;
+import application.event.PieceEvent;
+import application.event.PieceEventBoard;
+import application.event.PieceEventHandler;
+import application.event.PieceEventTray;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
