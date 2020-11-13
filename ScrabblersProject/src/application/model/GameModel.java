@@ -1,5 +1,13 @@
 package application.model;
 
-public class GameModel {
+import application.engine.GameEngine;
 
+public class GameModel {
+	
+	public static void endTurn() {
+		GameEngine.getPlayer().getHand().clearHand();
+		GameEngine.refillHand();
+		GameEngine.refreshTray();
+	}  
+	
 }

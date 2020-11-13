@@ -10,6 +10,7 @@ import application.components.GameBoard;
 import application.components.GamePiece;
 import application.components.GamePlayerTray;
 import application.engine.GameEngine;
+import application.model.GameModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,6 +44,12 @@ public class GameController implements Initializable {
     @FXML
     private ListView<String> WordDisplayLV;
     
+    @FXML
+    private Button EndTurnButton;
+    
+    @FXML 
+    private Button UndoButton;
+    
     ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
 	
 	@Override
@@ -71,10 +78,12 @@ public class GameController implements Initializable {
 		}*/
 		
 		WordDisplayLV.setItems(list);
-		
 	}
 	
-	
+	@FXML
+	public void endTurn(ActionEvent event) {
+		GameModel.endTurn();
+	}
 	
 }
 
