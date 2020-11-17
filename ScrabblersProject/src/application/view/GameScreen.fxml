@@ -8,14 +8,14 @@
 
 <AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
-      <AnchorPane fx:id="WordHelperPane" layoutX="745.0" layoutY="62.0" prefHeight="400.0" prefWidth="400.0">
+      <AnchorPane fx:id="WordHelperPane" layoutX="786.0" layoutY="407.0" prefHeight="400.0" prefWidth="400.0">
          <children>
-            <ListView fx:id="WordDisplayLV" layoutX="109.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
             <Label fx:id="WFLabel" layoutX="113.0" layoutY="42.0" text="Words Found">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <ListView fx:id="WordDisplayLV" layoutX="124.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
       <GridPane layoutX="400.0" layoutY="617.0" prefHeight="74.0" prefWidth="200.0">

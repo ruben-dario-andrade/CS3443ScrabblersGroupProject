@@ -1,5 +1,7 @@
 package application.engine;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -36,11 +38,10 @@ public class GameEngine {
 		
 		player = p;
 		pilePieces = new LinkedList<String>();
+		pilePieces = retrievePilePieces();
 		usedChars = new LinkedList<String>();
-		for (int i = 0; i < 26; i++) {
-			char letter = (char)((int)'A' + i);
-			pilePieces.add(letter+"");
-		}
+		
+		
 		Collections.shuffle(pilePieces);
 		for (int i = 0; i < 15; i++) {
 			for(int j = 0; j < 15; j++) {
@@ -143,6 +144,24 @@ public class GameEngine {
 	
 	public static LinkedList<String> getHand(){
 		return player.getHand().getList();
+	}
+	
+	public static LinkedList<String> retrievePilePieces(){
+		LinkedList<String> pilePieces = new LinkedList<String>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("res/ScrabblePile.txt"));
+			String line = reader.readLine();
+			while (line != null) {
+				for (int i = 0; i < line.length(); i++) {
+					pilePieces.add(line.charAt(i)+"");
+				}
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch(Exception e) {
+			System.out.println("file not found");
+		}
+		return pilePieces;
 	}
 	
 }
