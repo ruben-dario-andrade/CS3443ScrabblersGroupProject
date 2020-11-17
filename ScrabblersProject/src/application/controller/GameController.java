@@ -85,6 +85,11 @@ public class GameController implements Initializable {
 		GameModel.endTurn();
 	}
 	
+	@FXML
+	public void undoMoves(ActionEvent event) {
+		GameModel.undoMoves();
+	}
+	
 }
 
 

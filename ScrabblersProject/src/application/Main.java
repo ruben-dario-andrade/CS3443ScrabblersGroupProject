@@ -1,6 +1,9 @@
 package application;
 	
+import application.engine.WordThread;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -16,6 +19,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
 			mainStage = primaryStage;
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("view/Main.fxml"));
 			Scene scene = new Scene(root,1200,800);
@@ -34,6 +38,13 @@ public class Main extends Application {
 	
 	public static Stage getStage() {
 		return mainStage;
+	}
+	
+	@Override
+	public void stop() throws Exception{
+		System.out.println("stopped");
+		super.stop();
+		System.exit(0);
 	}
 }
 

@@ -27,13 +27,17 @@ public class GameEngine {
 	
 	/* Dynamic variable that tracks the currently selected character */
 	private static char currentLetter = ' ';
-	
-	
+	/* This variable will keep track of used chars */
+	private static LinkedList<String> usedChars;
+	private static LinkedList<Point> usedTiles;
 	
 	public static void start() {
 		Player p = new Player();
+		WordThread wordThread = new WordThread();
+		//System.out.println(wordThread.getX());
 		player = p;
 		pilePieces = new LinkedList<String>();
+		usedChars = new LinkedList<String>();
 		for (int i = 0; i < 26; i++) {
 			char letter = (char)((int)'A' + i);
 			pilePieces.add(letter+"");
@@ -65,6 +69,8 @@ public class GameEngine {
 			if (boardPiece[row][col] == ' ') {
 				gameBoard.addPiece(row, col, currentLetter);
 				boardPiece[row][col] = currentLetter;
+				usedChars.add(currentLetter+"");
+				//usedTiles.add(new Point(row, col));
 				player.getHand().removePiece(currentLetter+"");
 				gamePlayerTray.addRefreshHand(player.getHand().getList());
 			}
@@ -85,6 +91,7 @@ public class GameEngine {
 	}
 	
 	public static void refillHand() {
+		usedChars.clear();
 		for (int i = 0; i < 7 - player.getHandSize(); i++) {
 			if (pilePieces.size() == 0) {
 				// End Game function will go here
@@ -96,7 +103,16 @@ public class GameEngine {
 		
 	}
 	
-	
+	public static void returnHand() {;
+		
+		for (int i = 0; i < usedChars.size(); i++) {
+			player.getHand().addPiece(usedChars.get(i)+"");
+			System.out.println(usedChars.get(i)+"");
+		}
+		usedChars.clear();
+		player.getHand().clearHand();
+		gamePlayerTray.addRefreshHand(player.getHand().getList());
+	}
 	
 }
 
