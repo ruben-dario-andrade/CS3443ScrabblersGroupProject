@@ -2,15 +2,29 @@ package application.engine;
 
 public class WordThread implements Runnable {
 	Thread runner;
+	WordEngine wordEngine;
+	int test = 0;
+	
 	boolean running = false;
   	public WordThread() {
-	  	running = true;
+  		this.wordEngine = new WordEngine();
+  		running = true;
   		this.runner = new Thread(this);
 	  	this.runner.start();
   	}
 
+  	private void tick() {
+  		wordEngine.addList(GameEngine.getHand());
+  		if (test == 0) {		
+  			wordEngine.createInclusiveList();
+  			wordEngine.getCurrentList();
+  			test++;
+  		}
+  	}
+  	
   	@Override
   	public void run() {
+  		wordEngine.createInclusiveList();
   		long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -22,7 +36,7 @@ public class WordThread implements Runnable {
             delta += ( now - lastTime ) / ns;
             lastTime = now;
             while ( delta >= 1) {
-                
+                tick();
                 delta--;
             }
             //if ( running )
@@ -30,7 +44,7 @@ public class WordThread implements Runnable {
             frames++;
             if( System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                System.out.println( "FPS: " + frames);
+                //System.out.println( "FPS: " + frames);
                 frames = 0;
             }
         }

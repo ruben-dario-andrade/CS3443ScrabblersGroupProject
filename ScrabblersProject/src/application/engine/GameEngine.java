@@ -33,8 +33,7 @@ public class GameEngine {
 	
 	public static void start() {
 		Player p = new Player();
-		WordThread wordThread = new WordThread();
-		//System.out.println(wordThread.getX());
+		
 		player = p;
 		pilePieces = new LinkedList<String>();
 		usedChars = new LinkedList<String>();
@@ -52,6 +51,7 @@ public class GameEngine {
 			player.getHand().addPiece(pilePieces.pop());
 		}
 		gamePlayerTray.addRefreshHand(player.getHand().getList());
+		WordThread wordThread = new WordThread();
 	}
 
 	public static void addBoard(GameBoard g) {
@@ -63,14 +63,26 @@ public class GameEngine {
 	}
 	
 	
-
+	/* Parameters: 	
+	 * 		int row, col -> row and column received from the piece event
+	 * Return:
+	 * 		None:
+	 * Description:
+	 * 		This function sets the new GamePiece onto the board and removes the piece from
+	 * 		the players hand. 
+	 */
 	public static void movePiece(int row, int col) {
 		if (currentLetter != ' ') {
 			if (boardPiece[row][col] == ' ') {
+				/* This pair of statements sets the letters both on the GameBoard object
+				 * and the locally held game board char[][] array*/
 				gameBoard.addPiece(row, col, currentLetter);
 				boardPiece[row][col] = currentLetter;
+				
 				usedChars.add(currentLetter+"");
 				//usedTiles.add(new Point(row, col));
+				
+				
 				player.getHand().removePiece(currentLetter+"");
 				gamePlayerTray.addRefreshHand(player.getHand().getList());
 			}
@@ -78,6 +90,14 @@ public class GameEngine {
 		currentLetter = ' ';
 	}
 	
+	/* Parameters: 	
+	 * 		char letter -> letter received from the piece event
+	 * Return:
+	 * 		None:
+	 * Description:
+	 * 		This function sets the current letter held by the GameEngine class
+	 * 		This current letter is used to set the letter on the grid the user selects
+	 */
 	public static void receiveLetter(char letter) {
 		currentLetter = letter;
 	}
@@ -90,17 +110,24 @@ public class GameEngine {
 		gamePlayerTray.addRefreshHand(player.getHand().getList());
 	}
 	
-	public static void refillHand() {
+	/* Parameters: 	
+	 * 		None:
+	 * Return:
+	 * 		int 0 if the refill was success
+	 * 		int -1 if the refill fails
+	 * Description:
+	 * 		This function refills the player's hand from the remaining pieces
+	 */
+	public static int refillHand() {
 		usedChars.clear();
 		for (int i = 0; i < 7 - player.getHandSize(); i++) {
 			if (pilePieces.size() == 0) {
-				// End Game function will go here
-				break;
+				return -1;
 			}
 			player.getHand().addPiece(pilePieces.pop());
 			i--;
 		}
-		
+		return 0;
 	}
 	
 	public static void returnHand() {;
@@ -112,6 +139,10 @@ public class GameEngine {
 		usedChars.clear();
 		player.getHand().clearHand();
 		gamePlayerTray.addRefreshHand(player.getHand().getList());
+	}
+	
+	public static LinkedList<String> getHand(){
+		return player.getHand().getList();
 	}
 	
 }

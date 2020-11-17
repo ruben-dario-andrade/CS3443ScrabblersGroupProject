@@ -33,5 +33,6 @@
             <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" text="Undo" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Button fx:id="ExitButton" layoutX="1099.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" text="Exit" />
    </children>
 </AnchorPane>

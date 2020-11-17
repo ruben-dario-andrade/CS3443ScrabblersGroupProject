@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -50,13 +51,16 @@ public class GameController implements Initializable {
     @FXML 
     private Button UndoButton;
     
+    @FXML
+    private Button ExitButton;
+    
     ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/* This code block is needed for game board to appear. 
-		 * Will need to be fit into proper model class 
-		 * */
+		PopupControl popup = new PopupControl();
+		
+		
 		GameBoard gameBoard = new GameBoard();
 		GamePlayerTray gamePlayerTray = new GamePlayerTray();
 		gamePlayerTray.setLayoutX(50);
@@ -83,6 +87,7 @@ public class GameController implements Initializable {
 	@FXML
 	public void endTurn(ActionEvent event) {
 		GameModel.endTurn();
+		
 	}
 	
 	@FXML
