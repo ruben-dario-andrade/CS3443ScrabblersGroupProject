@@ -10,6 +10,7 @@ import application.components.GameBoard;
 import application.components.GamePiece;
 import application.components.GamePlayerTray;
 import application.engine.GameEngine;
+import application.engine.LoadFxml;
 import application.model.GameModel;
 
 import java.io.File;
@@ -28,6 +29,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GameController implements Initializable {
@@ -35,14 +38,16 @@ public class GameController implements Initializable {
 	@FXML
 	private AnchorPane mainPane;
 	
+	//@FXML
+    //private AnchorPane WordHelperPane;
+
 	@FXML
-    private AnchorPane WordHelperPane;
+	private BorderPane WordHelperPane;
+    //@FXML
+    //private Label WFLabel;
 
-    @FXML
-    private Label WFLabel;
-
-    @FXML
-    private ListView<String> WordDisplayLV;
+    //@FXML
+    //private ListView<String> WordDisplayLV;
     
     @FXML
     private Button EndTurnButton;
@@ -50,7 +55,7 @@ public class GameController implements Initializable {
     @FXML 
     private Button UndoButton;
     
-    ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
+    //ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -77,12 +82,19 @@ public class GameController implements Initializable {
 			System.out.println(e);
 		}*/
 		
-		WordDisplayLV.setItems(list);
+		//WordDisplayLV.setItems(list);
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
 		GameModel.endTurn();
+	}
+	
+	@FXML
+	public void OpenWordHelper(ActionEvent event) {
+		LoadFxml object = new LoadFxml();
+		Pane view = object.getPage("WordCriteria");
+		WordHelperPane.setCenter(view);
 	}
 	
 }
