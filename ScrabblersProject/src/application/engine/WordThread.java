@@ -16,7 +16,7 @@ public class WordThread implements Runnable {
   	private void tick() {
   		wordEngine.addList(GameEngine.getHand());
   		if (test == 0) {		
-  			wordEngine.createInclusiveList();
+  			wordEngine.createExclusiveList();
   			wordEngine.getCurrentList();
   			test++;
   		}
