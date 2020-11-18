@@ -42,7 +42,7 @@ public class Main extends Application {
 	
 	@Override
 	public void stop() throws Exception{
-		System.out.println("stopped");
+		//System.out.println("stopped");
 		super.stop();
 		System.exit(0);
 	}

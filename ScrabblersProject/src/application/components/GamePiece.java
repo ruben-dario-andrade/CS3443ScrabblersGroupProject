@@ -18,6 +18,10 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.text.Font;
 
+/* This class extends the button piece, and is what comprises both tiles and game pieces.
+ * 
+ */
+
 public class GamePiece extends Button{
 	
 	private char letter;
@@ -72,9 +76,6 @@ public class GamePiece extends Button{
 	}
 
 
-	public char getLetter() {
-		return this.letter;
-	}
 	
 	
 }

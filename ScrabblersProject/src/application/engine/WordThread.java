@@ -6,13 +6,15 @@ public class WordThread implements Runnable {
 	int test = 0;
 	
 	boolean running = false;
-  	public WordThread() {
+  	
+	public WordThread() {
   		this.wordEngine = new WordEngine();
   		running = true;
   		this.runner = new Thread(this);
 	  	this.runner.start();
   	}
 
+  	
   	private void tick() {
   		wordEngine.addList(GameEngine.getHand());
   		if (test == 0) {		
