@@ -10,4 +10,8 @@ public class GameModel {
 		GameEngine.refreshTray();
 	}  
 	
+	public static void undoMoves() {
+		GameEngine.returnHand();
+	}
+	
 }
