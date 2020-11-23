@@ -9,6 +9,8 @@ public class WordThread implements Runnable {
   	
 	public WordThread() {
   		this.wordEngine = new WordEngine();
+  		wordEngine.combine();
+  		wordEngine.main();
   		running = true;
   		this.runner = new Thread(this);
 	  	this.runner.start();
@@ -16,10 +18,14 @@ public class WordThread implements Runnable {
 
   	
   	private void tick() {
-  		wordEngine.addList(GameEngine.getHand());
+  		//wordEngine.addList(GameEngine.getHand());
+  		//wordEngine.combine();
+		//wordEngine.main();
   		if (test == 0) {		
-  			wordEngine.createExclusiveList();
-  			wordEngine.getCurrentList();
+  			//wordEngine.combine();
+  			//wordEngine.main();
+  			System.out.println("Brrr");
+  			//wordEngine.getCurrentList();
   			test++;
   		}
   	}
