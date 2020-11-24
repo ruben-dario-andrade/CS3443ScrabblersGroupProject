@@ -31,7 +31,7 @@ public class GameEngine {
 	private static char currentLetter = ' ';
 	/* This variable will keep track of used chars */
 	private static LinkedList<String> usedChars;
-	private static LinkedList<Point> usedTiles;
+	private static LinkedList<Point> usedTiles = new LinkedList<Point>();
 	
 	public static void start() {
 		Player p = new Player();
@@ -77,12 +77,13 @@ public class GameEngine {
 			if (boardPiece[row][col] == ' ') {
 				/* This pair of statements sets the letters both on the GameBoard object
 				 * and the locally held game board char[][] array*/
+				gameBoard.removeNodeByRowColumnIndex(row, col);
 				gameBoard.addPiece(row, col, currentLetter);
 				boardPiece[row][col] = currentLetter;
 				
 				usedChars.add(currentLetter+"");
-				//usedTiles.add(new Point(row, col));
-				
+				Point temp = new Point(row, col);
+				usedTiles.add(temp);
 				
 				player.getHand().removePiece(currentLetter+"");
 				gamePlayerTray.addRefreshHand(player.getHand().getList());
@@ -131,15 +132,26 @@ public class GameEngine {
 		return 0;
 	}
 	
-	public static void returnHand() {;
-		
+	public static void returnHand() {
+		player.getHand().clearHand();
 		for (int i = 0; i < usedChars.size(); i++) {
 			player.getHand().addPiece(usedChars.get(i)+"");
-			System.out.println(usedChars.get(i)+"");
 		}
 		usedChars.clear();
-		player.getHand().clearHand();
 		gamePlayerTray.addRefreshHand(player.getHand().getList());
+	}
+	
+	public static void returnBoard() {
+		for (int i = 0;  i < usedTiles.size(); i++) {
+			gameBoard.addPiece(usedTiles.get(i).getX(), usedTiles.get(i).getY(), ' ');
+			boardPiece[usedTiles.get(i).getX()][usedTiles.get(i).getY()] = ' ';
+		}
+		usedTiles.clear();
+	}
+	
+	public static void clearUsedPieces() {
+		usedChars.clear();
+		usedTiles.clear();
 	}
 	
 	public static LinkedList<String> getHand(){

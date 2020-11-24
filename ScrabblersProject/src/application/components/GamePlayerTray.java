@@ -2,8 +2,11 @@ package application.components;
 
 import java.util.LinkedList;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -29,16 +32,11 @@ public class GamePlayerTray extends GridPane{
 		
 	}
 	
-	public void addRefreshHand(LinkedList<String> hand) {
-		
+	public void addRefreshHand(LinkedList<String> hand) {	
 		for (int i = 0; i < hand.size(); i++) {
 			this.add(new GamePiece(hand.get(i).charAt(0), true, -1, -1), i + 1, 0);
 		}
 	}
-	
-	
-	
-	
 	
 	
 	

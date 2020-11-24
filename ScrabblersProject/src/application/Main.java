@@ -13,9 +13,7 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	private static Stage mainStage;
-	
-	//Miguel was here
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -41,11 +39,9 @@ public class Main extends Application {
 	}
 	
 	@Override
-	public void stop() throws Exception{
+	public void stop() throws Exception {
 		//System.out.println("stopped");
 		super.stop();
 		System.exit(0);
 	}
 }
-
-// Franks Comment

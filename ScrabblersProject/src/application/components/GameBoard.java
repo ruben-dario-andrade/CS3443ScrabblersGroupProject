@@ -1,5 +1,8 @@
 package application.components;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class GameBoard extends GridPane{
@@ -17,6 +20,18 @@ public class GameBoard extends GridPane{
 
 	public void addPiece(int row, int col, char letter) {
 		this.add(new GamePiece(letter, false, row, col), row, col);
+	}
+	
+	public void removeNodeByRowColumnIndex(final int row,final int column) {
+
+		ObservableList<Node> childrens = this.getChildren();
+		for(Node node : childrens) {
+		    if(node instanceof ImageView && this.getRowIndex(node) == row && this.getColumnIndex(node) == column) {
+		        //GamePiece gamePiece = GamePiece(node); // use what you want to remove
+		        this.getChildren().remove(node);
+		        break;
+		    }
+		  } 
 	}
 	
 }

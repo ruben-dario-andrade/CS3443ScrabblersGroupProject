@@ -8,10 +8,12 @@ public class GameModel {
 		GameEngine.getPlayer().getHand().clearHand();
 		GameEngine.refillHand();
 		GameEngine.refreshTray();
+		GameEngine.clearUsedPieces();
 	}  
 	
 	public static void undoMoves() {
 		GameEngine.returnHand();
+		GameEngine.returnBoard();
 	}
 	
 }
