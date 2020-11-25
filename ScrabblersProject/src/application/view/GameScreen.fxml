@@ -28,6 +28,6 @@
          </bottom>
       </BorderPane>
       <Button fx:id="ExitButton" layoutX="1099.0" layoutY="37.0" mnemonicParsing="false" onAction="#goHome" prefHeight="25.0" prefWidth="46.0" text="Exit" />
+      <AnchorPane fx:id="GameBoardPane" layoutX="52.0" layoutY="43.0" prefHeight="555.0" prefWidth="584.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>
-
