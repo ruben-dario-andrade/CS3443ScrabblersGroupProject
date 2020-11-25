@@ -95,6 +95,14 @@ public class GameController implements Initializable {
 		GameModel.undoMoves();
 	}
 	
+	@FXML
+	public void goHome(ActionEvent event) throws IOException{
+		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
+		Scene scene = new Scene(mainPane);
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
 }
 
 

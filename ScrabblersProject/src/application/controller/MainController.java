@@ -19,15 +19,22 @@ public class MainController {
 
 	@FXML
 	private AnchorPane mainPane;
-	
-	
+	@FXML
+    private Button exitButton;
+    @FXML
+    private Button settingsButton;
+    @FXML
+    private Button loadSavesButton;
+    @FXML
+    private Button playButton;
+
 	@FXML
 	public void initialize(){
 		
 	}
 	
 	@FXML
-	public void gameScreen(ActionEvent event) throws IOException{
+	public void goGameScreen(ActionEvent event) throws IOException{
 		mainPane = FXMLLoader.load(getClass().getResource("../view/gameScreen.fxml"));
 		Scene scene = new Scene(mainPane);
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -35,4 +42,21 @@ public class MainController {
 		window.show();
 	}
 	
+	@FXML
+	public void goLoadSaves(ActionEvent event) throws IOException{
+		mainPane = FXMLLoader.load(getClass().getResource("../view/LoadSaves.fxml"));
+		Scene scene = new Scene(mainPane);
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
+	
+	@FXML
+	public void goSettings(ActionEvent event) throws IOException{
+		mainPane = FXMLLoader.load(getClass().getResource("../view/Settings.fxml"));
+		Scene scene = new Scene(mainPane);
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
 }
