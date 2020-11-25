@@ -12,6 +12,8 @@ public class GameBoard extends GridPane{
 				this.add(new GamePiece(' ', false, i, j), i, j);
 			}
 		}
+		
+		
 	}
 	
 	public GamePiece getGameTile(final int rows, final int columns) {
