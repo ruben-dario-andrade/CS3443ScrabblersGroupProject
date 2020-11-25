@@ -1,14 +1,20 @@
 package application.engine;
 
+import java.util.LinkedList;
+
+import application.controller.WordHelperController;
+
 public class WordThread implements Runnable {
 	Thread runner;
 	WordEngine wordEngine;
 	int test = 0;
+	WordHelperController controller;
 	
 	boolean running = false;
   	
-	public WordThread() {
+	public WordThread(WordHelperController controller) {
   		this.wordEngine = new WordEngine();
+  		this.controller = controller;
   		running = true;
   		this.runner = new Thread(this);
 	  	this.runner.start();
@@ -18,16 +24,18 @@ public class WordThread implements Runnable {
   	private void tick() {
   		if (test == 0) {	 	
   			wordEngine.addList(GameEngine.getHand());
-  			wordEngine.createExclusiveList();
-  			wordEngine.getCurrentList();
+  			wordEngine.createInclusiveList();
+  			LinkedList<String> reccomendations = wordEngine.getCurrentList();
+  			this.controller.populateLLThread(reccomendations);
   			test++;
+  			//Try to update list from here
   		}
   	}
   	
   	@Override
   	public void run() {
   		long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        double amountOfTicks = 0.3;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
@@ -61,7 +69,11 @@ public class WordThread implements Runnable {
          }
      }
   	
+  	public void end() {
+  		running = false;
+  	} 
+  	 
   	public static void main(String[] args) {
-  		new WordThread();
+  		//new WordThread();
   	}
 }

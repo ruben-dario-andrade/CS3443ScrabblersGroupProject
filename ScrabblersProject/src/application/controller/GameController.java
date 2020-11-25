@@ -10,7 +10,9 @@ import application.components.GameBoard;
 import application.components.GamePiece;
 import application.components.GamePlayerTray;
 import application.engine.GameEngine;
+import application.engine.LoadFxml;
 import application.model.GameModel;
+import application.model.HelperModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,6 +31,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GameController implements Initializable {
@@ -36,14 +40,16 @@ public class GameController implements Initializable {
 	@FXML
 	private AnchorPane mainPane;
 	
+	//@FXML
+    //private AnchorPane WordHelperPane;
+
 	@FXML
-    private AnchorPane WordHelperPane;
+	private BorderPane WordHelperPane;
+    //@FXML
+    //private Label WFLabel;
 
-    @FXML
-    private Label WFLabel;
-
-    @FXML
-    private ListView<String> WordDisplayLV;
+    //@FXML
+    //private ListView<String> WordDisplayLV;
     
     @FXML
     private Button EndTurnButton;
@@ -51,10 +57,12 @@ public class GameController implements Initializable {
     @FXML 
     private Button UndoButton;
     
+
     @FXML
     private Button ExitButton;
     
-    ObservableList<String> list = FXCollections.observableArrayList("This", "is", "to", "populate", "this", "listview");
+    
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -70,18 +78,7 @@ public class GameController implements Initializable {
 		GameEngine.addBoard(gameBoard);
 		GameEngine.addTray(gamePlayerTray);
 		GameEngine.start();
-		// Code below is commented out for future use (will be used to read from text file)
-		/*try {
-			Scanner scan = new Scanner(new File("sample.txt"));
-			while(scan.hasNext()) {
-				list.add(scan.next());
-			}
-		}
-		catch (FileNotFoundException e) {
-			System.out.println(e);
-		}*/
-		
-		WordDisplayLV.setItems(list);
+	
 	}
 	
 	@FXML
@@ -103,7 +100,24 @@ public class GameController implements Initializable {
 		window.setScene(scene);
 		window.show();
 	}
+
+  @FXML
+	public void OpenWordHelper(ActionEvent event) {
+		LoadFxml object = new LoadFxml();
+		Pane view = object.getPage("DisplayWords");
+		WordHelperPane.setCenter(view);
+	}
+	
+	@FXML
+	public void CloseWordHelper(ActionEvent event) {
+		HelperModel.close();
+		LoadFxml object = new LoadFxml();
+		Pane view = object.getPage("Blank");
+		WordHelperPane.setCenter(view);
+	}
+
 }
+
 
 
 
