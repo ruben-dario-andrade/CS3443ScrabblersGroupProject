@@ -93,6 +93,15 @@ public class GameController implements Initializable {
 	}
 	
 	@FXML
+	public void goHome(ActionEvent event) throws IOException{
+		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
+		Scene scene = new Scene(mainPane);
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+	}
+
+  @FXML
 	public void OpenWordHelper(ActionEvent event) {
 		LoadFxml object = new LoadFxml();
 		Pane view = object.getPage("DisplayWords");
