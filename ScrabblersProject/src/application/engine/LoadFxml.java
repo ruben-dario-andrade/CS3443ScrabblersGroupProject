@@ -13,7 +13,7 @@ public class LoadFxml {
 			
 			//URL fileUrl = new URL("file:/Users/frankidrogo/git/CS3443ScrabblersGroupProject2/ScrabblersProject/src/application/view/" + fileName + ".fxml"); 
 			URL fileUrl = Main.class.getResource("/application/view/" + fileName + ".fxml");
-			System.out.println(fileUrl);
+			//System.out.println(fileUrl);
 			if(fileUrl==null){
 				throw new java.io.FileNotFoundException("FXML file can't be found");
 			}

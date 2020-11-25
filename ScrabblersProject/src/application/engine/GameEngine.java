@@ -155,7 +155,14 @@ public class GameEngine {
 	}
 	
 	public static LinkedList<String> getHand(){
-		return player.getHand().getList();
+		LinkedList<String> adj = new LinkedList<String>();
+		int size = player.getHand().getList().size();
+		for (int i = 0; i < size; i++) {
+			if (!player.getHand().getList().get(i).equals(" ")) {
+				adj.add(player.getHand().getList().get(i));
+			}
+		}
+		return adj;
 	}
 	
 	public static LinkedList<String> retrievePilePieces(){

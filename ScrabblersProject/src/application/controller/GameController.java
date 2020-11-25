@@ -12,6 +12,7 @@ import application.components.GamePlayerTray;
 import application.engine.GameEngine;
 import application.engine.LoadFxml;
 import application.model.GameModel;
+import application.model.HelperModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -100,6 +101,7 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void CloseWordHelper(ActionEvent event) {
+		HelperModel.close();
 		LoadFxml object = new LoadFxml();
 		Pane view = object.getPage("Blank");
 		WordHelperPane.setCenter(view);

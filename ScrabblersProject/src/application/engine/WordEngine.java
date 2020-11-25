@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class WordEngine {
 	private char[] focusLetter = new char[15];
 	private short focusSize = 0;
-	private ArrayList list = new ArrayList();
+	private ArrayList<String> list = new ArrayList<String>();
 	
 	public WordEngine() {
 		
@@ -74,12 +74,12 @@ public class WordEngine {
 	
 	
 	
-	public ArrayList getCurrentList() {
-		//System.out.println(list.size());
+	public LinkedList<String> getCurrentList() {
+		LinkedList<String> reccomend = new LinkedList<String>();
 		for (int i = 0; i < list.size(); i++) {
-			//System.out.println(list.get(i));
+			reccomend.add(list.get(i));	
 		}
-		return list;
+		return reccomend;
 	}
 	
 }

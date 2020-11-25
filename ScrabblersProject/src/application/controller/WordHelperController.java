@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import application.engine.LoadFxml;
 import application.engine.WordThread;
+import application.model.HelperModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +27,8 @@ public class WordHelperController implements Initializable {
 	@FXML
     private ListView<String> WordDisplayLV;
 	
+	WordThread wordThread;
+	
     ObservableList<String> list = FXCollections.observableArrayList();
     ObservableList<String> list2 = FXCollections.observableArrayList();
 
@@ -34,13 +37,19 @@ public class WordHelperController implements Initializable {
     LinkedList<String> LL2 = new LinkedList<String>();
 
     
-    /*public void populateLL(LinkedList<String> LL) {
-    	LL.add("A");
-    	LL.add("B");
-    	
-    	list.setAll(LL);
-    }*/
+    public void populateLLThread(LinkedList<String> rec) {
+    	//System.out.println("I call this");
+    	//LinkedList<String> LL3 = new LinkedList<String>();
+		//LL3.add("Spooker");
+    	//LL3.add("Spooper");
+    	//LL3.add("Speeker");
+    	//list.setAll(LL3);
+    	//WordDisplayLV.setItems(list);
+    	list.setAll(rec);
+		WordDisplayLV.setItems(list);
+    }
 	
+    
 	@FXML
 	public void populateLL(ActionEvent event) {
 		LinkedList<String> LL3 = new LinkedList<String>();
@@ -53,26 +62,21 @@ public class WordHelperController implements Initializable {
 	
 	@FXML
 	public void populateLL2(ActionEvent event) {
-		WordDisplayLV.setItems(list2);
+		LinkedList<String> LL3 = new LinkedList<String>();
+		LL3.add("Bow");
+    	LL3.add("Low");
+    	LL3.add("Crow");
+    	list.setAll(LL3);
+		WordDisplayLV.setItems(list);
 	}
 	
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-				LL.add("A");
-		    	LL.add("B");
-		    	LL.add("C");
-		    	
-		    	LL2.add("Huh");
-		    	LL2.add("IDK");
-		    	LL2.add("OK");
-		    	
-		    	
-		    	list.setAll(LL);
-		    	list2.setAll(LL2);
-		    	//WordThread wordThread = new WordThread();
-				//WordDisplayLV.setItems(list);
+		this.wordThread = new WordThread(this);
+		HelperModel.start(this.wordThread);
+		//wordThread.end();
 	}
 
 	
