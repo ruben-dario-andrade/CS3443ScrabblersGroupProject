@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import application.engine.LoadFxml;
+import application.engine.WordThread;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,6 +43,11 @@ public class WordHelperController implements Initializable {
 	
 	@FXML
 	public void populateLL(ActionEvent event) {
+		LinkedList<String> LL3 = new LinkedList<String>();
+		LL3.add("Meh");
+    	LL3.add("Wow");
+    	LL3.add("Zoom");
+    	list.setAll(LL3);
 		WordDisplayLV.setItems(list);
 	}
 	
@@ -51,21 +57,9 @@ public class WordHelperController implements Initializable {
 	}
 	
 	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Code below is commented out for future use (will be used to read from text file)
-				/*try {
-					Scanner scan = new Scanner(new File("res/test2.txt"));
-					while(scan.hasNext()) {
-						list.add(scan.next());
-					}
-				}
-				catch (FileNotFoundException e) {
-					System.out.println(e);
-				}*/
-		
-		
-		
 				LL.add("A");
 		    	LL.add("B");
 		    	LL.add("C");
@@ -77,8 +71,32 @@ public class WordHelperController implements Initializable {
 		    	
 		    	list.setAll(LL);
 		    	list2.setAll(LL2);
-		
+		    	//WordThread wordThread = new WordThread();
 				//WordDisplayLV.setItems(list);
 	}
 
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

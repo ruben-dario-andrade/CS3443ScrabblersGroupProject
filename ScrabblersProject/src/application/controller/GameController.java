@@ -94,7 +94,7 @@ public class GameController implements Initializable {
 	@FXML
 	public void OpenWordHelper(ActionEvent event) {
 		LoadFxml object = new LoadFxml();
-		Pane view = object.getPage("WordCriteria");
+		Pane view = object.getPage("DisplayWords");
 		WordHelperPane.setCenter(view);
 	}
 	
@@ -104,8 +104,9 @@ public class GameController implements Initializable {
 		Pane view = object.getPage("Blank");
 		WordHelperPane.setCenter(view);
 	}
-	
+
 }
+
 
 
 

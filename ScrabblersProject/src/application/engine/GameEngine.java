@@ -52,7 +52,7 @@ public class GameEngine {
 			player.getHand().addPiece(pilePieces.pop());
 		}
 		gamePlayerTray.addRefreshHand(player.getHand().getList());
-		WordThread wordThread = new WordThread();
+		// WordThread wordThread = new WordThread();
 	}
 
 	public static void addBoard(GameBoard g) {

@@ -28,7 +28,7 @@ public class WordThread implements Runnable {
   	@Override
   	public void run() {
   		long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        double amountOfTicks = 20.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
