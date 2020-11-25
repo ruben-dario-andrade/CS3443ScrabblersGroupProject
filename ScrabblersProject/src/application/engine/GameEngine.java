@@ -24,8 +24,10 @@ public class GameEngine {
 	
 	private static char[][] boardPiece = new char[15][15];
 	private static LinkedList<String> pilePieces;
-	private static char[] playerPieces = new char[8];
-
+	//player.getHand().getList();  
+	
+	//private static char[] playerPieces = new char[8];
+	//player.getHand().getList();  
 	
 	/* Dynamic variable that tracks the currently selected character */
 	private static char currentLetter = ' ';
@@ -52,9 +54,30 @@ public class GameEngine {
 			player.getHand().addPiece(pilePieces.pop());
 		}
 		gamePlayerTray.addRefreshHand(player.getHand().getList());
-		// WordThread wordThread = new WordThread();
 	}
 
+	public static void start(String fileName) {
+		Player p = new Player();
+		
+		player = p;
+		pilePieces = new LinkedList<String>();
+		pilePieces = retrievePilePieces();
+		usedChars = new LinkedList<String>();
+		
+		
+		Collections.shuffle(pilePieces);
+		for (int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				boardPiece[i][j] = ' ';
+			}
+		}
+		for (int i = 0; i < 7; i++) {
+			player.getHand().addPiece(pilePieces.pop());
+		}
+		gamePlayerTray.addRefreshHand(player.getHand().getList());
+	}
+	
+	
 	public static void addBoard(GameBoard g) {
 		gameBoard = g;
 	}
@@ -157,9 +180,11 @@ public class GameEngine {
 	public static LinkedList<String> getHand(){
 		LinkedList<String> adj = new LinkedList<String>();
 		int size = player.getHand().getList().size();
+		int count = 0;
 		for (int i = 0; i < size; i++) {
-			if (!player.getHand().getList().get(i).equals(" ")) {
+			if (player.getHand().getList().get(i).charAt(0) != ' ') {
 				adj.add(player.getHand().getList().get(i));
+				count++;
 			}
 		}
 		return adj;

@@ -36,7 +36,7 @@ public class WordHelperController implements Initializable {
     LinkedList<String> LL = new LinkedList<String>();
     LinkedList<String> LL2 = new LinkedList<String>();
 
-    
+    /*
     public void populateLLThread(LinkedList<String> rec) {
     	//System.out.println("I call this");
     	//LinkedList<String> LL3 = new LinkedList<String>();
@@ -48,14 +48,11 @@ public class WordHelperController implements Initializable {
     	list.setAll(rec);
 		WordDisplayLV.setItems(list);
     }
-	
+	*/
     
 	@FXML
 	public void populateLL(ActionEvent event) {
-		LinkedList<String> LL3 = new LinkedList<String>();
-		LL3.add("Meh");
-    	LL3.add("Wow");
-    	LL3.add("Zoom");
+		LinkedList<String> LL3 = wordThread.getReccomendations();
     	list.setAll(LL3);
 		WordDisplayLV.setItems(list);
 	}
@@ -74,11 +71,12 @@ public class WordHelperController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.wordThread = new WordThread(this);
-		HelperModel.start(this.wordThread);
+		this.wordThread = new WordThread();
+		HelperModel.start(wordThread);
 		//wordThread.end();
 	}
 
+	
 	
 	
 }

@@ -8,13 +8,14 @@ public class WordThread implements Runnable {
 	Thread runner;
 	WordEngine wordEngine;
 	int test = 0;
-	WordHelperController controller;
+	LinkedList<String> reccomendations;
 	
 	boolean running = false;
   	
-	public WordThread(WordHelperController controller) {
-  		this.wordEngine = new WordEngine();
-  		this.controller = controller;
+	public WordThread() {
+		this.reccomendations = new LinkedList<String>();
+		this.wordEngine = new WordEngine();
+
   		running = true;
   		this.runner = new Thread(this);
 	  	this.runner.start();
@@ -22,14 +23,12 @@ public class WordThread implements Runnable {
 
   	
   	private void tick() {
-  		if (test == 0) {	 	
+  		//if (test == 0) {	 	
   			wordEngine.addList(GameEngine.getHand());
   			wordEngine.createInclusiveList();
-  			LinkedList<String> reccomendations = wordEngine.getCurrentList();
-  			this.controller.populateLLThread(reccomendations);
-  			test++;
-  			//Try to update list from here
-  		}
+  			this.reccomendations = wordEngine.getCurrentList();
+  		//	test++;
+  		//}
   	}
   	
   	@Override
@@ -73,6 +72,10 @@ public class WordThread implements Runnable {
   		running = false;
   	} 
   	 
+  	public LinkedList<String> getReccomendations() {
+  		return this.reccomendations;
+  	}
+  	
   	public static void main(String[] args) {
   		//new WordThread();
   	}
