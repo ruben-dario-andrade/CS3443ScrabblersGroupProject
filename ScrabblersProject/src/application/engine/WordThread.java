@@ -21,6 +21,7 @@ public class WordThread implements Runnable {
   			wordEngine.createExclusiveList();
   			wordEngine.getCurrentList();
   			test++;
+  			//Try to update list from here
   		}
   	}
   	

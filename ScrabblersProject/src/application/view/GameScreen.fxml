@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,31 +9,23 @@
 
 <AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
-      <AnchorPane fx:id="WordHelperPane" layoutX="786.0" layoutY="407.0" prefHeight="400.0" prefWidth="400.0">
-         <children>
-            <Label fx:id="WFLabel" layoutX="113.0" layoutY="42.0" text="Words Found">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ListView fx:id="WordDisplayLV" layoutX="124.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </AnchorPane>
-      <GridPane layoutX="400.0" layoutY="617.0" prefHeight="74.0" prefWidth="200.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="96.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="104.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button fx:id="EndTurnButton" mnemonicParsing="false" onAction="#endTurn" text="End Turn" />
-            <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" text="Undo" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <Button fx:id="ExitButton" layoutX="1099.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" text="Exit" />
+      <Button fx:id="UndoButton" layoutX="385.0" layoutY="662.0" mnemonicParsing="false" onAction="#undoMoves" text="Undo" />
+      <Button fx:id="EndTurnButton" layoutX="385.0" layoutY="628.0" mnemonicParsing="false" onAction="#endTurn" text="End Turn" />
+      <BorderPane fx:id="WordHelperPane" layoutX="725.0" layoutY="107.0" prefHeight="400.0" prefWidth="400.0">
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="75.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#OpenWordHelper" text="Open Word Helper" />
+                  <Button mnemonicParsing="false" onAction="#CloseWordHelper" text="Close Word Helper" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets left="25.0" top="35.0" />
+               </padding>
+            </HBox>
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>
