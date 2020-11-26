@@ -56,8 +56,7 @@ public class GameController implements Initializable {
     
     @FXML 
     private Button UndoButton;
-    
-
+   
     @FXML
     private Button ExitButton;
     
