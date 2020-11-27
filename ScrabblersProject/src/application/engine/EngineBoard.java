@@ -48,6 +48,11 @@ public class EngineBoard {
 		
 	}
 	
+	/**
+	 * Initializes EngineBoard's board pieces from save file
+	 * @param gameBoard GameBoard GUI object that EngineBaord refers to
+	 * @param test test char to fill in EngineBoard's board pieces with
+	 */
 	public EngineBoard(GameBoard gameBoard, char test) {
 		this.gameBoard = gameBoard;
 		for (int i = 0; i < 15; i++) {
