@@ -26,6 +26,7 @@ public class GameEngine {
 		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
 		
+		// Adds 7 letters from pile to user hand to start off with
 		for (int i = 0; i < 7; i++) {
 			engineTray.addPiece(enginePile.popLetter());
 		}
