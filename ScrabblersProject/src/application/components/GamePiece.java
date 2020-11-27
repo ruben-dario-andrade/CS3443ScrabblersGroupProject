@@ -50,7 +50,7 @@ public class GamePiece extends Button{
 		this.setPadding(new Insets(1, 1, 0 ,0));
 		this.setText(Character.toString(letter));
 		this.setFont(new Font("Verdana", 25));
-		//this.setStyle("-fx-background-color: MediumSeaGreen");
+		this.setStyle("-fx-background-color: mintcream");
 		
 		
 		
