@@ -1,8 +1,9 @@
-package application.engine;
+package application.algo;
 
 import java.util.LinkedList;
 
 import application.controller.WordHelperController;
+import application.engine.GameEngine;
 
 public class WordThread implements Runnable {
 	Thread runner;
