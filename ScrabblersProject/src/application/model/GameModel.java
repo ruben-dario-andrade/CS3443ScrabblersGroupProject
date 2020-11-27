@@ -5,7 +5,7 @@ import application.engine.GameEngine;
 public class GameModel {
 	
 	public static void endTurn() {
-		GameEngine.getPlayer().getHand().clearHand();
+		GameEngine.getPlayer().clearHand();
 		GameEngine.refillHand();
 		GameEngine.refreshTray();
 		GameEngine.clearUsedPieces();

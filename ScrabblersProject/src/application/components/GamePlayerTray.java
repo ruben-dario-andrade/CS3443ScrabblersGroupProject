@@ -25,10 +25,10 @@ public class GamePlayerTray extends GridPane{
 				new BorderWidths(1)
 		));
 		this.setBorder(border);
-		this.setMaxSize(400, 60);
-		this.setPrefSize(400, 60);
-		this.setMinSize(400, 60);
-		this.setPadding(new Insets(1, 1, 0 ,0));
+		this.setMaxSize(280, 55);
+		this.setPrefSize(280, 55);
+		this.setMinSize(280, 55);
+		this.setPadding(new Insets(1, 1, 0 ,0)); 
 		
 	}
 	
