@@ -67,8 +67,7 @@ public class GameController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PopupControl popup = new PopupControl();
-		
-		
+
 		GameBoard gameBoard = new GameBoard();
 		GamePlayerTray gamePlayerTray = new GamePlayerTray();
 		gamePlayerTray.setLayoutX(50);
@@ -77,13 +76,11 @@ public class GameController implements Initializable {
 		mainPane.getChildren().add(gamePlayerTray);
 		
 		GameEngine.start(gameBoard, gamePlayerTray);
-	
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-		GameModel.endTurn();
-		
+		GameModel.endTurn();	
 	}
 	
 	@FXML
@@ -116,20 +113,3 @@ public class GameController implements Initializable {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

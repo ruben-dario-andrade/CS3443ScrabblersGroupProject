@@ -21,7 +21,7 @@ public class GameEngine {
 	
 	
 	public static void start(GameBoard gameBoard, GamePlayerTray gamePlayerTray) {
-		engineBoard = new EngineBoard(gameBoard, 'a');
+		engineBoard = new EngineBoard(gameBoard);
 		engineTray = new EngineTray(gamePlayerTray);
 		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
@@ -130,16 +130,3 @@ public class GameEngine {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

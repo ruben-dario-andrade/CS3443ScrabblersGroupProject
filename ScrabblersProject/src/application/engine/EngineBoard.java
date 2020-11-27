@@ -51,13 +51,13 @@ public class EngineBoard {
 	/**
 	 * Initializes EngineBoard's board pieces from save file
 	 * @param gameBoard GameBoard GUI object that EngineBaord refers to
-	 * @param test test char to fill in EngineBoard's board pieces with
+	 * @param savedBoard 2D array that holds saved board pieces
 	 */
-	public EngineBoard(GameBoard gameBoard, char test) {
+	public EngineBoard(GameBoard gameBoard, char[][] savedBoard) {
 		this.gameBoard = gameBoard;
 		for (int i = 0; i < 15; i++) {
 			for(int j = 0; j < 15; j++) {
-				boardPiece[i][j] = test;
+				boardPiece[i][j] = savedBoard[i][j]; //TODO
 				boardTileValues[i][j] = 1;
 			}
 		}
@@ -87,8 +87,7 @@ public class EngineBoard {
 		this.gameBoard = gameBoard;
 		
 	}
-	
-	
+
 	public boolean movePiece(int row, int col) {
 		char currentLetter = GameEngine.getCurrentLetter(); 
 		if (currentLetter != ' ') {
@@ -112,16 +111,3 @@ public class EngineBoard {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

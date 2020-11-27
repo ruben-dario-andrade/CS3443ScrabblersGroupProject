@@ -43,6 +43,43 @@ public class GameBoard extends GridPane{
 		}
 	}
 	
+	/**
+	 * Initialize GameBoard with board pieces from save file
+	 * @param savedBoard 2D array holding board pieces from saved game
+	 */
+	public GameBoard(char[][] savedBoard) {
+		for(int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				GamePiece gamePiece = new GamePiece(savedBoard[i][j], false, i, j); // TODO
+				this.add(gamePiece, i, j);
+			}
+		}
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("res/ScrabbleBoard.txt"));
+			String line = reader.readLine();
+			int row, col, mult;
+			while (line != null) {
+				String[] specialTile = line.split(" ", 3);
+				row = Integer.parseInt(specialTile[0]);
+				col = Integer.parseInt(specialTile[1]);
+				mult = Integer.parseInt(specialTile[2]);
+				GamePiece gamePiece = new GamePiece(savedBoard[row][col], false, row, col); //TODO
+				if (mult == 3) {
+					gamePiece.setStyle("-fx-background-color: mediumaquamarine");
+				} else if (mult == 2) {
+					gamePiece.setStyle("-fx-background-color: lightsteelblue");
+				}
+				removeNodeByRowColumnIndex(row,col);
+				this.add(gamePiece, row, col);
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("file not found");
+		}
+	}
+	
 	public GamePiece getGameTile(final int rows, final int columns) {
 		return (GamePiece)this.getChildren().get(rows*15 + columns);
 	}
