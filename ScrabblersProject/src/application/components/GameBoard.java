@@ -28,9 +28,9 @@ public class GameBoard extends GridPane{
 				mult = Integer.parseInt(specialTile[2]);
 				GamePiece gamePiece = new GamePiece(' ', false, row, col);
 				if (mult == 3) {
-					gamePiece.setStyle("-fx-background-color: MediumSeaGreen");
+					gamePiece.setStyle("-fx-background-color: mediumaquamarine");
 				} else if (mult == 2) {
-					gamePiece.setStyle("-fx-background-color: Yellow");
+					gamePiece.setStyle("-fx-background-color: lightsteelblue");
 				}
 				removeNodeByRowColumnIndex(row,col);
 				this.add(gamePiece, row, col);
@@ -50,9 +50,9 @@ public class GameBoard extends GridPane{
 	public void addPiece(int row, int col, char letter, int mult) {
 		GamePiece gamePiece = new GamePiece(letter, false, row, col);
 		if (mult == 3) {
-			gamePiece.setStyle("-fx-background-color: MediumSeaGreen");
+			gamePiece.setStyle("-fx-background-color: mediumaquamarine");
 		} else if (mult == 2) {
-			gamePiece.setStyle("-fx-background-color: Yellow");
+			gamePiece.setStyle("-fx-background-color: lightsteelblue");
 		}
 		this.add(gamePiece, row, col);
 	}
