@@ -7,86 +7,31 @@ import java.util.LinkedList;
 
 import application.components.GameBoard;
 import application.components.GamePlayerTray;
-import application.game.Player;
 
 public class GameEngine {
 	
-	/* Primary game components that belong to GameEngine class */
-	public static GameBoard gameBoard;
-	private static GamePlayerTray gamePlayerTray;
+	private static EngineBoard engineBoard;
+	private static EnginePile enginePile;
+	private static EngineTray engineTray;
+
 	
-	/* Player object that keeps track of hand and turn actions */
-	private static Player player;
-	/* These will extend the Player class */
-	// Computer computer;
-	// Computer computer;
-	
-	
-	private static char[][] boardPiece = new char[15][15];
-	private static LinkedList<String> pilePieces;
-	//player.getHand().getList();  
-	
-	//private static char[] playerPieces = new char[8];
-	//player.getHand().getList();  
-	
-	/* Dynamic variable that tracks the currently selected character */
 	private static char currentLetter = ' ';
-	/* This variable will keep track of used chars */
 	private static LinkedList<String> usedChars;
 	private static LinkedList<Point> usedTiles = new LinkedList<Point>();
 	
-	public static void start() {
-		Player p = new Player();
-		
-		player = p;
-		pilePieces = new LinkedList<String>();
-		pilePieces = retrievePilePieces();
+	
+	public static void start(GameBoard gameBoard, GamePlayerTray gamePlayerTray) {
+		engineBoard = new EngineBoard(gameBoard);
+		engineTray = new EngineTray(gamePlayerTray);
+		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
 		
-		
-		Collections.shuffle(pilePieces);
-		for (int i = 0; i < 15; i++) {
-			for(int j = 0; j < 15; j++) {
-				boardPiece[i][j] = ' ';
-			}
-		}
 		for (int i = 0; i < 7; i++) {
-			player.getHand().addPiece(pilePieces.pop());
+			engineTray.addPiece(enginePile.popLetter());
 		}
-		gamePlayerTray.addRefreshHand(player.getHand().getList());
+		gamePlayerTray.addRefreshHand(engineTray.getList());
 	}
 
-	public static void start(String fileName) {
-		Player p = new Player();
-		
-		player = p;
-		pilePieces = new LinkedList<String>();
-		pilePieces = retrievePilePieces();
-		usedChars = new LinkedList<String>();
-		
-		
-		Collections.shuffle(pilePieces);
-		for (int i = 0; i < 15; i++) {
-			for(int j = 0; j < 15; j++) {
-				boardPiece[i][j] = ' ';
-			}
-		}
-		for (int i = 0; i < 7; i++) {
-			player.getHand().addPiece(pilePieces.pop());
-		}
-		gamePlayerTray.addRefreshHand(player.getHand().getList());
-	}
-	
-	
-	public static void addBoard(GameBoard g) {
-		gameBoard = g;
-	}
-	
-	public static void addTray(GamePlayerTray g) {
-		gamePlayerTray = g;
-	}
-	
-	
 	/* Parameters: 	
 	 * 		int row, col -> row and column received from the piece event
 	 * Return:
@@ -96,22 +41,13 @@ public class GameEngine {
 	 * 		the players hand. 
 	 */
 	public static void movePiece(int row, int col) {
-		if (currentLetter != ' ') {
-			if (boardPiece[row][col] == ' ') {
-				/* This pair of statements sets the letters both on the GameBoard object
-				 * and the locally held game board char[][] array*/
-				gameBoard.removeNodeByRowColumnIndex(row, col);
-				gameBoard.addPiece(row, col, currentLetter);
-				boardPiece[row][col] = currentLetter;
-				
-				usedChars.add(currentLetter+"");
-				Point temp = new Point(row, col);
-				usedTiles.add(temp);
-				
-				player.getHand().removePiece(currentLetter+"");
-				gamePlayerTray.addRefreshHand(player.getHand().getList());
-			}
-		}
+		 if (engineBoard.movePiece(row, col) ) {
+			 usedChars.add(currentLetter+"");
+			 Point temp = new Point(row, col);
+			 usedTiles.add(temp);
+			 engineTray.removePiece(currentLetter+"");
+			 engineTray.refreshTray();
+		 }
 		currentLetter = ' ';
 	}
 	
@@ -127,12 +63,12 @@ public class GameEngine {
 		currentLetter = letter;
 	}
 	
-	public static Player getPlayer() {
-		return player;	
+	public static EngineTray getPlayer() {
+		return engineTray;	
 	}
 
 	public static void refreshTray() {
-		gamePlayerTray.addRefreshHand(player.getHand().getList());
+		engineTray.refreshTray();
 	}
 	
 	/* Parameters: 	
@@ -145,30 +81,27 @@ public class GameEngine {
 	 */
 	public static int refillHand() {
 		usedChars.clear();
-		for (int i = 0; i < 7 - player.getHandSize(); i++) {
-			if (pilePieces.size() == 0) {
+		for (int i = 0; i < 7 - engineTray.getHandSize(); i++) {
+			if (enginePile.getSize() <= 0) {
 				return -1;
 			}
-			player.getHand().addPiece(pilePieces.pop());
+			engineTray.addPiece(enginePile.popLetter());
 			i--;
 		}
 		return 0;
 	}
 	
 	public static void returnHand() {
-		player.getHand().clearHand();
+		engineTray.clearHand();
 		for (int i = 0; i < usedChars.size(); i++) {
-			player.getHand().addPiece(usedChars.get(i)+"");
+			engineTray.addPiece(usedChars.get(i)+"");
 		}
 		usedChars.clear();
-		gamePlayerTray.addRefreshHand(player.getHand().getList());
+		engineTray.refreshTray();
 	}
 	
 	public static void returnBoard() {
-		for (int i = 0;  i < usedTiles.size(); i++) {
-			gameBoard.addPiece(usedTiles.get(i).getX(), usedTiles.get(i).getY(), ' ');
-			boardPiece[usedTiles.get(i).getX()][usedTiles.get(i).getY()] = ' ';
-		}
+		engineBoard.returnBoard(usedTiles);
 		usedTiles.clear();
 	}
 	
@@ -179,33 +112,20 @@ public class GameEngine {
 	
 	public static LinkedList<String> getHand(){
 		LinkedList<String> adj = new LinkedList<String>();
-		int size = player.getHand().getList().size();
+		int size = engineTray.getList().size();
 		int count = 0;
 		for (int i = 0; i < size; i++) {
-			if (player.getHand().getList().get(i).charAt(0) != ' ') {
-				adj.add(player.getHand().getList().get(i));
+			if (engineTray.getList().get(i).charAt(0) != ' ') {
+				adj.add(engineTray.getList().get(i));
 				count++;
 			}
 		}
 		return adj;
 	}
 	
-	public static LinkedList<String> retrievePilePieces(){
-		LinkedList<String> pilePieces = new LinkedList<String>();
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("res/ScrabblePile.txt"));
-			String line = reader.readLine();
-			while (line != null) {
-				for (int i = 0; i < line.length(); i++) {
-					pilePieces.add(line.charAt(i)+"");
-				}
-				line = reader.readLine();
-			}
-			reader.close();
-		} catch(Exception e) {
-			System.out.println("file not found");
-		}
-		return pilePieces;
+	
+	public static char getCurrentLetter() {
+		return currentLetter;
 	}
 	
 }

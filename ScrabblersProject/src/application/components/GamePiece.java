@@ -26,8 +26,8 @@ public class GamePiece extends Button{
 	
 	private char letter;
 	boolean inTray;
-	int row = 1;
-	int col = 1;
+	int row = -1;
+	int col = -1;
 	
 	public GamePiece(char letter, boolean inTray, int row, int col) {
 		
@@ -50,6 +50,9 @@ public class GamePiece extends Button{
 		this.setPadding(new Insets(1, 1, 0 ,0));
 		this.setText(Character.toString(letter));
 		this.setFont(new Font("Verdana", 25));
+		//this.setStyle("-fx-background-color: MediumSeaGreen");
+		
+		
 		
 		this.setOnAction((ActionEvent event) ->  {
 			this.fireEvent(new PieceEventTray(letter, inTray));

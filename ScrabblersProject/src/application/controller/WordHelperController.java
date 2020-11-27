@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import application.algo.WordThread;
 import application.engine.LoadFxml;
-import application.engine.WordThread;
 import application.model.HelperModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

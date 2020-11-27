@@ -76,9 +76,7 @@ public class GameController implements Initializable {
 		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
 		
-		GameEngine.addBoard(gameBoard);
-		GameEngine.addTray(gamePlayerTray);
-		GameEngine.start();
+		GameEngine.start(gameBoard, gamePlayerTray);
 	
 	}
 	

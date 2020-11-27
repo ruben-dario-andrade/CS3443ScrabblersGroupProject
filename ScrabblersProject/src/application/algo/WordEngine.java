@@ -1,4 +1,4 @@
-package application.engine;
+package application.algo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
