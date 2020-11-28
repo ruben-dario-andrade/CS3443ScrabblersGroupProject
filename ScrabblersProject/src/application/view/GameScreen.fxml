@@ -9,21 +9,26 @@
 
 <AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
-      <BorderPane fx:id="WordHelperPane" layoutX="725.0" layoutY="107.0" prefHeight="400.0" prefWidth="400.0">
-         <bottom>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="75.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="WordHelperPane" layoutX="629.0" layoutY="117.0" prefHeight="400.0" prefWidth="400.0">
+         <left>
+            <VBox prefHeight="400.0" prefWidth="143.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" onAction="#OpenWordHelper" text="Open Word Helper" />
                   <Button mnemonicParsing="false" onAction="#CloseWordHelper" text="Close Word Helper" />
+                  <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="24.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
                <padding>
-                  <Insets left="25.0" top="35.0" />
+                  <Insets left="4.0" top="137.0" />
                </padding>
-            </HBox>
-         </bottom>
+            </VBox>
+         </left>
       </BorderPane>
       <Button fx:id="ExitButton" layoutX="1099.0" layoutY="37.0" mnemonicParsing="false" onAction="#goHome" prefHeight="25.0" prefWidth="46.0" text="Exit" />
       <AnchorPane fx:id="GameBoardPane" layoutX="52.0" layoutY="43.0" prefHeight="555.0" prefWidth="584.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />

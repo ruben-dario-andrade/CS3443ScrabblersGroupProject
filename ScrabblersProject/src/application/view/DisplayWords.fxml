@@ -7,27 +7,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.WordHelperController">
+<AnchorPane prefHeight="449.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.WordHelperController">
    <children>
-      <Label fx:id="WFLabel" layoutX="19.0" layoutY="174.0" text="All Words Found" underline="true">
+      <Label fx:id="WFLabel" layoutX="16.0" layoutY="15.0" text="All Words Found" underline="true">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <ListView fx:id="WordDisplayLV" layoutX="19.0" layoutY="200.0" prefHeight="99.0" prefWidth="233.0" />
-      <Label layoutX="19.0" layoutY="326.0" text="Total Points from word:" />
-      <TextField layoutX="175.0" layoutY="321.0" prefHeight="11.0" prefWidth="51.0" />
-      <Button layoutX="61.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Close Word Criteria" />
-      <Label layoutX="20.0" layoutY="61.0" text="Show me words that start with: " />
-      <Label layoutX="20.0" layoutY="96.0" text="I want my word to have" />
-      <ChoiceBox layoutX="175.0" layoutY="91.0" prefHeight="27.0" prefWidth="8.0" />
-      <Label layoutX="223.0" layoutY="96.0" text="letters." />
-      <Line endX="140.0" fill="BLACK" layoutX="117.0" layoutY="146.0" startX="-100.0" strokeWidth="2.0" />
-      <Label layoutX="17.0" layoutY="22.0" text="Word Criteria" underline="true">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
+      <ListView fx:id="WordDisplayLV" layoutX="12.0" layoutY="46.0" prefHeight="99.0" prefWidth="300.0" />
+      <Label layoutX="53.0" layoutY="351.0" text="Total Points from word:" />
+      <TextField fx:id="pointsTF" layoutX="206.0" layoutY="346.0" prefHeight="11.0" prefWidth="51.0" />
+      <Label layoutX="10.0" layoutY="168.0" text="Enter letters you want in your word: " />
       <Button layoutX="24.0" layoutY="412.0" mnemonicParsing="false" onAction="#populateLL" text="L1" />
       <Button layoutX="88.0" layoutY="412.0" mnemonicParsing="false" onAction="#populateLL2" text="L2" />
+      <TextField fx:id="letterSearch" layoutX="237.0" layoutY="163.0" prefHeight="27.0" prefWidth="75.0" />
+      <RadioButton fx:id="AllWordsTB" layoutX="27.0" layoutY="225.0" mnemonicParsing="false" text="Show all words">
+         <toggleGroup>
+            <ToggleGroup fx:id="WordHelperTG" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="OnlyMyLettersTB" layoutX="26.0" layoutY="259.0" mnemonicParsing="false" text="Show words with only my letters" toggleGroup="$WordHelperTG" />
+      <Button layoutX="102.0" layoutY="304.0" mnemonicParsing="false" onAction="#populateLL" text="Show me words!" />
+      <Label layoutX="13.0" layoutY="185.0" text="* If you want to search for a specific ">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="197.0" />
+      <Label layoutX="20.0" layoutY="198.0" text="word, put double quotes around it.">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
