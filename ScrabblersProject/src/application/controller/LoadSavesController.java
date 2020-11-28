@@ -39,8 +39,6 @@ public class LoadSavesController implements Initializable{
 	private Button save4;	
 	@FXML
 	private Button save5;
-	
-	private SaveModel saveModel;
 
 	@FXML
 	public void initialize(){
