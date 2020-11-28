@@ -63,25 +63,19 @@ public class GameController implements Initializable {
     
     @FXML 
     private AnchorPane GameBoardPane;
-    
-    SaveModel saveModel;
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PopupControl popup = new PopupControl();
-		
-		// if playing saved game, initialize game board and player tray with saved piece
-		if(saveModel.currentSave != null) {
-			GameBoard gameBoard = new GameBoard(saveModel.currentSave.getSavedBoardPieces());
-			GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
+
+		// if playing saved game, initialize GUI game board with saved pieces
+		GameBoard gameBoard;
+		if(SaveModel.currentSave != null) {
+			gameBoard = new GameBoard(SaveModel.currentSave.getSavedBoardPieces());
 		} else {
-			GameBoard gameBoard = new GameBoard(saveModel.currentSave.getSavedBoardPieces());
-			GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
+			gameBoard = new GameBoard(SaveModel.currentSave.getSavedBoardPieces());
 		}
-		
-		GameBoard gameBoard = new GameBoard();
-		GamePlayerTray gamePlayerTray = new GamePlayerTray();
+		GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
 		gamePlayerTray.setLayoutX(50);
 		gamePlayerTray.setLayoutY(650);
 		GameBoardPane.getChildren().add(gameBoard);
