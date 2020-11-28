@@ -74,8 +74,9 @@ public class GameController implements Initializable {
 		if(SaveModel.currentSave != null) {
 			gameBoard = new GameBoard(SaveModel.currentSave.getSavedBoardPieces());
 		} else {
-			gameBoard = new GameBoard(SaveModel.currentSave.getSavedBoardPieces());
+			gameBoard = new GameBoard();
 		}
+		
 		GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
 		gamePlayerTray.setLayoutX(50);
 		gamePlayerTray.setLayoutY(650);
