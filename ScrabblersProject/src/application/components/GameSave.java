@@ -77,4 +77,42 @@ public class GameSave {
 	public void updateSavedGamePile(LinkedList<String> newGamePile) {
 		this.gamePile = newGamePile;
 	}
+	
+	/**
+	 * Implement readable toString method to display saved board pieces
+	 */
+	public void savedBoardToString() {
+		System.out.println("\nSaved Board Pieces: ");										
+		for(int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				System.out.print(this.boardPieces[i][j] + ",");
+			}
+			System.out.println();
+		}
+	}
+	
+	/**
+	 * Implement readable toString method to display saved player tray
+	 */
+	public void savedPlayerTrayToString() {
+		System.out.println("Saved Tray: ");											
+		for(int i = 0; i < this.playerTray.size(); i++) {
+			System.out.print(this.playerTray.get(i) + ",");
+		}
+	}
+	
+	/**
+	 * Implement readable toString method to display saved game pile
+	 */
+	public void saveGamePileToString() {
+		System.out.println("Saved Game Pile: ");
+		for(int i = 0; i < this.gamePile.size(); i++) {
+			if(i != 0 && !this.gamePile.get(i).equals(this.gamePile.get(i-1))) {
+				System.out.print("\n" + this.gamePile.get(i));
+			} else {
+				System.out.print(this.gamePile.get(i));
+			}
+		}
+		System.out.println();
+	}
 }
