@@ -13,6 +13,16 @@ public class EngineTray {
 		this.gamePlayerTray = gamePlayerTray;
 	}
 	
+	/**
+	 * Initialize player tray with saved pieces
+	 * @param gamePlayerTray GUI player tray
+	 * @param savedTray LinkedList that hold saved tray pieces
+	 */
+	public EngineTray(GamePlayerTray gamePlayerTray, LinkedList<String> savedTray) {
+		this.hand = savedTray;
+		this.gamePlayerTray = gamePlayerTray;
+	}
+	
 	public void refreshTray() {
 		gamePlayerTray.addRefreshHand(hand);
 	}
