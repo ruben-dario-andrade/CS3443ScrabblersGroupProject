@@ -79,9 +79,9 @@ public class GameSave {
 	}
 	
 	/**
-	 * Implement readable toString method to display saved board pieces
+	 * Display saved board pieces
 	 */
-	public void savedBoardToString() {
+	public void displaySavedBoard() {
 		System.out.println("\nSaved Board Pieces: ");										
 		for(int i = 0; i < 15; i++) {
 			for(int j = 0; j < 15; j++) {
@@ -92,9 +92,9 @@ public class GameSave {
 	}
 	
 	/**
-	 * Implement readable toString method to display saved player tray
+	 * Display saved player tray
 	 */
-	public void savedPlayerTrayToString() {
+	public void displaySavedPlayerTray() {
 		System.out.println("Saved Tray: ");											
 		for(int i = 0; i < this.playerTray.size(); i++) {
 			System.out.print(this.playerTray.get(i) + ",");
@@ -102,9 +102,9 @@ public class GameSave {
 	}
 	
 	/**
-	 * Implement readable toString method to display saved game pile
+	 * Display saved game pile
 	 */
-	public void saveGamePileToString() {
+	public void displaySaveGamePile() {
 		System.out.println("Saved Game Pile: ");
 		for(int i = 0; i < this.gamePile.size(); i++) {
 			if(i != 0 && !this.gamePile.get(i).equals(this.gamePile.get(i-1))) {
