@@ -48,6 +48,7 @@ public class EngineBoard {
 		
 	}
 	
+	
 	public boolean movePiece(int row, int col) {
 		char currentLetter = GameEngine.getCurrentLetter(); 
 		if (currentLetter != ' ') {
@@ -68,6 +69,10 @@ public class EngineBoard {
 			gameBoard.addPiece(row, col, ' ', boardTileValues[row][col]);
 			boardPiece[row][col] = ' ';
 		}
+	}
+	
+	public char[][] getBoard(){
+		return this.boardPiece;
 	}
 	
 }
