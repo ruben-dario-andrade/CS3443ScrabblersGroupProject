@@ -32,6 +32,24 @@ public class GameEngine {
 		}
 		gamePlayerTray.addRefreshHand(engineTray.getList());
 	}
+	
+	/**
+	 * Start game with game board, player tray, and game pile initialized with saved pieces
+	 * @param gameBoard GUI game board
+	 * @param gamePlayerTray GUI player tray
+	 * @param savedBoard 2D char array holding saved board pieces
+	 * @param savedTray LinkedList holding saved tray pieces
+	 * @param savedPile LinkedList holding saved tray pieces
+	 */
+	public static void start(GameBoard gameBoard, GamePlayerTray gamePlayerTray, 
+			char[][] savedBoard, LinkedList<String> savedTray, LinkedList<String> savedPile) {
+		engineBoard = new EngineBoard(gameBoard, savedBoard);
+		engineTray = new EngineTray(gamePlayerTray, savedTray);
+		enginePile = new EnginePile(savedPile);
+		usedChars = new LinkedList<String>();
+
+		gamePlayerTray.addRefreshHand(engineTray.getList());
+	}
 
 	/* Parameters: 	
 	 * 		int row, col -> row and column received from the piece event
