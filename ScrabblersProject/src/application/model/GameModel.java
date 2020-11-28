@@ -1,14 +1,21 @@
 package application.model;
 
+import java.util.LinkedList;
+
 import application.engine.GameEngine;
 
 public class GameModel {
 	
 	public static void endTurn() {
-		GameEngine.getPlayer().getHand().clearHand();
-		GameEngine.refillHand();
-		GameEngine.refreshTray();
-		GameEngine.clearUsedPieces();
+		if (GameEngine.checkValid()) {
+			GameEngine.getTray().clearHand();
+			GameEngine.refillHand();
+			GameEngine.refreshTray();
+			GameEngine.clearUsedPieces();
+		} else {
+			GameEngine.returnHand();
+			GameEngine.returnBoard();
+		}
 	}  
 	
 	public static void undoMoves() {

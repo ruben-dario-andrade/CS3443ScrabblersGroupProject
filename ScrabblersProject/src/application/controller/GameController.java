@@ -56,12 +56,12 @@ public class GameController implements Initializable {
     
     @FXML 
     private Button UndoButton;
-    
-
+   
     @FXML
     private Button ExitButton;
     
-    
+    @FXML 
+    private AnchorPane GameBoardPane;
 
 	
 	@Override
@@ -73,11 +73,10 @@ public class GameController implements Initializable {
 		GamePlayerTray gamePlayerTray = new GamePlayerTray();
 		gamePlayerTray.setLayoutX(50);
 		gamePlayerTray.setLayoutY(650);
-		mainPane.getChildren().add(gameBoard);
+		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
-		GameEngine.addBoard(gameBoard);
-		GameEngine.addTray(gamePlayerTray);
-		GameEngine.start();
+		
+		GameEngine.start(gameBoard, gamePlayerTray);
 	
 	}
 	

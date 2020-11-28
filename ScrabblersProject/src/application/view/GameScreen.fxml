@@ -9,8 +9,6 @@
 
 <AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
-      <Button fx:id="UndoButton" layoutX="385.0" layoutY="662.0" mnemonicParsing="false" onAction="#undoMoves" text="Undo" />
-      <Button fx:id="EndTurnButton" layoutX="385.0" layoutY="628.0" mnemonicParsing="false" onAction="#endTurn" text="End Turn" />
       <BorderPane fx:id="WordHelperPane" layoutX="629.0" layoutY="117.0" prefHeight="400.0" prefWidth="400.0">
          <left>
             <VBox prefHeight="400.0" prefWidth="143.0" spacing="20.0" BorderPane.alignment="CENTER">
@@ -33,5 +31,14 @@
          </left>
       </BorderPane>
       <Button fx:id="ExitButton" layoutX="1099.0" layoutY="37.0" mnemonicParsing="false" onAction="#goHome" prefHeight="25.0" prefWidth="46.0" text="Exit" />
+      <AnchorPane fx:id="GameBoardPane" layoutX="52.0" layoutY="43.0" prefHeight="555.0" prefWidth="584.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <BorderPane layoutX="446.0" layoutY="618.0" prefHeight="74.0" prefWidth="154.0">
+         <top>
+            <Button fx:id="EndTurnButton" mnemonicParsing="false" onAction="#endTurn" text="End Turn" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" text="Undo" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

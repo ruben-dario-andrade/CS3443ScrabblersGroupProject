@@ -1,13 +1,20 @@
-package application.game;
+package application.engine;
 
 import java.util.LinkedList;
 
-public class Hand {
-	
+import application.components.GamePlayerTray;
+
+public class EngineTray {
 	private LinkedList<String> hand;
+	GamePlayerTray gamePlayerTray;
 	
-	public Hand() {
+	public EngineTray(GamePlayerTray gamePlayerTray) {
 		this.hand = new LinkedList<String>();
+		this.gamePlayerTray = gamePlayerTray;
+	}
+	
+	public void refreshTray() {
+		gamePlayerTray.addRefreshHand(hand);
 	}
 	
 	public void addPiece(String letter) {
@@ -24,6 +31,7 @@ public class Hand {
 				break;
 			}
 		}
+		
 	}
 	
 	public void clearHand() {
@@ -38,5 +46,12 @@ public class Hand {
 	public LinkedList<String> getList(){
 		return this.hand;
 	}
+	
+	
+	public int getHandSize() {
+		return hand.size();
+	}
+
+	
 	
 }

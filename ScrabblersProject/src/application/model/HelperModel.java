@@ -1,5 +1,5 @@
 package application.model;
-import application.engine.WordThread;
+import application.algo.WordThread;
 
 
 public class HelperModel {

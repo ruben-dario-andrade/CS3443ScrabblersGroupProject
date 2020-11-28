@@ -1,6 +1,6 @@
 package application;
 	
-import application.engine.WordThread;
+import application.algo.WordThread;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;

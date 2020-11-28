@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import application.algo.WordThread;
 import application.engine.LoadFxml;
-import application.engine.WordThread;
 import application.model.HelperModel;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
@@ -68,6 +68,7 @@ public class WordHelperController implements Initializable {
     	list.setAll(rec);
 		WordDisplayLV.setItems(list);
     }
+
 	
     public int assignScore(String word) {
     	int total = 0;
@@ -133,10 +134,7 @@ public class WordHelperController implements Initializable {
     
 	@FXML
 	public void populateLL(ActionEvent event) {
-		LinkedList<String> LL3 = new LinkedList<String>();
-		LL3.add("Meh");
-    	LL3.add("Wow");
-    	LL3.add("Zoom");
+		LinkedList<String> LL3 = wordThread.getReccomendations();
     	list.setAll(LL3);
 		WordDisplayLV.setItems(list);
 		
@@ -168,8 +166,8 @@ public class WordHelperController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.wordThread = new WordThread(this);
-		HelperModel.start(this.wordThread);
+		this.wordThread = new WordThread();
+		HelperModel.start(wordThread);
 		//wordThread.end();
 		
 		
@@ -192,6 +190,7 @@ public class WordHelperController implements Initializable {
 	}
 	
 
+	
 	
 	
 }
