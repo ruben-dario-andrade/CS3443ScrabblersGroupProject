@@ -14,6 +14,16 @@ public class EnginePile {
 		pileLetters = retrievePilePieces();
 		Collections.shuffle(pileLetters);
 	}
+	
+	/**
+	 * Initialize game pile with saved pile pieces
+	 * @param savedPile LinkedList holding saved pile pieces
+	 */
+	public EnginePile(LinkedList<String> savedPile) {
+		pileLetters = savedPile;
+		pileLetters = retrievePilePieces();
+		Collections.shuffle(pileLetters);
+	}
 
 	private static LinkedList<String> retrievePilePieces(){
 		LinkedList<String> pile = new LinkedList<String>();
