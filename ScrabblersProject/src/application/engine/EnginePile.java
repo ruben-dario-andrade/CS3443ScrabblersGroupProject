@@ -21,7 +21,6 @@ public class EnginePile {
 	 */
 	public EnginePile(LinkedList<String> savedPile) {
 		pileLetters = savedPile;
-		pileLetters = retrievePilePieces();
 		Collections.shuffle(pileLetters);
 	}
 
