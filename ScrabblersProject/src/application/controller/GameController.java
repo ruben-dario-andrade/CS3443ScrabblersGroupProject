@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -81,7 +82,15 @@ public class GameController implements Initializable {
 		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
 		
-		GameEngine.start(gameBoard, gamePlayerTray);
+		// if save exists, start and initialize game with saved pieces 
+		if(SaveModel.currentSave != null) {
+			char[][] savedBoardPieces = SaveModel.currentSave.getSavedBoardPieces();
+			LinkedList<String> savedPlayerTray = SaveModel.currentSave.getSavedPlayerTray();
+			LinkedList<String> savedGamePile = SaveModel.currentSave.getSavedGamePile();
+			GameEngine.start(gameBoard, gamePlayerTray, savedBoardPieces, savedPlayerTray, savedGamePile);
+		} else {
+			GameEngine.start(gameBoard, gamePlayerTray);
+		}
 	}
 	
 	@FXML
