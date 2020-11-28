@@ -13,6 +13,7 @@ import application.engine.GameEngine;
 import application.engine.LoadFxml;
 import application.model.GameModel;
 import application.model.HelperModel;
+import application.model.SaveModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -62,12 +63,23 @@ public class GameController implements Initializable {
     
     @FXML 
     private AnchorPane GameBoardPane;
+    
+    SaveModel saveModel;
 
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PopupControl popup = new PopupControl();
-
+		
+		// if playing saved game, initialize game board and player tray with saved piece
+		if(saveModel.currentSave != null) {
+			GameBoard gameBoard = new GameBoard(saveModel.currentSave.getSavedBoardPieces());
+			GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
+		} else {
+			GameBoard gameBoard = new GameBoard(saveModel.currentSave.getSavedBoardPieces());
+			GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
+		}
+		
 		GameBoard gameBoard = new GameBoard();
 		GamePlayerTray gamePlayerTray = new GamePlayerTray();
 		gamePlayerTray.setLayoutX(50);
