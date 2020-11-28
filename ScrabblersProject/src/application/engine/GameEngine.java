@@ -134,6 +134,12 @@ public class GameEngine {
  		testStrings = WordVerification.validWord(engineBoard.getBoard(), usedChars, usedTiles);
  		if (testStrings == null) {
  			return false;
+ 		} else {
+ 			LinkedList<String> holdStrings = new LinkedList<String>();
+ 			holdStrings = WordVerification.searchRemaining(engineBoard.getBoard(), usedChars, usedTiles);
+ 			if (holdStrings.size() > 0) {
+ 				testStrings.addAll(holdStrings);
+ 			}
  		}
  		if (!WordVerification.inDictionary(testStrings)) {
  			return false;

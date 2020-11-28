@@ -100,6 +100,51 @@ public class WordVerification {
 		}
 	}
 	
+	public static LinkedList<String> searchRemaining(char[][] board, LinkedList<String> usedLetters, LinkedList<Point> usedTiles){
+		LinkedList<String> tempList = new LinkedList<String>();
+		String temp1;
+		String temp2;
+		int size = usedTiles.size();
+		if (size > 1) {
+			for (int i = 0; i < size; i++) {
+				temp1 = getWordClumps(board, usedLetters, usedTiles, true, usedTiles.get(i).getY ());
+				temp2 = getWordClumps(board, usedLetters, usedTiles, false, usedTiles.get(i).getX());
+				if (temp1.length() > 1) {
+					tempList.add(temp1);
+				}
+				if (temp2.length() > 1) {
+					tempList.add(temp2);
+				}
+			}
+		}
+		String maxDuplicates = "";
+		int maxCount = 0;
+		for (int i = 0; i < tempList.size(); i++) {
+			int count = 0;
+			String hold = tempList.get(i);
+			for (int j = 0; j < tempList.size(); j++) {
+				if (hold.equals(tempList.get(j))) {
+					count++;
+				}
+			}
+			if (count > maxCount) {
+				maxDuplicates = hold;
+				maxCount = count;
+			}
+		}
+		tempList.size();
+		for (int i = 0; i < tempList.size(); i++) {
+			if (tempList.get(i).equals(maxDuplicates)) {
+				tempList.remove(i);
+				i--;
+			}
+		}
+		
+		return tempList;
+	}
+	
+	
+	
 	private static String getWordClumps(char[][] board, LinkedList<String> usedLetters, LinkedList<Point> usedTiles, boolean isHorizontal, int file){
 		StringBuilder string = new StringBuilder();
 		int min, max, size, hold;
