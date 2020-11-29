@@ -25,6 +25,7 @@ public class GameModel {
 			GameEngine.refillHand();
 			GameEngine.resetTray();
 			GameEngine.clearUsedPieces();
+			GameEngine.setIsReplacing(false);
 			return "New pieces placed into hand.";
 		}
 		
