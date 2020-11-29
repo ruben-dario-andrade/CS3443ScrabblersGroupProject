@@ -93,6 +93,28 @@ public class LoadSavesController implements Initializable{
 	}
 	
 	/**
+	 * Delete save if it exists
+	 * @param event ActionEvent triggered by pressing delete save button
+	 */
+	public void deleteSave(ActionEvent event) {
+		String selectedSave = ((Button)event.getSource()).getId();
+		String saveFileName = selectedSave + ".txt";
+		File saveFilePath = new File("saves/" + saveFileName);
+		
+		if(saveFilePath.delete()) {
+			// Display error to user if save does not exist
+			Alert deleteSuccess = new Alert(AlertType.CONFIRMATION);
+			deleteSuccess.setContentText("Save " + selectedSave + " has been deleted.");
+			deleteSuccess.show();
+		} else {
+			// Display error to user if save does not exist
+			Alert noSave = new Alert(AlertType.ERROR);
+			noSave.setContentText("Save does not exist");
+			noSave.show();
+		}
+	}
+	
+	/**
 	 * Initalizes button IDs
 	 */
     @Override
