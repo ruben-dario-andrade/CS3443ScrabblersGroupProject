@@ -46,6 +46,13 @@ public class EngineBoard {
 		}
 		this.gameBoard = gameBoard;
 		
+		System.out.println("Engine Board - Default Constructor: ");				// TODO									
+		for(int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				System.out.print(boardPiece[i][j] + ",");
+			}
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -85,6 +92,14 @@ public class EngineBoard {
 			System.out.println("file not found");
 		}
 		this.gameBoard = gameBoard;
+		
+		System.out.println("Engine Board - Overloaded Constructor: ");				// TODO									
+		for(int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				System.out.print(boardPiece[i][j] + ",");
+			}
+			System.out.println();
+		}
 		
 	}
 

@@ -99,6 +99,7 @@ public class GameSave {
 		for(int i = 0; i < this.playerTray.size(); i++) {
 			System.out.print(this.playerTray.get(i) + ",");
 		}
+		System.out.println();
 	}
 	
 	/**

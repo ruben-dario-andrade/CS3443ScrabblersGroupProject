@@ -67,10 +67,10 @@ public class LoadSavesController implements Initializable{
 	public void loadSave(ActionEvent event) throws IOException {
 		String selectedSave = ((Button)event.getSource()).getId();
 		String saveFileName = selectedSave + ".txt";
-		File saveFilePath = new File("../../saves/" + saveFileName);
+		File saveFilePath = new File("saves/" + saveFileName);
 		if(saveFilePath.exists()) {
 			// Read save
-			SaveModel.readSave(saveFileName);
+			SaveModel.readSave(saveFilePath);
 			
 			// Switch to game screen with save loaded
 			mainPane = FXMLLoader.load(getClass().getResource("../view/GameScreen.fxml"));
@@ -78,13 +78,15 @@ public class LoadSavesController implements Initializable{
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setScene(scene);
 			window.show();
+			
 		} else {
 			// Display error to user if save does not exist
 			Alert noSave = new Alert(AlertType.ERROR);
 			noSave.setContentText("Save does not exist");
 			noSave.show();
 		}
-		
+		System.out.println("LoadSaveController - loadSave:\nFile name: " + saveFileName); // TODO
+		System.out.println("Does file exist: " + saveFilePath.exists()); // TODO 
 		System.out.println("Button clicked: " + selectedSave); // TODO
 	}
 	

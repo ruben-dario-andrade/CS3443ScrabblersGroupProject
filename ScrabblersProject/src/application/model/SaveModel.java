@@ -1,6 +1,7 @@
 package application.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -15,13 +16,17 @@ public class SaveModel {
 	// static so other files may refer to the current save if it exists
 	public static GameSave currentSave;
 	
-	public static void readSave(String saveFile) {
+	/**
+	 * Read saved game data from txt file into a GameSave object
+	 * @param saveFile
+	 */
+	public static void readSave(File saveFile) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(saveFile));
 			
 			// Parse save number from save file name
-			int saveNumber = Integer.parseInt(saveFile.split(".")[0]);
-
+			int saveNumber = Integer.parseInt(saveFile.getName().split("\\.")[0]);
+			
 			// Read and store saved player tray and game pile
 			String savedTrayLine = reader.readLine();
 			String[] savedTrayTemp = savedTrayLine.split(",");
@@ -36,13 +41,26 @@ public class SaveModel {
 			for(int i = 0; i < 15; i++) {
 				String[] temp = reader.readLine().split(",");
 				for(int j = 0; j < 15; j++) {
-					savedBoardPieces[i][j] = temp[j].charAt(0);
+					if(temp[j].equals("")) {
+						savedBoardPieces[i][j] = ' ';
+					} else {
+						savedBoardPieces[i][j] = temp[j].charAt(0);
+					}
 				}
 			}
+			
+			reader.close();
 			
 			// Create save obj and set global currentSave to it for reference from other controllers
 			GameSave loadedSave = new GameSave(saveNumber, savedBoardPieces, savedTray, savedPile);
 			currentSave = loadedSave;
+			
+			System.out.println("SaveModel - currentSave contents: "); 			// TODO
+			currentSave.displaySavedBoard();						
+			currentSave.displaySavedPlayerTray();
+			currentSave.displaySaveGamePile();
+			System.out.println("Save Number: " + currentSave.getSaveNumber());
+	
 		} catch(IOException e) {
 			e.printStackTrace();
 			
@@ -53,7 +71,7 @@ public class SaveModel {
 		}
 	}
 	
-	public static void writeSave(String saveFile) {
+	public static void writeSave(File saveFile) {
 		
 	}
 }

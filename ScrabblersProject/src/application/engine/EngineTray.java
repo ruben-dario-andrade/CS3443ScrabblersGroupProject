@@ -21,6 +21,12 @@ public class EngineTray {
 	public EngineTray(GamePlayerTray gamePlayerTray, LinkedList<String> savedTray) {
 		this.hand = savedTray;
 		this.gamePlayerTray = gamePlayerTray;
+		
+		System.out.println("Engine Hand - Overloaded Constructor: ");			// TODO									
+		for(int i = 0; i < hand.size(); i++) {
+			System.out.print(hand.get(i) + ",");
+		}
+		System.out.println();
 	}
 	
 	public void refreshTray() {
