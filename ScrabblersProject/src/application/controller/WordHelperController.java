@@ -144,10 +144,14 @@ public class WordHelperController implements Initializable {
 				LinkedList<String> LL3 = wordThread.getReccomendations();
 		    	list.setAll(LL3);
 				WordDisplayLV.setItems(list);
-			}
-			else {
+
+			} else {
+				String letters = letterSearch.getText().toString();
+				System.out.println("Letters from the text box are: " + letters);
 				
-				//String letters = letterSearch.getText().toString();
+				wordThread.onlyS(letters);
+				wordThread.filterWords();
+
 				//	GameModel.---fake name---(letters);
 				// letters variable would then be pushed into function to return words with
 				// ** LL below should be same as above but with letters from letterSearch Text Field **
@@ -157,22 +161,31 @@ public class WordHelperController implements Initializable {
 			}
 		}
 		else {
-			/*if(letterSearch == null) {
+
+			if(letterSearch == null) {
+
 				// ** LinkedList below should be made up of words that can only be made from the player's hand **
 				LinkedList<String> LL3 = wordThread.getReccomendations();
 		    	list.setAll(LL3);
 				WordDisplayLV.setItems(list);
-			}
-			else {
-				//String letters = letterSearch.getText().toString();
+
+			} else {
+				String letters = letterSearch.getText().toString();
+				System.out.println("Letters from the text box are: " + letters);
+				wordThread.addS(letters);
+				wordThread.filterWords();
+
 				//	GameModel.---fake name---(letters);
 				// letters variable would then be pushed into function to return words with
 				// ** LL below should be same as above but with letters from letterSearch Text Field **
 				LinkedList<String> LL3 = wordThread.getReccomendations();
 		    	list.setAll(LL3);
 				WordDisplayLV.setItems(list);
-			}*/
+
+			}
 		}
+		
+
 	}
 	
 	@FXML
@@ -189,7 +202,7 @@ public class WordHelperController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.wordThread = new WordThread();
-		HelperModel.start(wordThread);
+		//HelperModel.start(wordThread);
 		//wordThread.end();
 
 		WordDisplayLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
