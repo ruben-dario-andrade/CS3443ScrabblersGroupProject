@@ -70,11 +70,13 @@ public class SaveGameController implements Initializable{
 		}
 		
 		// Writes save in selected save slot
-		//SaveModel.writeSave(saveFilePath);
+		SaveModel.writeSave(saveFilePath);
 		
-		// Set current save to null to refresh for future games
-		SaveModel.currentSave = null;
-		
+		// Set current save to null to refresh for future games if played from loaded save
+		if(SaveModel.currentSave != null) {
+			SaveModel.currentSave = null;
+		}
+
 		// Switch to home screen after game saved
 		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
 		Scene scene = new Scene(mainPane);
