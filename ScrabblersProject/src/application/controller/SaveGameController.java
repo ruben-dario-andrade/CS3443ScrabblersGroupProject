@@ -50,32 +50,38 @@ public class SaveGameController implements Initializable{
 		String saveFileName = selectedSaveSlot + ".txt";
 		File saveFilePath = new File("saves/" + saveFileName);
 		
-		if(SaveModel.currentSave.getSaveNumber() == Integer.parseInt(selectedSaveSlot)) {
-			Alert updateCurrentSave = new Alert(AlertType.CONFIRMATION);
-			updateCurrentSave.setContentText("Save " + selectedSaveSlot + " has been updated.");
-			updateCurrentSave.show();
+		// Determine user confirmation message based on selected save slot
+		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
+		if(SaveModel.currentSave != null) {
+			int currSaveNum = SaveModel.currentSave.getSaveNumber();
+			String currSaveNumStr = ((Integer)currSaveNum).toString();
 			
-		} else if(!saveFilePath.exists()) {
-			String currSaveNumStr = ((Integer)SaveModel.currentSave.getSaveNumber()).toString();
-			Alert copyCurrrentSave = new Alert(AlertType.CONFIRMATION);
-			copyCurrrentSave.setContentText("Save " + currSaveNumStr + " has been copied to slot " + selectedSaveSlot + ".");
-			copyCurrrentSave.show();
+			if(!saveFilePath.exists()) {
+				// Copy current save to another slot
+				userConfirmation.setContentText("Save " + currSaveNumStr + " has been copied to slot " + selectedSaveSlot + ".");
+			} else if(saveFilePath.exists() && currSaveNum == Integer.parseInt(selectedSaveSlot)) {
+				// Update current save slot
+				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been updated.");	
+			} else {
+				// Overwrite old save with current save
+				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been overwritten.");
+			}
 			
-		} else { // TODO confirmation before user overwrite previous save?
-			// Display error to user if save does not exist
-			Alert overwriteSave = new Alert(AlertType.CONFIRMATION);
-			overwriteSave.setContentText("Save " + selectedSaveSlot + " has been overwritten.");
-			overwriteSave.show();
-			
+			// Set current save to null to refresh for future games if played from loaded save
+			SaveModel.currentSave = null;
+		} else { 
+			if(!saveFilePath.exists()) {
+				// Write new save in empty slot
+				userConfirmation.setContentText("New save in slot " + selectedSaveSlot + ".");
+			} else {
+				// Overwrite old save with new save
+				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been overwritten with new save.");
+			}
 		}
 		
 		// Writes save in selected save slot
 		SaveModel.writeSave(saveFilePath);
-		
-		// Set current save to null to refresh for future games if played from loaded save
-		if(SaveModel.currentSave != null) {
-			SaveModel.currentSave = null;
-		}
+		userConfirmation.show();
 
 		// Switch to home screen after game saved
 		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
