@@ -58,13 +58,15 @@ public class SaveGameController implements Initializable{
 			
 			if(!saveFilePath.exists()) {
 				// Copy current save to another slot
-				userConfirmation.setContentText("Save " + currSaveNumStr + " has been copied to slot " + selectedSaveSlot + ".");
+				userConfirmation.setContentText("Save " + currSaveNumStr + " has been copied to slot " 
+						+ selectedSaveSlot + ".");
 			} else if(saveFilePath.exists() && currSaveNum == Integer.parseInt(selectedSaveSlot)) {
 				// Update current save slot
 				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been updated.");	
 			} else {
 				// Overwrite old save with current save
-				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been overwritten.");
+				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been overwritten with save " 
+						+ currSaveNum + ".");
 			}
 			
 			// Set current save to null to refresh for future games if played from loaded save
@@ -72,7 +74,7 @@ public class SaveGameController implements Initializable{
 		} else { 
 			if(!saveFilePath.exists()) {
 				// Write new save in empty slot
-				userConfirmation.setContentText("New save in slot " + selectedSaveSlot + ".");
+				userConfirmation.setContentText("New save " + selectedSaveSlot + " has been written.");
 			} else {
 				// Overwrite old save with new save
 				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been overwritten with new save.");
