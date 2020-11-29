@@ -46,7 +46,6 @@ public class SaveGameController implements Initializable{
 	 */
 	@FXML
 	public void saveGame(ActionEvent event) throws IOException {
-		String currSaveNumStr = ((Integer)SaveModel.currentSave.getSaveNumber()).toString();
 		String selectedSaveSlot = ((Button)event.getSource()).getId();
 		String saveFileName = selectedSaveSlot + ".txt";
 		File saveFilePath = new File("saves/" + saveFileName);
@@ -57,6 +56,7 @@ public class SaveGameController implements Initializable{
 			updateCurrentSave.show();
 			
 		} else if(!saveFilePath.exists()) {
+			String currSaveNumStr = ((Integer)SaveModel.currentSave.getSaveNumber()).toString();
 			Alert copyCurrrentSave = new Alert(AlertType.CONFIRMATION);
 			copyCurrrentSave.setContentText("Save " + currSaveNumStr + " has been copied to slot " + selectedSaveSlot + ".");
 			copyCurrrentSave.show();
@@ -66,6 +66,7 @@ public class SaveGameController implements Initializable{
 			Alert overwriteSave = new Alert(AlertType.CONFIRMATION);
 			overwriteSave.setContentText("Save " + selectedSaveSlot + " has been overwritten.");
 			overwriteSave.show();
+			
 		}
 		
 		// Writes save in selected save slot
@@ -80,6 +81,7 @@ public class SaveGameController implements Initializable{
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
+		
 	}
 	
 	/**
@@ -93,5 +95,6 @@ public class SaveGameController implements Initializable{
         slot3.setId("3");
         slot4.setId("4");
         slot5.setId("5");
+        
 	}
 }
