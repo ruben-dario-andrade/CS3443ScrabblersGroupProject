@@ -19,10 +19,6 @@ public class MainController {
 
 	@FXML
 	private AnchorPane mainPane;
-	@FXML
-    private Button exitButton;
-    @FXML
-    private Button settingsButton;
     @FXML
     private Button loadSavesButton;
     @FXML
