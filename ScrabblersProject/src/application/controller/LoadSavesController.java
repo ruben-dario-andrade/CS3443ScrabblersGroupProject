@@ -85,9 +85,6 @@ public class LoadSavesController implements Initializable{
 			noSave.setContentText("Save does not exist");
 			noSave.show();
 		}
-		System.out.println("LoadSaveController - loadSave:\nFile name: " + saveFileName); // TODO
-		System.out.println("Does file exist: " + saveFilePath.exists()); // TODO 
-		System.out.println("Button clicked: " + selectedSave); // TODO
 	}
 	
 	/**

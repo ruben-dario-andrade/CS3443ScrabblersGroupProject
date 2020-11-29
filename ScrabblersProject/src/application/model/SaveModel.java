@@ -41,11 +41,7 @@ public class SaveModel {
 			for(int i = 0; i < 15; i++) {
 				String[] temp = reader.readLine().split(",");
 				for(int j = 0; j < 15; j++) {
-					if(temp[j].equals("")) {
-						savedBoardPieces[i][j] = ' ';
-					} else {
-						savedBoardPieces[i][j] = temp[j].charAt(0);
-					}
+					savedBoardPieces[i][j] = temp[j].charAt(0);
 				}
 			}
 			
@@ -54,12 +50,6 @@ public class SaveModel {
 			// Create save obj and set global currentSave to it for reference from other controllers
 			GameSave loadedSave = new GameSave(saveNumber, savedBoardPieces, savedTray, savedPile);
 			currentSave = loadedSave;
-			
-			System.out.println("SaveModel - currentSave contents: "); 			// TODO
-			currentSave.displaySavedBoard();						
-			currentSave.displaySavedPlayerTray();
-			currentSave.displaySaveGamePile();
-			System.out.println("Save Number: " + currentSave.getSaveNumber());
 	
 		} catch(IOException e) {
 			e.printStackTrace();
