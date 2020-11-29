@@ -7,7 +7,9 @@ import application.engine.GameEngine;
 
 public class WordThread implements Runnable {
 	Thread runner;
-	WordEngineTemp wordEngine;
+	WordEngine wordEngine;
+	WordEngineTemp wordEngineTemp;
+	
 	int test = 0;
 	LinkedList<String> reccomendations;
 	
@@ -15,7 +17,10 @@ public class WordThread implements Runnable {
   	
 	public WordThread() {
 		this.reccomendations = new LinkedList<String>();
-		this.wordEngine = new WordEngineTemp();
+		this.wordEngineTemp = new WordEngineTemp();
+		this.wordEngine = new WordEngine();
+		wordEngine.combine();
+  		wordEngine.main();
 		
   		running = true;
   		this.runner = new Thread(this);
@@ -25,10 +30,10 @@ public class WordThread implements Runnable {
   	
   	private void tick() {
   		//if (test == 0) {	 	
-  			wordEngine.addList(GameEngine.getHand());
-  			wordEngine.createInclusiveList();
-  			wordEngine.removeLettersNotOnBoardOrHand(GameEngine.getHand(), GameEngine.getBoard());
-  			this.reccomendations = wordEngine.getCurrentList();
+  			wordEngineTemp.addList(GameEngine.getHand());
+  			wordEngineTemp.createInclusiveList();
+  			wordEngineTemp.removeLettersNotOnBoardOrHand(GameEngine.getHand(), GameEngine.getBoard());
+  			this.reccomendations = wordEngineTemp.getCurrentList();
   		//	test++;
   		//}
   	}
