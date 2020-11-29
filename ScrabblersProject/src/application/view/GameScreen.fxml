@@ -7,19 +7,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
+<AnchorPane fx:id="mainPane" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="application/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
    <children>
       <BorderPane fx:id="WordHelperPane" layoutX="629.0" layoutY="117.0" prefHeight="400.0" prefWidth="400.0">
          <left>
             <VBox prefHeight="400.0" prefWidth="143.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" onAction="#OpenWordHelper" text="Open Word Helper" />
-                  <Button mnemonicParsing="false" onAction="#CloseWordHelper" text="Close Word Helper" />
                   <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="24.0" />
+                        <Insets bottom="2.0" left="24.0" />
                      </VBox.margin>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#CloseWordHelper" text="Close">
+                     <VBox.margin>
+                        <Insets left="43.0" />
+                     </VBox.margin></Button>
                </children>
                <BorderPane.margin>
                   <Insets />
@@ -40,5 +43,15 @@
             <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" text="Undo" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
+      <Label fx:id="AlertLabel" layoutX="111.0" layoutY="580.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="658.0" layoutY="58.0" text="Score" underline="true">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

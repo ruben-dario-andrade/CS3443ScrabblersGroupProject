@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import application.components.GameBoard;
 import application.components.GamePiece;
@@ -64,6 +65,9 @@ public class GameController implements Initializable {
     
     @FXML 
     private AnchorPane GameBoardPane;
+    
+    @FXML
+    private Label AlertLabel;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -83,20 +87,23 @@ public class GameController implements Initializable {
 		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
 		
-		// if save exists, start and initialize game with saved pieces 
-		if(SaveModel.currentSave != null) {
-			char[][] savedBoardPieces = SaveModel.currentSave.getSavedBoardPieces();
-			LinkedList<String> savedPlayerTray = SaveModel.currentSave.getSavedPlayerTray();
-			LinkedList<String> savedGamePile = SaveModel.currentSave.getSavedGamePile();
-			GameEngine.start(gameBoard, gamePlayerTray, savedBoardPieces, savedPlayerTray, savedGamePile);
-		} else {
-			GameEngine.start(gameBoard, gamePlayerTray);
-		}
+		GameEngine.start(gameBoard, gamePlayerTray);
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-		GameModel.endTurn();	
+    boolean correctWord = false;
+		
+		if(GameModel.endTurn()) {
+			correctWord = true;
+		}
+
+		if(correctWord == true) {
+			AlertLabel.setText("Valid word! Your/Opponent's move.");
+		}
+		else {
+			AlertLabel.setText("Invalid word. Please try again.");
+		}
 	}
 	
 	@FXML
@@ -134,5 +141,4 @@ public class GameController implements Initializable {
 		Pane view = object.getPage("SaveGame");
 		WordHelperPane.setCenter(view);
 	}
-
 }
