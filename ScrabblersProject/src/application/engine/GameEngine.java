@@ -147,6 +147,10 @@ public class GameEngine {
  		return true;
 	}
 	
+	public static char[][] getBoard(){
+		return engineBoard.getBoard();
+	}
+	
 }
 
 
