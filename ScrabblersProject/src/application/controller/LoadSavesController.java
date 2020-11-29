@@ -39,11 +39,6 @@ public class LoadSavesController implements Initializable{
 	private Button save4;	
 	@FXML
 	private Button save5;
-
-	@FXML
-	public void initialize(){
-		
-	}
 	
 	/**
 	 * Redirects user to Main screen from LoadSaves screen

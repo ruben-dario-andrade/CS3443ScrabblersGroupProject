@@ -58,7 +58,7 @@ public class GameSave {
 	 * Update saved board pieces with updated board pieces
 	 * @param newBoardPieces updated board pieces to be stored in save
 	 */
-	public void updateSavedBoardPieces(char[][] newBoardPieces) {
+	public void setSavedBoardPieces(char[][] newBoardPieces) {
 		this.boardPieces = newBoardPieces;
 	}
 	
@@ -66,7 +66,7 @@ public class GameSave {
 	 * Update saved player tray with updated player tray
 	 * @param newBoardPieces updated player tray to be stored in save
 	 */
-	public void updateSavedPlayerTray(LinkedList<String> newPlayerTray) {
+	public void setSavedPlayerTray(LinkedList<String> newPlayerTray) {
 		this.playerTray = newPlayerTray;
 	}
 	
@@ -74,7 +74,7 @@ public class GameSave {
 	 * Update saved game pile with updated game pile
 	 * @param newBoardPieces updated game pile to be stored in save
 	 */
-	public void updateSavedGamePile(LinkedList<String> newGamePile) {
+	public void setSavedGamePile(LinkedList<String> newGamePile) {
 		this.gamePile = newGamePile;
 	}
 	

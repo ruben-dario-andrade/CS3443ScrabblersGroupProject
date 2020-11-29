@@ -188,6 +188,7 @@ public class GameEngine {
 		return engineBoard.getBoard();
 	}
 	
+
 	public static boolean getIsRefreshing() {
 		return isRefreshing;
 	}
@@ -206,5 +207,9 @@ public class GameEngine {
 	
 	public static EngineTray getTray() {
 		return engineTray;	
+  }
+	public static LinkedList<String> getPile(){
+		return enginePile.getPile();
 	}
+  
 }

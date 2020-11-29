@@ -21,18 +21,6 @@ public class EnginePile {
 	 */
 	public EnginePile(LinkedList<String> savedPile) {
 		pileLetters = savedPile;
-		
-		//System.out.println("Engine Pile - Overloaded Constructor: ");
-		for(int i = 0; i < pileLetters.size(); i++) {
-			if(i != 0 && !pileLetters.get(i).equals(pileLetters.get(i-1))) {
-				//System.out.print("\n" + pileLetters.get(i));
-			} else {
-				//System.out.print(pileLetters.get(i));
-			}
-		}
-		//System.out.println();
-		
-		Collections.shuffle(pileLetters);
 	}
 
 	private static LinkedList<String> retrievePilePieces(){
@@ -77,6 +65,11 @@ public class EnginePile {
 		return pileLetters.size();
 	}
 	
-	
-	
+	/**
+	 * Getter function for game pile
+	 * @return game pile
+	 */
+	public LinkedList<String> getPile() {
+		return this.pileLetters;
+	}
 }
