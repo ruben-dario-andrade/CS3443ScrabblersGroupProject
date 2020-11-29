@@ -52,6 +52,11 @@ public class EnginePile {
 		return pileLetters.size();
 	}
 	
-	
-	
+	/**
+	 * Getter function for game pile
+	 * @return game pile
+	 */
+	public LinkedList<String> getPile() {
+		return this.pileLetters;
+	}
 }
