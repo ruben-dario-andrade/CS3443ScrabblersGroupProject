@@ -1,8 +1,10 @@
 package application.model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -51,7 +53,6 @@ public class SaveModel {
 			// Create save obj and set global currentSave to it for reference from other controllers
 			GameSave loadedSave = new GameSave(saveNumber, savedBoardPieces, savedTray, savedPile);
 			currentSave = loadedSave;
-	
 		} catch(IOException e) {
 			e.printStackTrace();
 			
@@ -67,10 +68,12 @@ public class SaveModel {
 	 * @param saveFile file path to write save file to
 	 */
 	public static void writeSave(File saveFile) {
+		// Get current game components to save state
 		char[][] boardPieces = GameEngine.getBoard();
 		LinkedList<String> playerTray = GameEngine.getHand();
 		LinkedList<String> gamePile = GameEngine.getPile();
 		
+		/*
 		System.out.println("\nBoard Pieces To Save: ");					// TODO								
 		for(int i = 0; i < 15; i++) {
 			for(int j = 0; j < 15; j++) {
@@ -90,6 +93,39 @@ public class SaveModel {
 			System.out.println(gamePile.get(i));
 		}
 		System.out.println();
+		*/
+		
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
+			
+			// Write player tray to save file
+			for(String trayPiece : playerTray) {
+				writer.write(trayPiece + ",");
+			}
+			writer.newLine();
+			
+			// Write game pile to save file
+			for(String pilePiece : gamePile) {
+				writer.write(pilePiece + ",");
+			}
+			writer.newLine();
+			
+			// Write board pieces to save file
+			for(int i = 0; i < 15; i++) {
+				for(int j = 0; j < 15; j++) {
+					writer.write(boardPieces[i][j] + ",");
+				}
+				writer.newLine();
+			}
+			
+			writer.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+			
+			Alert writeSaveFail = new Alert(AlertType.ERROR);
+			writeSaveFail.setContentText("Save could not be written.");
+			writeSaveFail.show();
+		}
 	}
 	
 	/**
