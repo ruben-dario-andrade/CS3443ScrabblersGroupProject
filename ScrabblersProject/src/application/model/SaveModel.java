@@ -73,28 +73,6 @@ public class SaveModel {
 		LinkedList<String> playerTray = GameEngine.getHand();
 		LinkedList<String> gamePile = GameEngine.getPile();
 		
-		/*
-		System.out.println("\nBoard Pieces To Save: ");					// TODO								
-		for(int i = 0; i < 15; i++) {
-			for(int j = 0; j < 15; j++) {
-				System.out.print(boardPieces[i][j] + ",");
-			}
-			System.out.println();
-		}
-		
-		System.out.println("Tray To Save: ");							// TODO						
-		for(int i = 0; i < playerTray.size(); i++) {
-			System.out.print(playerTray.get(i) + ",");
-		}
-		System.out.println();
-		
-		System.out.println("Game Pile To Save: ");						// TODO
-		for(int i = 0; i < gamePile.size(); i++) {
-			System.out.println(gamePile.get(i));
-		}
-		System.out.println();
-		*/
-		
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
 			
@@ -122,6 +100,7 @@ public class SaveModel {
 		} catch(IOException e) {
 			e.printStackTrace();
 			
+			// Display error to user that save couldn't be written
 			Alert writeSaveFail = new Alert(AlertType.ERROR);
 			writeSaveFail.setContentText("Save could not be written.");
 			writeSaveFail.show();
@@ -132,7 +111,20 @@ public class SaveModel {
 	 * Check next available save slot during attempt to autosave new game
 	 * @return -1 for no available slots or the available slot number
 	 */
-	public static int checkOpenSlot() {
-		return 0;
+	public static int checkOpenSlot(File saveDir) {
+		boolean[] usedSlots = new boolean[5];
+		
+		// Check which save slots are used
+		for(File saveFile: saveDir.listFiles()) {
+			int usedSlot = Integer.parseInt(saveFile.getName().split("\\.")[0]) - 1;
+			usedSlots[usedSlot] = true;
+		}
+		
+		// Return first open slot
+		for(int i = 0; i < usedSlots.length; i++) {
+			if(!usedSlots[i]) { return i + 1; }
+		}
+		
+		return -1;
 	}
 }
