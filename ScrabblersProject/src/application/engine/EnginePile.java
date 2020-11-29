@@ -22,7 +22,7 @@ public class EnginePile {
 	public EnginePile(LinkedList<String> savedPile) {
 		pileLetters = savedPile;
 		
-		Collections.shuffle(pileLetters);
+		Collections.shuffle(pileLetters); // comment out for testing diffs in save files
 	}
 
 	private static LinkedList<String> retrievePilePieces(){
