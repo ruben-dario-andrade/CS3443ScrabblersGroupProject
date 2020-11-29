@@ -111,8 +111,6 @@ public class WordEngine {
     
     public void combine() { combine( 0 ); }
     private void combine(int start ){
-    	//System.out.println("ran combine func");
-    	//System.out.println(inputstring.length());
         for( int i = start; i < inputstring.length(); ++i ){
             output.append( inputstring.charAt(i) );   
             String str = output.toString();
