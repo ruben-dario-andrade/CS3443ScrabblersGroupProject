@@ -6,15 +6,17 @@ import application.engine.GameEngine;
 
 public class GameModel {
 	
-	public static void endTurn() {
+	public static boolean endTurn() {
 		if (GameEngine.checkValid()) {
 			GameEngine.getTray().clearHand();
 			GameEngine.refillHand();
 			GameEngine.refreshTray();
 			GameEngine.clearUsedPieces();
+			return true;
 		} else {
 			GameEngine.returnHand();
 			GameEngine.returnBoard();
+			return false;
 		}
 	}  
 	
