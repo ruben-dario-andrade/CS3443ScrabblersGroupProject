@@ -27,11 +27,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -106,6 +108,41 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void goHome(ActionEvent event) throws IOException{
+		if(SaveModel.currentSave != null) {
+			// Update save in current slot
+			File updateSaveFilePath = new File("saves/" + SaveModel.currentSave.getSaveNumber() + ".txt");
+			//SaveModel.writeSave(updateSaveFilePath);
+			
+			// Clear current save to refresh for next game
+			SaveModel.currentSave = null;
+			
+			Alert updateCurrentSave = new Alert(AlertType.CONFIRMATION);
+			updateCurrentSave.setContentText("Save " + SaveModel.currentSave.getSaveNumber() + " has been updated.");
+			updateCurrentSave.show();
+			
+		} else {
+			int openSlot = SaveModel.checkOpenSlot();
+			if(openSlot < 0) {
+				// Default overwrite save in slot 1 TODO better default behavior may be overwrite oldest save (how?)
+				File updateSaveFilePath = new File("saves/1.txt");
+				//SaveModel.writeSave(updateSaveFilePath);
+				
+				Alert overWriteDefaultSave = new Alert(AlertType.CONFIRMATION);
+				overWriteDefaultSave.setContentText("Save 1 has been overwritten.");
+				overWriteDefaultSave.show();
+				
+			} else {
+				// Write save in open slot
+				File updateSaveFilePath = new File("saves/" + openSlot + ".txt");
+				//SaveModel.writeSave(updateSaveFilePath);
+				
+				Alert updateCurrentSave = new Alert(AlertType.CONFIRMATION);
+				updateCurrentSave.setContentText("Save " + openSlot + " has been written.");
+				updateCurrentSave.show();
+			}
+		}
+		
+		// Switch to main screen after writing save
 		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
 		Scene scene = new Scene(mainPane);
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -113,7 +150,7 @@ public class GameController implements Initializable {
 		window.show();
 	}
 
-  @FXML
+	@FXML
 	public void OpenWordHelper(ActionEvent event) {
 		LoadFxml object = new LoadFxml();
 		Pane view = object.getPage("DisplayWords");
