@@ -73,7 +73,7 @@ public class SaveModel {
 	 * Check next available save slot during attempt to autosave new game
 	 * @return -1 for no available slots or the available slot number
 	 */
-	public static int checkAvailableSlot() {
+	public static int checkOpenSlot() {
 		return 0;
 	}
 }
