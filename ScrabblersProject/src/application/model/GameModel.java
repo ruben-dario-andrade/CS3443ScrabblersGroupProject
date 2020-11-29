@@ -7,7 +7,7 @@ import application.engine.GameEngine;
 public class GameModel {
 	
 	public static String endTurn() {
-		if(!GameEngine.getIsRefreshing()) {
+		if(!GameEngine.getIsReplacing()) {
 			if (GameEngine.checkValid()) {
 				GameEngine.getTray().clearHand();
 				GameEngine.refillHand();
@@ -31,7 +31,7 @@ public class GameModel {
 	}  
 	
 	public static void undoMoves() {
-		if(!GameEngine.getIsRefreshing()) {
+		if(!GameEngine.getIsReplacing()) {
 			GameEngine.returnHand();
 			GameEngine.returnBoard();
 		} else {
@@ -40,10 +40,10 @@ public class GameModel {
 	}
 	
 	public static String refreshLetters() {
-		if (GameEngine.getIsRefreshing()) {
-			return GameEngine.setIsRefreshing(false);
+		if (GameEngine.getIsReplacing()) {
+			return GameEngine.setIsReplacing(false);
 		} else {
-			return GameEngine.setIsRefreshing(true);
+			return GameEngine.setIsReplacing(true);
 		}
 	}
 	

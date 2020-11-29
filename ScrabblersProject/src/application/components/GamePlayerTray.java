@@ -15,6 +15,10 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
+/*
+ * GridPane containing the player's hand
+ * */
+
 public class GamePlayerTray extends GridPane{
 	
 	public GamePlayerTray() { 
@@ -32,6 +36,12 @@ public class GamePlayerTray extends GridPane{
 		
 	}
 	
+	/*
+	 * Parameters:
+	 * 		LinkedList<String> hand - the user's hand
+	 * Description:
+	 * 		Refreshes the current hand into the gridpane
+	 * */
 	public void addHand(LinkedList<String> hand) {	
 		for (int i = 0; i < hand.size(); i++) {
 			this.add(new GamePiece(hand.get(i).charAt(0), true, -1, -1), i + 1, 0);

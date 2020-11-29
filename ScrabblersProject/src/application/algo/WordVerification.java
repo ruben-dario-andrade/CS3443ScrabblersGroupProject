@@ -8,6 +8,14 @@ import application.engine.Point;
 
 public class WordVerification {
 	
+	/*
+	 * Parameters:
+	 * 		LinkedList<String> testWords - linked list of words to be tested
+	 * Return:
+	 * 		true if all words in list were found in dictionary
+	 * Description:
+	 * 		Check words in list against Scrabble dictionary
+	 * */
 	public static boolean inDictionary(LinkedList<String> testWords) {
 		int verifiedWordCount = 0;
 		int size = testWords.size();
@@ -34,6 +42,16 @@ public class WordVerification {
 		return false;
 	}
 
+	/*
+	 * Parameters:
+	 * 		char[][] board - board of current letters
+	 *  	LinkedList<String> usedLetters - usedLetters in the current turn
+	 * 		LinkedList<Point> usedTiles - usedTiles in the current turn
+	 * Return:
+	 * 		LinkedList<String> of found words through the function
+	 * Description:
+	 * 		Test user input for continuity, correct branches, and if input is on same column
+	 * */
 	public static LinkedList<String> validWord(char[][] board, LinkedList<String> usedLetters, LinkedList<Point> usedTiles) {
 		boolean isHorizontal;
 		LinkedList<String> foundStrings = new LinkedList<String>();
@@ -71,7 +89,7 @@ public class WordVerification {
 				if (!checkIfBranched(board, usedLetters, usedTiles, isHorizontal, xFile)) {
 					return null;
 				}
-				if (!checkIfContinous(board, usedTiles, isHorizontal, xFile)) {
+				if (!checkIfContinuous(board, usedTiles, isHorizontal, xFile)) {
 					return null;
 				}
 				temp1 = getWordClumps(board, usedLetters, usedTiles, isHorizontal, xFile);
@@ -88,7 +106,7 @@ public class WordVerification {
 				if (!checkIfBranched(board, usedLetters, usedTiles, isHorizontal, yFile)) {
 					return null;
 				}
-				if (!checkIfContinous(board, usedTiles, isHorizontal, yFile)) {
+				if (!checkIfContinuous(board, usedTiles, isHorizontal, yFile)) {
 					return null;
 				}
 				temp1 = getWordClumps(board, usedLetters, usedTiles, isHorizontal, yFile);
@@ -100,6 +118,16 @@ public class WordVerification {
 		}
 	}
 	
+	/*
+	 * Parameters:
+	 * 		char[][] board - board of current letters
+	 *  	LinkedList<String> usedLetters - usedLetters in the current turn
+	 * 		LinkedList<Point> usedTiles - usedTiles in the current turn
+	 * Return:
+	 * 		Possible additional words formed by the user
+	 * Description:
+	 * 		Checks along row/column for possible new words formed by the user
+	 * */
 	public static LinkedList<String> searchRemaining(char[][] board, LinkedList<String> usedLetters, LinkedList<Point> usedTiles){
 		LinkedList<String> tempList = new LinkedList<String>();
 		String temp1;
@@ -144,7 +172,18 @@ public class WordVerification {
 	}
 	
 	
-	
+	/*
+	 * Parameters:
+	 * 		char[][] board - board of current letters
+	 *  	LinkedList<String> usedLetters - usedLetters in the current turn
+	 * 		LinkedList<Point> usedTiles - usedTiles in the current turn
+	 * 		boolean isHorizontal - if word is horizontal
+	 * 		int file - row or column word is on
+	 * Return:
+	 * 		String of found word along the file
+	 * Description:
+	 * 		Identifies word the user placed
+	 * */
 	private static String getWordClumps(char[][] board, LinkedList<String> usedLetters, LinkedList<Point> usedTiles, boolean isHorizontal, int file){
 		StringBuilder string = new StringBuilder();
 		int min, max, size, hold;
@@ -224,7 +263,18 @@ public class WordVerification {
 		return string.toString();
 	}
 	
-	private static boolean checkIfContinous(char[][] board, LinkedList<Point> usedTiles, boolean isHorizontal, int file) {
+	/*
+	 * Parameters:
+	 * 		char[][] board - board of current letters
+	 * 		LinkedList<Point> usedTiles - usedTiles in the current turn
+	 * 		boolean isHorizontal - if word is horizontal
+	 * 		int file - row or column word is on
+	 * Return:
+	 * 		true if the word is continuous
+	 * Description:
+	 * 		Check if the word is connected to itself
+	 * */
+	private static boolean checkIfContinuous(char[][] board, LinkedList<Point> usedTiles, boolean isHorizontal, int file) {
 		int min, max, size;
 		boolean flag;
 		max = -1;
@@ -274,6 +324,18 @@ public class WordVerification {
 		
 	}
 	
+	/*
+	 * Parameters:
+	 * 		char[][] board - board of current letters
+	 * 		LinkedList<String> usedLetters - usedLetters in the current turn
+	 * 		LinkedList<Point> usedTiles - usedTiles in the current turn
+	 * 		boolean isHorizontal - if word is horizontal
+	 * 		int file - row or column word is on
+	 * Return:
+	 * 		true if the word is properly branched
+	 * Description:
+	 * 		Check if the word is connected to the center or to another word
+	 * */
 	private static boolean checkIfBranched(char[][] board, LinkedList<String> usedLetters, LinkedList<Point> usedTiles, boolean isHorizontal, int file) {
 		int min, max, size;
 		max = -1;

@@ -7,6 +7,10 @@ import application.engine.Point;
 
 public class WordPointCount {
 	
+	/*
+	 * Return:
+	 * 		The Scrabble point value of a char
+	 * */
 	public static int getCharScore(char c) {
     	switch(c) {
 	    	case 'a':
@@ -53,7 +57,17 @@ public class WordPointCount {
     	return 0;
 	}
 	
-	public static void countPoints(LinkedList<Point> usedTiles, LinkedList<String> foundStrings, char[][] board) {
+	/*
+	 * Parameters:
+	 * 		LinkedList<Point> usedTiles - tiles currently used in the turn
+	 * 		LinkedList<String> foundStrings - strings found by the WordVerification class
+	 * 		char[][] board - current chars on board
+	 * Return:
+	 * 		int point total of the turn
+	 * Description:
+	 * 		counts the points earned in a turn
+	 * */
+	public static int countPoints(LinkedList<Point> usedTiles, LinkedList<String> foundStrings, char[][] board) {
 		int pointTotal = 0;
 		int row, col, size;
 		String temp;
@@ -61,17 +75,18 @@ public class WordPointCount {
 		for (int i = 0; i < usedTiles.size(); i++) {
 			row = usedTiles.get(i).getX();
 			col = usedTiles.get(i).getY();
-			pointTotal += getCharScore(board[row][col]) * boardValues[row][col];
+			pointTotal += getCharScore(board[row][col]) * (boardValues[row][col] - 1);
 		}
 		size = foundStrings.size();
-		if (size > 1) {
-			for (int i = 1; i < size; i++) {
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
 				temp = foundStrings.get(i);
 				for (int j = 0; j < temp.length(); j++) {
 					pointTotal += getCharScore(temp.charAt(i));
 				}
 			}
 		}
+		return pointTotal;
 	}
 	
 }

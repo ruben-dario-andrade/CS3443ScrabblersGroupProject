@@ -13,6 +13,10 @@ public class EngineBoard {
 	private static int[][] boardTileValues = new int[15][15];
 	GameBoard gameBoard;
 	
+	/*
+	 * Description:
+	 * 		EngineBoard constructor that initializes empty board and bonus point values
+	 */
 	public EngineBoard(GameBoard gameBoard) {
 		this.gameBoard = gameBoard;
 		for (int i = 0; i < 15; i++) {
@@ -86,6 +90,15 @@ public class EngineBoard {
 		this.gameBoard = gameBoard;	
 	}
   
+	/*
+	 * Parameters:
+	 * 		int row - row of board tile
+	 * 		int col - column of board tile
+	 * Return:
+	 * 		boolean denoting success or fail
+	 * Description:
+	 * 		Moves the GameEngine's current letter to the clicked board tile
+	 * */
 	public boolean movePiece(int row, int col) {
 		char currentLetter = GameEngine.getCurrentLetter(); 
 		if (currentLetter != ' ') {
@@ -99,6 +112,12 @@ public class EngineBoard {
 		return false;
 	}
 	
+	/*
+	 * Parameters:
+	 * 		LinkedList<Point> usedTiles - the tiles used by the user in the current turn
+	 * Description:
+	 * 		Returns board to pre move state
+	 * */
 	public void returnBoard(LinkedList<Point> usedTiles) {
 		for (int i = 0;  i < usedTiles.size(); i++) {
 			int row = usedTiles.get(i).getX();
@@ -108,10 +127,18 @@ public class EngineBoard {
 		}
 	}
 
+	/*
+	 * Return:
+	 * 		char[][] board holding letters
+	 * */
 	public char[][] getBoard(){
 		return this.boardPiece;
 	}
 	
+	/*
+	 * Return:
+	 * 		char[][] holding bonus values
+	 * */
 	 public static int[][] getBoardValues(){
 		return boardTileValues;
 	}
