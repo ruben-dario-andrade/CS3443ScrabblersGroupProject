@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import application.algo.WordVerification;
 import application.components.GameBoard;
 import application.components.GamePlayerTray;
 
@@ -82,7 +83,7 @@ public class GameEngine {
 		currentLetter = letter;
 	}
 	
-	public static EngineTray getPlayer() {
+	public static EngineTray getTray() {
 		return engineTray;	
 	}
 
@@ -141,10 +142,30 @@ public class GameEngine {
 		}
 		return adj;
 	}
-	
-	
+
 	public static char getCurrentLetter() {
 		return currentLetter;
 	}
 	
+	public static boolean checkValid() {
+		LinkedList<String> testStrings = new LinkedList<String>();
+ 		testStrings = WordVerification.validWord(engineBoard.getBoard(), usedChars, usedTiles);
+ 		if (testStrings == null) {
+ 			return false;
+ 		} else {
+ 			LinkedList<String> holdStrings = new LinkedList<String>();
+ 			holdStrings = WordVerification.searchRemaining(engineBoard.getBoard(), usedChars, usedTiles);
+ 			if (holdStrings.size() > 0) {
+ 				testStrings.addAll(holdStrings);
+ 			}
+ 		}
+ 		if (!WordVerification.inDictionary(testStrings)) {
+ 			return false;
+ 		}
+ 		return true;
+	}
+	
+	public static char[][] getBoard(){
+		return engineBoard.getBoard();
+	}
 }

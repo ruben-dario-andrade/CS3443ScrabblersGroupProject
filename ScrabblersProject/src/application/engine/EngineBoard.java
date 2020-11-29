@@ -46,7 +46,7 @@ public class EngineBoard {
 		}
 		this.gameBoard = gameBoard;
 	}
-	
+
 	/**
 	 * Initializes EngineBoard's board pieces from save file
 	 * @param gameBoard GameBoard GUI object that EngineBaord refers to
@@ -85,7 +85,7 @@ public class EngineBoard {
 		}
 		this.gameBoard = gameBoard;	
 	}
-
+  
 	public boolean movePiece(int row, int col) {
 		char currentLetter = GameEngine.getCurrentLetter(); 
 		if (currentLetter != ' ') {
@@ -106,6 +106,10 @@ public class EngineBoard {
 			gameBoard.addPiece(row, col, ' ', boardTileValues[row][col]);
 			boardPiece[row][col] = ' ';
 		}
+	}
+
+  public char[][] getBoard(){
+		return this.boardPiece;
 	}
 	
 }

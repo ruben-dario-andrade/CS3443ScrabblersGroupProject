@@ -127,5 +127,12 @@ public class GameController implements Initializable {
 		Pane view = object.getPage("Blank");
 		WordHelperPane.setCenter(view);
 	}
+	
+	@FXML
+	public void saveGame(ActionEvent event) {
+		LoadFxml object = new LoadFxml();
+		Pane view = object.getPage("SaveGame");
+		WordHelperPane.setCenter(view);
+	}
 
 }
