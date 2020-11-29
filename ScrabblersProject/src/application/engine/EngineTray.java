@@ -6,7 +6,7 @@ import application.components.GamePlayerTray;
 
 public class EngineTray {
 	private LinkedList<String> hand;
-	GamePlayerTray gamePlayerTray;
+	private GamePlayerTray gamePlayerTray;
 	private LinkedList<String> holdRefreshHand;
 	
 	public EngineTray(GamePlayerTray gamePlayerTray) {

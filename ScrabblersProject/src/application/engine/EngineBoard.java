@@ -11,7 +11,7 @@ public class EngineBoard {
 	
 	private char[][] boardPiece = new char[15][15];
 	private static int[][] boardTileValues = new int[15][15];
-	GameBoard gameBoard;
+	private GameBoard gameBoard;
 	
 	/*
 	 * Description:
@@ -134,7 +134,6 @@ public class EngineBoard {
 	public char[][] getBoard(){
 		return this.boardPiece;
 	}
-	
 	/*
 	 * Return:
 	 * 		char[][] holding bonus values
