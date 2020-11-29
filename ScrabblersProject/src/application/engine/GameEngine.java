@@ -18,6 +18,7 @@ public class GameEngine {
 
 	
 	private static char currentLetter = ' ';
+	private static boolean isRefreshing;
 	private static LinkedList<String> usedChars;
 	private static LinkedList<Point> usedTiles = new LinkedList<Point>();
 	
@@ -27,12 +28,13 @@ public class GameEngine {
 		engineTray = new EngineTray(gamePlayerTray);
 		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
+		isRefreshing = false;
 		
 		// Adds 7 letters from pile to user hand to start off with
 		for (int i = 0; i < 7; i++) {
 			engineTray.addPiece(enginePile.popLetter());
 		}
-		gamePlayerTray.addRefreshHand(engineTray.getList());
+		gamePlayerTray.addHand(engineTray.getList());
 	}
 	
 	/**
@@ -49,8 +51,8 @@ public class GameEngine {
 		engineTray = new EngineTray(gamePlayerTray, savedTray);
 		enginePile = new EnginePile(savedPile);
 		usedChars = new LinkedList<String>();
-
-		gamePlayerTray.addRefreshHand(engineTray.getList());
+		isRefreshing = false;
+		gamePlayerTray.addHand(engineTray.getList());
 	}
 
 	/* Parameters: 	
@@ -67,7 +69,7 @@ public class GameEngine {
 			 Point temp = new Point(row, col);
 			 usedTiles.add(temp);
 			 engineTray.removePiece(currentLetter+"");
-			 engineTray.refreshTray();
+			 engineTray.resetTray();
 		 }
 		currentLetter = ' ';
 	}
@@ -81,16 +83,31 @@ public class GameEngine {
 	 * 		This current letter is used to set the letter on the grid the user selects
 	 */
 	public static void receiveLetter(char letter) {
-		currentLetter = letter;
+		if (isRefreshing) {
+			currentLetter = ' ';
+			engineTray.removePiece(letter+"");
+			engineTray.addRefreshPiece(letter+"");
+			engineTray.resetTray();
+		} else {
+			currentLetter = letter;
+		}
 	}
 	
-	public static EngineTray getTray() {
-		return engineTray;	
+	public static void commitRefresh() {
+		enginePile.commitList(engineTray.getRefreshList());
+		engineTray.clearRefreshList();
 	}
-
-	public static void refreshTray() {
-		engineTray.refreshTray();
+	
+	public static void undoRefresh() {
+		engineTray.returnRefreshPieces();
+		engineTray.clearHand();
+		engineTray.resetTray();
 	}
+	
+	public static void resetTray() {
+		engineTray.resetTray();
+	}
+	
 	
 	/* Parameters: 	
 	 * 		None:
@@ -118,7 +135,7 @@ public class GameEngine {
 			engineTray.addPiece(usedChars.get(i)+"");
 		}
 		usedChars.clear();
-		engineTray.refreshTray();
+		engineTray.resetTray();
 	}
 	
 	public static void returnBoard() {
@@ -169,5 +186,25 @@ public class GameEngine {
 	
 	public static char[][] getBoard(){
 		return engineBoard.getBoard();
+	}
+	
+	public static boolean getIsRefreshing() {
+		return isRefreshing;
+	}
+	
+	public static String setIsRefreshing(boolean refreshing) {
+		isRefreshing = refreshing;
+		if (usedTiles.size() != 0) {
+			isRefreshing = false;
+			return "Please end turn or undo moves before replacing letters";
+		}
+		if (refreshing == true) {
+			return "Select letters you wish to replace.";
+		}
+		return "";
+	}
+	
+	public static EngineTray getTray() {
+		return engineTray;	
 	}
 }

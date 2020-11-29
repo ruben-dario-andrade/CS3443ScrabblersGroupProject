@@ -6,23 +6,45 @@ import application.engine.GameEngine;
 
 public class GameModel {
 	
-	public static boolean endTurn() {
-		if (GameEngine.checkValid()) {
+	public static String endTurn() {
+		if(!GameEngine.getIsRefreshing()) {
+			if (GameEngine.checkValid()) {
+				GameEngine.getTray().clearHand();
+				GameEngine.refillHand();
+				GameEngine.resetTray();
+				GameEngine.clearUsedPieces();
+				return "Valid word! Your/Opponent's move.";
+			} else {
+				GameEngine.returnHand();
+				GameEngine.returnBoard();
+				return "Invalid word. Please try again.";
+			}
+		} else {
+			GameEngine.commitRefresh();
 			GameEngine.getTray().clearHand();
 			GameEngine.refillHand();
-			GameEngine.refreshTray();
+			GameEngine.resetTray();
 			GameEngine.clearUsedPieces();
-			return true;
-		} else {
-			GameEngine.returnHand();
-			GameEngine.returnBoard();
-			return false;
+			return "New pieces placed into hand.";
 		}
+		
 	}  
 	
 	public static void undoMoves() {
-		GameEngine.returnHand();
-		GameEngine.returnBoard();
+		if(!GameEngine.getIsRefreshing()) {
+			GameEngine.returnHand();
+			GameEngine.returnBoard();
+		} else {
+			GameEngine.undoRefresh();
+		}
+	}
+	
+	public static String refreshLetters() {
+		if (GameEngine.getIsRefreshing()) {
+			return GameEngine.setIsRefreshing(false);
+		} else {
+			return GameEngine.setIsRefreshing(true);
+		}
 	}
 	
 }

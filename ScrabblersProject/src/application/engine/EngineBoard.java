@@ -112,7 +112,7 @@ public class EngineBoard {
 		return this.boardPiece;
 	}
 	
-	public static int[][] getBoardValues(){
+	 public static int[][] getBoardValues(){
 		return boardTileValues;
 	}
 	
