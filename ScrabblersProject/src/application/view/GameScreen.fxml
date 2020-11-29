@@ -43,7 +43,7 @@
             <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" text="Undo" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
-            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshLetters" text="Refresh" BorderPane.alignment="CENTER" />
+            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshLetters" text="Replace" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <Label fx:id="AlertLabel" layoutX="111.0" layoutY="580.0">
