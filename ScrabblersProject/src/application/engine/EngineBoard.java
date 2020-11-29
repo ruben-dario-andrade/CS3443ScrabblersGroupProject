@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class EngineBoard {
 	
 	private char[][] boardPiece = new char[15][15];
-	private int[][] boardTileValues = new int[15][15];
+	private static int[][] boardTileValues = new int[15][15];
 	GameBoard gameBoard;
 	
 	public EngineBoard(GameBoard gameBoard) {
@@ -108,8 +108,12 @@ public class EngineBoard {
 		}
 	}
 
-  public char[][] getBoard(){
+	public char[][] getBoard(){
 		return this.boardPiece;
+	}
+	
+	public static int[][] getBoardValues(){
+		return boardTileValues;
 	}
 	
 }

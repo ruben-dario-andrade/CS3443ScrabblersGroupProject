@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import application.algo.WordPointCount;
 import application.algo.WordVerification;
 import application.components.GameBoard;
 import application.components.GamePlayerTray;
@@ -162,6 +163,7 @@ public class GameEngine {
  		if (!WordVerification.inDictionary(testStrings)) {
  			return false;
  		}
+ 		//Print this -> WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
  		return true;
 	}
 	
