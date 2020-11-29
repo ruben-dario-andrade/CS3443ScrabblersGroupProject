@@ -121,7 +121,7 @@ public class GameController implements Initializable {
 
 			userConfirmation.setContentText("Save " + currSaveNum + " has been updated.");	
 		} else {
-			int openSlot = SaveModel.checkOpenSlot();
+			int openSlot = SaveModel.checkOpenSlot(new File("saves"));
 			if(openSlot < 0) {
 				// Default overwrite save in slot 1 TODO better default behavior may be overwrite oldest save (how?)
 				File defaultSaveFilePath = new File("saves/1.txt");
