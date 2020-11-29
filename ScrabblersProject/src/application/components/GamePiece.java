@@ -53,7 +53,7 @@ public class GamePiece extends Button{
 		this.setStyle("-fx-background-color: mintcream");
 		
 		
-		
+		/* Fire custom event handler */
 		this.setOnAction((ActionEvent event) ->  {
 			this.fireEvent(new PieceEventTray(letter, inTray));
 			this.fireEvent(new PieceEventBoard(row, col, inTray));

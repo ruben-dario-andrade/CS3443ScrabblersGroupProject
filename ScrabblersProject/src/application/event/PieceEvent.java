@@ -7,6 +7,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.PickResult;
 
 
+/*
+ * Custom event class for GamePiece button
+ * */
 public abstract class PieceEvent extends MouseEvent {
 
     public static final EventType<PieceEvent> CUSTOM_EVENT_TYPE = new EventType(MOUSE_CLICKED);

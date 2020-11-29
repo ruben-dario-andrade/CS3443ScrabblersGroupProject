@@ -5,7 +5,9 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 
-
+/*
+ * Custom Handler containing methods to be overloaded
+ * */
 public abstract class PieceEventHandler implements EventHandler<PieceEvent> {
 
     @Override
