@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import application.components.GameSave;
+import application.engine.GameEngine;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -66,7 +67,29 @@ public class SaveModel {
 	 * @param saveFile file path to write save file to
 	 */
 	public static void writeSave(File saveFile) {
+		char[][] boardPieces = GameEngine.getBoard();
+		LinkedList<String> playerTray = GameEngine.getHand();
+		LinkedList<String> gamePile = GameEngine.getPile();
 		
+		System.out.println("\nBoard Pieces To Save: ");					// TODO								
+		for(int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				System.out.print(boardPieces[i][j] + ",");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("Tray To Save: ");							// TODO						
+		for(int i = 0; i < playerTray.size(); i++) {
+			System.out.print(playerTray.get(i) + ",");
+		}
+		System.out.println();
+		
+		System.out.println("Game Pile To Save: ");						// TODO
+		for(int i = 0; i < gamePile.size(); i++) {
+			System.out.println(gamePile.get(i));
+		}
+		System.out.println();
 	}
 	
 	/**

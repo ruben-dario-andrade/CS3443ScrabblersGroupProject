@@ -127,13 +127,13 @@ public class GameController implements Initializable {
 				File defaultSaveFilePath = new File("saves/1.txt");
 				SaveModel.writeSave(defaultSaveFilePath);
 				
-				userConfirmation.setContentText("Save 1 has been overwritten.");
+				userConfirmation.setContentText("Save 1 has been overwritten with new save.");
 			} else {
 				// Write save in open slot
 				File openSaveFilePath = new File("saves/" + openSlot + ".txt");
 				SaveModel.writeSave(openSaveFilePath);
 				
-				userConfirmation.setContentText("Save " + openSlot + " has been written.");
+				userConfirmation.setContentText("New save " + openSlot + " has been written.");
 			}
 		}
 		userConfirmation.show();
