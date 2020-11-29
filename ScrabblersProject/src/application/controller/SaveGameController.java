@@ -57,9 +57,8 @@ public class SaveGameController implements Initializable{
 			String currSaveNumStr = ((Integer)currSaveNum).toString();
 			
 			if(!saveFilePath.exists()) {
-				// Copy current save to another slot
-				userConfirmation.setContentText("Save " + currSaveNumStr + " has been copied to slot " 
-						+ selectedSaveSlot + ".");
+				// Write changed current save to another slot (new save)
+				userConfirmation.setContentText("New save " + selectedSaveSlot + " has been written.");
 			} else if(saveFilePath.exists() && currSaveNum == Integer.parseInt(selectedSaveSlot)) {
 				// Update current save slot
 				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been updated.");	
