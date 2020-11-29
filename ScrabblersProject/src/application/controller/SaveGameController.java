@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import application.model.GameModel;
 import application.model.SaveModel;
 
 import java.io.File;
@@ -79,6 +80,9 @@ public class SaveGameController implements Initializable{
 				userConfirmation.setContentText("Save " + selectedSaveSlot + " has been overwritten with new save.");
 			}
 		}
+		
+		// Undoes any move that wasn't completed with End Turn before saving
+		GameModel.undoMoves();
 		
 		// Writes save in selected save slot
 		SaveModel.writeSave(saveFilePath);

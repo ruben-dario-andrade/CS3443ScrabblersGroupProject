@@ -124,6 +124,9 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void goHome(ActionEvent event) throws IOException{
+		// Undoes any move that wasn't completed with End Turn before saving
+		GameModel.undoMoves();
+		
 		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
 		if(SaveModel.currentSave != null) {
 			int currSaveNum = SaveModel.currentSave.getSaveNumber();
