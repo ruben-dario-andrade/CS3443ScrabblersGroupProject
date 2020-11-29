@@ -21,20 +21,12 @@ public class EnginePile {
 	 */
 	public EnginePile(LinkedList<String> savedPile) {
 		pileLetters = savedPile;
-		
-		System.out.println("Engine Pile - Overloaded Constructor: ");
-		for(int i = 0; i < pileLetters.size(); i++) {
-			if(i != 0 && !pileLetters.get(i).equals(pileLetters.get(i-1))) {
-				System.out.print("\n" + pileLetters.get(i));
-			} else {
-				System.out.print(pileLetters.get(i));
-			}
-		}
-		System.out.println();
-		
-		Collections.shuffle(pileLetters);
 	}
 
+	/*
+	 * Description:
+	 * 		Retrieves pile from res folder text file 
+	 * */
 	private static LinkedList<String> retrievePilePieces(){
 		LinkedList<String> pile = new LinkedList<String>();
 		try {
@@ -53,15 +45,52 @@ public class EnginePile {
 		return pile;
 	}
 	
+	/*
+	 * Parameters:
+	 * 		LinkedList<String> list - list to be added to pile
+	 * Description:
+	 * 		Adds list and then shuffles pile
+	 * */
+	public void commitList(LinkedList<String> list) {
+		int size = list.size();
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
+				pileLetters.add(list.get(i));
+			}
+		}
+		Collections.shuffle(pileLetters);
+	}
 	
+	/*
+	 * Parameters:
+	 * 		String letter - letter that is added to pile
+	 * */
+	public void addLetter(String letter) {
+		pileLetters.add(letter);
+	}
+	
+	/*
+	 * Return:
+	 * 		popped letter of pile
+	 */
 	public String popLetter() {
 		return pileLetters.pop();
 	}
 	
+	
+	/*
+	 * Return:
+	 * 		int size of pile
+	 */
 	public int getSize() {
 		return pileLetters.size();
 	}
 	
-	
-	
+	/**
+	 * Getter function for game pile
+	 * @return game pile
+	 */
+	public LinkedList<String> getPile() {
+		return this.pileLetters;
+	}
 }

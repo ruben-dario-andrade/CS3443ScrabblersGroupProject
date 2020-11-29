@@ -3,6 +3,9 @@ package application.event;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 
+/*
+ * PieceEvent class in charge of grabbing tray letter
+ * */
 public class PieceEventTray extends PieceEvent {
 
 	private char letter;

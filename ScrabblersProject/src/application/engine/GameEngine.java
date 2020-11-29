@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import application.algo.WordPointCount;
 import application.algo.WordVerification;
 import application.components.GameBoard;
 import application.components.GamePlayerTray;
@@ -17,6 +18,7 @@ public class GameEngine {
 
 	
 	private static char currentLetter = ' ';
+	private static boolean isReplacing;
 	private static LinkedList<String> usedChars;
 	private static LinkedList<Point> usedTiles = new LinkedList<Point>();
 	
@@ -26,12 +28,13 @@ public class GameEngine {
 		engineTray = new EngineTray(gamePlayerTray);
 		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
+		isReplacing = false;
 		
 		// Adds 7 letters from pile to user hand to start off with
 		for (int i = 0; i < 7; i++) {
 			engineTray.addPiece(enginePile.popLetter());
 		}
-		gamePlayerTray.addRefreshHand(engineTray.getList());
+		gamePlayerTray.addHand(engineTray.getList());
 	}
 	
 	/**
@@ -48,8 +51,8 @@ public class GameEngine {
 		engineTray = new EngineTray(gamePlayerTray, savedTray);
 		enginePile = new EnginePile(savedPile);
 		usedChars = new LinkedList<String>();
-
-		gamePlayerTray.addRefreshHand(engineTray.getList());
+		isReplacing = false;
+		gamePlayerTray.addHand(engineTray.getList());
 	}
 
 	/* Parameters: 	
@@ -66,7 +69,7 @@ public class GameEngine {
 			 Point temp = new Point(row, col);
 			 usedTiles.add(temp);
 			 engineTray.removePiece(currentLetter+"");
-			 engineTray.refreshTray();
+			 engineTray.resetTray();
 		 }
 		currentLetter = ' ';
 	}
@@ -80,16 +83,31 @@ public class GameEngine {
 	 * 		This current letter is used to set the letter on the grid the user selects
 	 */
 	public static void receiveLetter(char letter) {
-		currentLetter = letter;
+		if (isReplacing) {
+			currentLetter = ' ';
+			engineTray.removePiece(letter+"");
+			engineTray.addRefreshPiece(letter+"");
+			engineTray.resetTray();
+		} else {
+			currentLetter = letter;
+		}
 	}
 	
-	public static EngineTray getTray() {
-		return engineTray;	
+	public static void commitRefresh() {
+		enginePile.commitList(engineTray.getRefreshList());
+		engineTray.clearRefreshList();
 	}
-
-	public static void refreshTray() {
-		engineTray.refreshTray();
+	
+	public static void undoRefresh() {
+		engineTray.returnRefreshPieces();
+		engineTray.clearHand();
+		engineTray.resetTray();
 	}
+	
+	public static void resetTray() {
+		engineTray.resetTray();
+	}
+	
 	
 	/* Parameters: 	
 	 * 		None:
@@ -111,25 +129,41 @@ public class GameEngine {
 		return 0;
 	}
 	
+	/*
+	 * Description:
+	 * 		This function returns hand to original state of turn.
+	 */
 	public static void returnHand() {
 		engineTray.clearHand();
 		for (int i = 0; i < usedChars.size(); i++) {
 			engineTray.addPiece(usedChars.get(i)+"");
 		}
 		usedChars.clear();
-		engineTray.refreshTray();
+		engineTray.resetTray();
 	}
 	
+	/*
+	 * Description:
+	 * 		This function returns board to original state of turn.
+	 */
 	public static void returnBoard() {
 		engineBoard.returnBoard(usedTiles);
 		usedTiles.clear();
 	}
 	
+	/*
+	 * Description:
+	 * 		Clears the used letters and tiles tracked by the class
+	 */
 	public static void clearUsedPieces() {
 		usedChars.clear();
 		usedTiles.clear();
 	}
 	
+	/*
+	 * Return:
+	 * 		A LinkedList of letters excluding blank chars. 
+	 */
 	public static LinkedList<String> getHand(){
 		LinkedList<String> adj = new LinkedList<String>();
 		int size = engineTray.getList().size();
@@ -143,10 +177,19 @@ public class GameEngine {
 		return adj;
 	}
 
+	/*
+	 * Return:
+	 * 		 char tracked by the class
+	 */
 	public static char getCurrentLetter() {
 		return currentLetter;
 	}
 	
+	
+	/*
+	 * Return:
+	 * 		 boolean that denotes if the entered moves are valid
+	 */
 	public static boolean checkValid() {
 		LinkedList<String> testStrings = new LinkedList<String>();
  		testStrings = WordVerification.validWord(engineBoard.getBoard(), usedChars, usedTiles);
@@ -162,10 +205,58 @@ public class GameEngine {
  		if (!WordVerification.inDictionary(testStrings)) {
  			return false;
  		}
+ 		//Print this -> WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
  		return true;
 	}
 	
+	/*
+	 * Return:
+	 * 		 char[][] holding the current char values of the board
+	 */
 	public static char[][] getBoard(){
 		return engineBoard.getBoard();
 	}
+	
+	/*
+	 * Return:
+	 *		 boolean state denoting if GameEngine is in replacing mode 	
+	 */
+	public static boolean getIsReplacing() {
+		return isReplacing;
+	}
+	
+	/*
+	 * Return:
+	 *		 String stating instruction dependent on state of GameEngine 
+	 * Description:
+	 * 		 Sets replacing boolean state, no board moves bust have been made to set to true 
+	 */
+	public static String setIsReplacing(boolean replacing) {
+		isReplacing = replacing;
+		if (usedTiles.size() != 0) {
+			isReplacing = false;
+			return "Please end turn or undo moves before replacing letters";
+		}
+		if (replacing == true) {
+			return "Select letters you wish to replace.";
+		}
+		return "";
+	}
+	
+	/*
+	 * Return:
+	 *		 engineTray	
+	 */
+	public static EngineTray getTray() {
+		return engineTray;	
+	}
+	
+	/*
+	 * Return:
+	 *		 LinkedList of current pile pieces
+	 */
+	public static LinkedList<String> getPile(){
+		return enginePile.getPile();
+	}
+  
 }

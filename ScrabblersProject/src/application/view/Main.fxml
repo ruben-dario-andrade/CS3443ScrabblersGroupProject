@@ -5,18 +5,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="application/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
-      <Button fx:id="exitButton" layoutX="500.0" layoutY="440.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="200.0" text="Exit" textAlignment="CENTER" AnchorPane.bottomAnchor="309.0" AnchorPane.topAnchor="440.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="settingsButton" layoutX="500.0" layoutY="375.0" mnemonicParsing="false" onAction="#goSettings" prefHeight="50.0" prefWidth="200.0" text="Settings" textAlignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
       <Button fx:id="loadSavesButton" layoutX="500.0" layoutY="308.0" mnemonicParsing="false" onAction="#goLoadSaves" prefHeight="50.0" prefWidth="200.0" text="Load Saves" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
