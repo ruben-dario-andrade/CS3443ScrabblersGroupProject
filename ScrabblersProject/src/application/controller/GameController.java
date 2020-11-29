@@ -108,39 +108,33 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void goHome(ActionEvent event) throws IOException{
+		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
 		if(SaveModel.currentSave != null) {
 			// Update save in current slot
 			File updateSaveFilePath = new File("saves/" + SaveModel.currentSave.getSaveNumber() + ".txt");
-			//SaveModel.writeSave(updateSaveFilePath);
+			SaveModel.writeSave(updateSaveFilePath);
 			
 			// Clear current save to refresh for next game
 			SaveModel.currentSave = null;
-			
-			Alert updateCurrentSave = new Alert(AlertType.CONFIRMATION);
-			updateCurrentSave.setContentText("Save " + SaveModel.currentSave.getSaveNumber() + " has been updated.");
-			updateCurrentSave.show();
-			
+
+			userConfirmation.setContentText("Save " + SaveModel.currentSave.getSaveNumber() + " has been updated.");	
 		} else {
 			int openSlot = SaveModel.checkOpenSlot();
 			if(openSlot < 0) {
 				// Default overwrite save in slot 1 TODO better default behavior may be overwrite oldest save (how?)
-				File updateSaveFilePath = new File("saves/1.txt");
-				//SaveModel.writeSave(updateSaveFilePath);
+				File defaultSaveFilePath = new File("saves/1.txt");
+				SaveModel.writeSave(defaultSaveFilePath);
 				
-				Alert overWriteDefaultSave = new Alert(AlertType.CONFIRMATION);
-				overWriteDefaultSave.setContentText("Save 1 has been overwritten.");
-				overWriteDefaultSave.show();
-				
+				userConfirmation.setContentText("Save 1 has been overwritten.");
 			} else {
 				// Write save in open slot
-				File updateSaveFilePath = new File("saves/" + openSlot + ".txt");
-				//SaveModel.writeSave(updateSaveFilePath);
+				File openSaveFilePath = new File("saves/" + openSlot + ".txt");
+				SaveModel.writeSave(openSaveFilePath);
 				
-				Alert updateCurrentSave = new Alert(AlertType.CONFIRMATION);
-				updateCurrentSave.setContentText("Save " + openSlot + " has been written.");
-				updateCurrentSave.show();
+				userConfirmation.setContentText("Save " + openSlot + " has been written.");
 			}
 		}
+		userConfirmation.show();
 		
 		// Switch to main screen after writing save
 		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
