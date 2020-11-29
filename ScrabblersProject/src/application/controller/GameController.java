@@ -28,11 +28,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -113,6 +115,37 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void goHome(ActionEvent event) throws IOException{
+		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
+		if(SaveModel.currentSave != null) {
+			int currSaveNum = SaveModel.currentSave.getSaveNumber();
+			
+			// Update save in current slot
+			File updateSaveFilePath = new File("saves/" + currSaveNum + ".txt");
+			SaveModel.writeSave(updateSaveFilePath);
+			
+			// Clear current save to refresh for next game
+			SaveModel.currentSave = null;
+
+			userConfirmation.setContentText("Save " + currSaveNum + " has been updated.");	
+		} else {
+			int openSlot = SaveModel.checkOpenSlot(new File("saves"));
+			if(openSlot < 0) {
+				// Default overwrite save in slot 1 TODO better default behavior may be overwrite oldest save (how?)
+				File defaultSaveFilePath = new File("saves/1.txt");
+				SaveModel.writeSave(defaultSaveFilePath);
+				
+				userConfirmation.setContentText("Save 1 has been overwritten with new save.");
+			} else {
+				// Write save in open slot
+				File openSaveFilePath = new File("saves/" + openSlot + ".txt");
+				SaveModel.writeSave(openSaveFilePath);
+				
+				userConfirmation.setContentText("New save " + openSlot + " has been written.");
+			}
+		}
+		userConfirmation.show();
+		
+		// Switch to main screen after writing save
 		mainPane = FXMLLoader.load(getClass().getResource("../view/Main.fxml"));
 		Scene scene = new Scene(mainPane);
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -120,7 +153,7 @@ public class GameController implements Initializable {
 		window.show();
 	}
 
-  @FXML
+	@FXML
 	public void OpenWordHelper(ActionEvent event) {
 		LoadFxml object = new LoadFxml();
 		Pane view = object.getPage("DisplayWords");
