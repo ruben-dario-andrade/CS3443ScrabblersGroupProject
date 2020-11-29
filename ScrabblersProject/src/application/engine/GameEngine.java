@@ -168,4 +168,8 @@ public class GameEngine {
 	public static char[][] getBoard(){
 		return engineBoard.getBoard();
 	}
+	
+	public static LinkedList<String> getPile(){
+		return enginePile.getPile();
+	}
 }
