@@ -63,6 +63,9 @@ public class GameController implements Initializable {
     private Button UndoButton;
    
     @FXML
+    private Button RefreshButton;
+    
+    @FXML
     private Button ExitButton;
     
     @FXML 
@@ -94,23 +97,20 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-    boolean correctWord = false;
-		
-		if(GameModel.endTurn()) {
-			correctWord = true;
-		}
-
-		if(correctWord == true) {
-			AlertLabel.setText("Valid word! Your/Opponent's move.");
-		}
-		else {
-			AlertLabel.setText("Invalid word. Please try again.");
-		}
+		String text = GameModel.endTurn();
+		AlertLabel.setText(text);
 	}
 	
 	@FXML
 	public void undoMoves(ActionEvent event) {
 		GameModel.undoMoves();
+	}
+	
+	@FXML
+	public void refreshLetters(ActionEvent event) {
+		String text = GameModel.refreshLetters();
+		AlertLabel.setText(text);
+		//GameModel.refreshLetters();
 	}
 	
 	@FXML

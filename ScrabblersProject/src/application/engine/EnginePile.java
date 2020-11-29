@@ -41,10 +41,25 @@ public class EnginePile {
 		return pile;
 	}
 	
+	public void commitList(LinkedList<String> list) {
+		int size = list.size();
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
+				pileLetters.add(list.get(i));
+			}
+		}
+		Collections.shuffle(pileLetters);
+	}
+	
+	public void addLetter(String letter) {
+		pileLetters.add(letter);
+	}
 	
 	public String popLetter() {
 		return pileLetters.pop();
 	}
+	
+	
 	
 	public int getSize() {
 		return pileLetters.size();

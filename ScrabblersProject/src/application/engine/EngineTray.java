@@ -7,9 +7,11 @@ import application.components.GamePlayerTray;
 public class EngineTray {
 	private LinkedList<String> hand;
 	GamePlayerTray gamePlayerTray;
+	private LinkedList<String> holdRefreshHand;
 	
 	public EngineTray(GamePlayerTray gamePlayerTray) {
 		this.hand = new LinkedList<String>();
+		this.holdRefreshHand = new LinkedList<String>();
 		this.gamePlayerTray = gamePlayerTray;
 	}
 	
@@ -20,11 +22,12 @@ public class EngineTray {
 	 */
 	public EngineTray(GamePlayerTray gamePlayerTray, LinkedList<String> savedTray) {
 		this.hand = savedTray;
+		this.holdRefreshHand = new LinkedList<String>();
 		this.gamePlayerTray = gamePlayerTray;
 	}
 	
-	public void refreshTray() {
-		gamePlayerTray.addRefreshHand(hand);
+	public void resetTray() {
+		gamePlayerTray.addHand(hand);
 	}
 	
 	public void addPiece(String letter) {
@@ -41,7 +44,20 @@ public class EngineTray {
 				break;
 			}
 		}
-		
+	}
+	
+	public void addRefreshPiece(String letter) {
+		holdRefreshHand.add(letter);
+	}
+	
+	public void returnRefreshPieces() {
+		int size = holdRefreshHand.size();
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
+				hand.add(holdRefreshHand.get(i));
+			}
+		}
+		holdRefreshHand.clear();
 	}
 	
 	public void clearHand() {
@@ -57,6 +73,13 @@ public class EngineTray {
 		return this.hand;
 	}
 	
+	public LinkedList<String> getRefreshList(){
+		return this.holdRefreshHand;
+	}
+	
+	public void clearRefreshList(){
+		this.holdRefreshHand.clear();
+	}
 	
 	public int getHandSize() {
 		return hand.size();

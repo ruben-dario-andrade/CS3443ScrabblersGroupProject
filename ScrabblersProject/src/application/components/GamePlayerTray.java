@@ -32,7 +32,7 @@ public class GamePlayerTray extends GridPane{
 		
 	}
 	
-	public void addRefreshHand(LinkedList<String> hand) {	
+	public void addHand(LinkedList<String> hand) {	
 		for (int i = 0; i < hand.size(); i++) {
 			this.add(new GamePiece(hand.get(i).charAt(0), true, -1, -1), i + 1, 0);
 		}
