@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import application.algo.WordPointCount;
 import application.algo.WordVerification;
 import application.components.GameBoard;
 import application.components.GamePlayerTray;
@@ -27,9 +28,28 @@ public class GameEngine {
 		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
 		
+		// Adds 7 letters from pile to user hand to start off with
 		for (int i = 0; i < 7; i++) {
 			engineTray.addPiece(enginePile.popLetter());
 		}
+		gamePlayerTray.addRefreshHand(engineTray.getList());
+	}
+	
+	/**
+	 * Start game with game board, player tray, and game pile initialized with saved pieces
+	 * @param gameBoard GUI game board
+	 * @param gamePlayerTray GUI player tray
+	 * @param savedBoard 2D char array holding saved board pieces
+	 * @param savedTray LinkedList holding saved tray pieces
+	 * @param savedPile LinkedList holding saved tray pieces
+	 */
+	public static void start(GameBoard gameBoard, GamePlayerTray gamePlayerTray, 
+			char[][] savedBoard, LinkedList<String> savedTray, LinkedList<String> savedPile) {
+		engineBoard = new EngineBoard(gameBoard, savedBoard);
+		engineTray = new EngineTray(gamePlayerTray, savedTray);
+		enginePile = new EnginePile(savedPile);
+		usedChars = new LinkedList<String>();
+
 		gamePlayerTray.addRefreshHand(engineTray.getList());
 	}
 
@@ -123,8 +143,7 @@ public class GameEngine {
 		}
 		return adj;
 	}
-	
-	
+
 	public static char getCurrentLetter() {
 		return currentLetter;
 	}
@@ -134,24 +153,21 @@ public class GameEngine {
  		testStrings = WordVerification.validWord(engineBoard.getBoard(), usedChars, usedTiles);
  		if (testStrings == null) {
  			return false;
+ 		} else {
+ 			LinkedList<String> holdStrings = new LinkedList<String>();
+ 			holdStrings = WordVerification.searchRemaining(engineBoard.getBoard(), usedChars, usedTiles);
+ 			if (holdStrings.size() > 0) {
+ 				testStrings.addAll(holdStrings);
+ 			}
  		}
  		if (!WordVerification.inDictionary(testStrings)) {
  			return false;
  		}
+ 		//Print this -> WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
  		return true;
 	}
 	
+	public static char[][] getBoard(){
+		return engineBoard.getBoard();
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

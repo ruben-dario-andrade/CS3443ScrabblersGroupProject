@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ import application.engine.GameEngine;
 import application.engine.LoadFxml;
 import application.model.GameModel;
 import application.model.HelperModel;
+import application.model.SaveModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -67,14 +69,19 @@ public class GameController implements Initializable {
     @FXML
     private Label AlertLabel;
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PopupControl popup = new PopupControl();
+
+		// if playing saved game, initialize GUI game board with saved pieces
+		GameBoard gameBoard;
+		if(SaveModel.currentSave != null) {
+			gameBoard = new GameBoard(SaveModel.currentSave.getSavedBoardPieces());
+		} else {
+			gameBoard = new GameBoard();
+		}
 		
-		
-		GameBoard gameBoard = new GameBoard();
-		GamePlayerTray gamePlayerTray = new GamePlayerTray();
+		GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
 		gamePlayerTray.setLayoutX(50);
 		gamePlayerTray.setLayoutY(650);
 		GameBoardPane.getChildren().add(gameBoard);
@@ -85,8 +92,7 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-		
-		boolean correctWord = false;
+    boolean correctWord = false;
 		
 		if(GameModel.endTurn()) {
 			correctWord = true;
@@ -136,20 +142,3 @@ public class GameController implements Initializable {
 		WordHelperPane.setCenter(view);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
