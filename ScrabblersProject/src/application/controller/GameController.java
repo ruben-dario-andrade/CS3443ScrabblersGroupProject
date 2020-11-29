@@ -110,14 +110,16 @@ public class GameController implements Initializable {
 	public void goHome(ActionEvent event) throws IOException{
 		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
 		if(SaveModel.currentSave != null) {
+			int currSaveNum = SaveModel.currentSave.getSaveNumber();
+			
 			// Update save in current slot
-			File updateSaveFilePath = new File("saves/" + SaveModel.currentSave.getSaveNumber() + ".txt");
+			File updateSaveFilePath = new File("saves/" + currSaveNum + ".txt");
 			SaveModel.writeSave(updateSaveFilePath);
 			
 			// Clear current save to refresh for next game
 			SaveModel.currentSave = null;
 
-			userConfirmation.setContentText("Save " + SaveModel.currentSave.getSaveNumber() + " has been updated.");	
+			userConfirmation.setContentText("Save " + currSaveNum + " has been updated.");	
 		} else {
 			int openSlot = SaveModel.checkOpenSlot();
 			if(openSlot < 0) {
