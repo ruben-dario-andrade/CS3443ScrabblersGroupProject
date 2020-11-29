@@ -27,9 +27,28 @@ public class GameEngine {
 		enginePile = new EnginePile();
 		usedChars = new LinkedList<String>();
 		
+		// Adds 7 letters from pile to user hand to start off with
 		for (int i = 0; i < 7; i++) {
 			engineTray.addPiece(enginePile.popLetter());
 		}
+		gamePlayerTray.addRefreshHand(engineTray.getList());
+	}
+	
+	/**
+	 * Start game with game board, player tray, and game pile initialized with saved pieces
+	 * @param gameBoard GUI game board
+	 * @param gamePlayerTray GUI player tray
+	 * @param savedBoard 2D char array holding saved board pieces
+	 * @param savedTray LinkedList holding saved tray pieces
+	 * @param savedPile LinkedList holding saved tray pieces
+	 */
+	public static void start(GameBoard gameBoard, GamePlayerTray gamePlayerTray, 
+			char[][] savedBoard, LinkedList<String> savedTray, LinkedList<String> savedPile) {
+		engineBoard = new EngineBoard(gameBoard, savedBoard);
+		engineTray = new EngineTray(gamePlayerTray, savedTray);
+		enginePile = new EnginePile(savedPile);
+		usedChars = new LinkedList<String>();
+
 		gamePlayerTray.addRefreshHand(engineTray.getList());
 	}
 
@@ -123,8 +142,7 @@ public class GameEngine {
 		}
 		return adj;
 	}
-	
-	
+
 	public static char getCurrentLetter() {
 		return currentLetter;
 	}
@@ -150,18 +168,4 @@ public class GameEngine {
 	public static char[][] getBoard(){
 		return engineBoard.getBoard();
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

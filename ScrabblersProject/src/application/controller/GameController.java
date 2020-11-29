@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import application.engine.GameEngine;
 import application.engine.LoadFxml;
 import application.model.GameModel;
 import application.model.HelperModel;
+import application.model.SaveModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,27 +65,38 @@ public class GameController implements Initializable {
     @FXML 
     private AnchorPane GameBoardPane;
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PopupControl popup = new PopupControl();
+
+		// if playing saved game, initialize GUI game board with saved pieces
+		GameBoard gameBoard;
+		if(SaveModel.currentSave != null) {
+			gameBoard = new GameBoard(SaveModel.currentSave.getSavedBoardPieces());
+		} else {
+			gameBoard = new GameBoard();
+		}
 		
-		
-		GameBoard gameBoard = new GameBoard();
-		GamePlayerTray gamePlayerTray = new GamePlayerTray();
+		GamePlayerTray gamePlayerTray = new GamePlayerTray(); // TODO
 		gamePlayerTray.setLayoutX(50);
 		gamePlayerTray.setLayoutY(650);
 		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
 		
-		GameEngine.start(gameBoard, gamePlayerTray);
-	
+		// if save exists, start and initialize game with saved pieces 
+		if(SaveModel.currentSave != null) {
+			char[][] savedBoardPieces = SaveModel.currentSave.getSavedBoardPieces();
+			LinkedList<String> savedPlayerTray = SaveModel.currentSave.getSavedPlayerTray();
+			LinkedList<String> savedGamePile = SaveModel.currentSave.getSavedGamePile();
+			GameEngine.start(gameBoard, gamePlayerTray, savedBoardPieces, savedPlayerTray, savedGamePile);
+		} else {
+			GameEngine.start(gameBoard, gamePlayerTray);
+		}
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-		GameModel.endTurn();
-		
+		GameModel.endTurn();	
 	}
 	
 	@FXML
@@ -123,20 +136,3 @@ public class GameController implements Initializable {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
