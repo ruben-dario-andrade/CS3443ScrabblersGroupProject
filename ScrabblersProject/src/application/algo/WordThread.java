@@ -70,10 +70,18 @@ public class WordThread implements Runnable {
          }
      }
   	
+  	 /*
+  	  * Description:
+  	  * 	Ends thread.
+  	  * */
   	public void end() {
   		running = false;
   	} 
-  	 
+  	
+  	/*
+ 	  * Description:
+ 	  * 	Returns the word recommendations created by the word engine classes.
+ 	  * */
   	public LinkedList<String> getReccomendations() {
   		return this.reccomendations;
   	}

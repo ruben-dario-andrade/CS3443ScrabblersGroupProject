@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import application.components.GameBoard;
 import application.components.GamePiece;
@@ -62,10 +63,16 @@ public class GameController implements Initializable {
     private Button UndoButton;
    
     @FXML
+    private Button RefreshButton;
+    
+    @FXML
     private Button ExitButton;
     
     @FXML 
     private AnchorPane GameBoardPane;
+    
+    @FXML
+    private Label AlertLabel;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +92,7 @@ public class GameController implements Initializable {
 		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
 		
-		// if save exists, start and initialize game with saved pieces 
+		// Initialize game components with save data if it exists
 		if(SaveModel.currentSave != null) {
 			char[][] savedBoardPieces = SaveModel.currentSave.getSavedBoardPieces();
 			LinkedList<String> savedPlayerTray = SaveModel.currentSave.getSavedPlayerTray();
@@ -94,11 +101,13 @@ public class GameController implements Initializable {
 		} else {
 			GameEngine.start(gameBoard, gamePlayerTray);
 		}
+		
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-		GameModel.endTurn();	
+		String text = GameModel.endTurn();
+		AlertLabel.setText(text);
 	}
 	
 	@FXML
@@ -107,7 +116,17 @@ public class GameController implements Initializable {
 	}
 	
 	@FXML
+	public void refreshLetters(ActionEvent event) {
+		String text = GameModel.refreshLetters();
+		AlertLabel.setText(text);
+		//GameModel.refreshLetters();
+	}
+	
+	@FXML
 	public void goHome(ActionEvent event) throws IOException{
+		// Undoes any move that wasn't completed with End Turn before saving
+		GameModel.undoMoves();
+		
 		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
 		if(SaveModel.currentSave != null) {
 			int currSaveNum = SaveModel.currentSave.getSaveNumber();
@@ -121,7 +140,9 @@ public class GameController implements Initializable {
 
 			userConfirmation.setContentText("Save " + currSaveNum + " has been updated.");	
 		} else {
-			int openSlot = SaveModel.checkOpenSlot(new File("saves"));
+			File saveDir = new File("saves");
+			int openSlot = SaveModel.checkOpenSlot(saveDir);
+			
 			if(openSlot < 0) {
 				// Default overwrite save in slot 1 TODO better default behavior may be overwrite oldest save (how?)
 				File defaultSaveFilePath = new File("saves/1.txt");
@@ -167,5 +188,4 @@ public class GameController implements Initializable {
 		Pane view = object.getPage("SaveGame");
 		WordHelperPane.setCenter(view);
 	}
-
 }

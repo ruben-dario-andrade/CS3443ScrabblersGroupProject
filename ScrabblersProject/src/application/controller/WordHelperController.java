@@ -24,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -43,6 +44,9 @@ public class WordHelperController implements Initializable {
     
     @FXML
     private TextField pointsTF;
+    
+    @FXML
+    private AnchorPane SavePane;
 	
 	@FXML
     private ListView<String> WordDisplayLV = new ListView<String>();
@@ -134,23 +138,41 @@ public class WordHelperController implements Initializable {
     
 	@FXML
 	public void populateLL(ActionEvent event) {
-		LinkedList<String> LL3 = wordThread.getReccomendations();
-    	list.setAll(LL3);
-		WordDisplayLV.setItems(list);
-		
-		//char[] byLetter;
-		//String search = letterSearch.getText().toString();
-		
-		//int sumOfPoints = assignScore(search); 
-		
-		/*if (AllWordsTB.isSelected()) {
-			
+		if(AllWordsTB.isSelected()) {
+			if(letterSearch == null) {
+				// ** LinkedList below should be for all possible words (includes any/all letters) **
+				LinkedList<String> LL3 = wordThread.getReccomendations();
+		    	list.setAll(LL3);
+				WordDisplayLV.setItems(list);
+			}
+			else {
+				
+				//String letters = letterSearch.getText().toString();
+				//	GameModel.---fake name---(letters);
+				// letters variable would then be pushed into function to return words with
+				// ** LL below should be same as above but with letters from letterSearch Text Field **
+				LinkedList<String> LL3 = wordThread.getReccomendations();
+		    	list.setAll(LL3);
+				WordDisplayLV.setItems(list);
+			}
 		}
 		else {
-			
-		}*/
-		
-
+			/*if(letterSearch == null) {
+				// ** LinkedList below should be made up of words that can only be made from the player's hand **
+				LinkedList<String> LL3 = wordThread.getReccomendations();
+		    	list.setAll(LL3);
+				WordDisplayLV.setItems(list);
+			}
+			else {
+				//String letters = letterSearch.getText().toString();
+				//	GameModel.---fake name---(letters);
+				// letters variable would then be pushed into function to return words with
+				// ** LL below should be same as above but with letters from letterSearch Text Field **
+				LinkedList<String> LL3 = wordThread.getReccomendations();
+		    	list.setAll(LL3);
+				WordDisplayLV.setItems(list);
+			}*/
+		}
 	}
 	
 	@FXML
@@ -169,35 +191,19 @@ public class WordHelperController implements Initializable {
 		this.wordThread = new WordThread();
 		HelperModel.start(wordThread);
 		//wordThread.end();
-		
-		
-		
-		//WordDisplayLV.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		
-		
-		//sumOfPoints = assignScore(WordDisplayLV.getSelectionModel().selec);
-		//ObservableList<String> data = FXCollections.observableArrayList("chocolate", "blue");
-		//WordDisplayLV.setItems(data);
 
 		WordDisplayLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 		    @Override
-		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-		        pointsTF.setText(String.valueOf(assignScore(newValue)));
+		    public void changed(ObservableValue<? extends String> observable, String oldVal, String totalPoints) {
+		        pointsTF.setText(String.valueOf(assignScore(totalPoints)));
 		    }
 		});
-		//WordDisplayLV.getSelectionModel().selectedItemProperty().addListener(listener);
-		//pointsTF.setText(String.valueOf(sumOfPoints));
 	}
-	
-
-	
-	
-	
 }
 
 
 
-
+	
 
 
 

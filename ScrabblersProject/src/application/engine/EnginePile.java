@@ -23,6 +23,10 @@ public class EnginePile {
 		pileLetters = savedPile;
 	}
 
+	/*
+	 * Description:
+	 * 		Retrieves pile from res folder text file 
+	 * */
 	private static LinkedList<String> retrievePilePieces(){
 		LinkedList<String> pile = new LinkedList<String>();
 		try {
@@ -41,11 +45,43 @@ public class EnginePile {
 		return pile;
 	}
 	
+	/*
+	 * Parameters:
+	 * 		LinkedList<String> list - list to be added to pile
+	 * Description:
+	 * 		Adds list and then shuffles pile
+	 * */
+	public void commitList(LinkedList<String> list) {
+		int size = list.size();
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
+				pileLetters.add(list.get(i));
+			}
+		}
+		Collections.shuffle(pileLetters);
+	}
 	
+	/*
+	 * Parameters:
+	 * 		String letter - letter that is added to pile
+	 * */
+	public void addLetter(String letter) {
+		pileLetters.add(letter);
+	}
+	
+	/*
+	 * Return:
+	 * 		popped letter of pile
+	 */
 	public String popLetter() {
 		return pileLetters.pop();
 	}
 	
+	
+	/*
+	 * Return:
+	 * 		int size of pile
+	 */
 	public int getSize() {
 		return pileLetters.size();
 	}

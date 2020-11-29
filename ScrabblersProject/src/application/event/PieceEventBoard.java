@@ -3,6 +3,9 @@ package application.event;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 
+/*
+ * PieceEvent class in charge of grabbing grid coordinates
+ * */
 public class PieceEventBoard extends PieceEvent {
 
 	private int row;

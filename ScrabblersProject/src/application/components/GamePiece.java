@@ -25,9 +25,9 @@ import javafx.scene.text.Font;
 public class GamePiece extends Button{
 	
 	private char letter;
-	boolean inTray;
-	int row = -1;
-	int col = -1;
+	private boolean inTray;
+	private int row = -1;
+	private int col = -1;
 	
 	public GamePiece(char letter, boolean inTray, int row, int col) {
 		
@@ -53,7 +53,7 @@ public class GamePiece extends Button{
 		this.setStyle("-fx-background-color: mintcream");
 		
 		
-		
+		/* Fire custom event handler */
 		this.setOnAction((ActionEvent event) ->  {
 			this.fireEvent(new PieceEventTray(letter, inTray));
 			this.fireEvent(new PieceEventBoard(row, col, inTray));
