@@ -5,80 +5,37 @@ import java.util.LinkedList;
 import application.controller.WordHelperController;
 import application.engine.GameEngine;
 
-public class WordThread implements Runnable {
-	Thread runner;
-	WordEngineTemp wordEngine;
-	int test = 0;
+public class WordThread {
+	
+	WordEngine wordEngine;	
 	LinkedList<String> reccomendations;
 	
 	boolean running = false;
   	
 	public WordThread() {
 		this.reccomendations = new LinkedList<String>();
-		this.wordEngine = new WordEngineTemp();
-		
-  		running = true;
-  		this.runner = new Thread(this);
-	  	this.runner.start();
+		this.wordEngine = new WordEngine();
   	}
 
-  	
-  	private void tick() {
-  		//if (test == 0) {	 	
-  			wordEngine.addList(GameEngine.getHand());
-  			wordEngine.createInclusiveList();
-  			wordEngine.removeLettersNotOnBoardOrHand(GameEngine.getHand(), GameEngine.getBoard());
-  			this.reccomendations = wordEngine.getCurrentList();
-  		//	test++;
-  		//}
+  	public void addS(String s) {
+  		wordEngine.addString(s);
   	}
   	
-  	@Override
-  	public void run() {
-  		long lastTime = System.nanoTime();
-        double amountOfTicks = 0.3;
-        double ns = 1000000000 / amountOfTicks;
-        double delta = 0;
-        long timer = System.currentTimeMillis();
-        int frames = 0;
-        while( running ){
-            long now = System.nanoTime();
-            delta += ( now - lastTime ) / ns;
-            lastTime = now;
-            while ( delta >= 1) {
-                tick();
-                delta--;
-            }
-            //if ( running )
-                
-            frames++;
-            if( System.currentTimeMillis() - timer > 1000){
-                timer += 1000;
-                //System.out.println( "FPS: " + frames);
-                frames = 0;
-            }
-        }
-        stop();
+  	public void onlyS(String s) {
+  		wordEngine.onlyString(s);
   	}
   	
-  	 public synchronized void stop(){
-         try{
-             runner.join();
-             running = false;
-         }catch ( Exception e){
-             e.printStackTrace();
-         }
-     }
+  	public void filterWords() {
+
+  		wordEngine.combine();
+  		wordEngine.createExclusiveList();
+  		this.reccomendations = wordEngine.getCurrentList();
+  		wordEngine.clearLists();
+
+  	}
   	
-  	public void end() {
-  		running = false;
-  	} 
-  	 
   	public LinkedList<String> getReccomendations() {
   		return this.reccomendations;
   	}
-  	
-  	public static void main(String[] args) {
-  		//new WordThread();
-  	}
+
 }

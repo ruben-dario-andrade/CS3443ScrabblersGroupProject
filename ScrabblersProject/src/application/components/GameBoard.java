@@ -10,6 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class GameBoard extends GridPane{
+	
+	/*
+	 * Initialize blank GameBoard
+	 * */
 	public GameBoard() {
 		for(int i = 0; i < 15; i++) {
 			for(int j = 0; j < 15; j++) {
@@ -80,10 +84,16 @@ public class GameBoard extends GridPane{
 		}
 	}
 	
-	public GamePiece getGameTile(final int rows, final int columns) {
-		return (GamePiece)this.getChildren().get(rows*15 + columns);
-	}
-
+	
+	/* 
+	 * Parameters:
+	 *		int row - row of new GamePiece
+	 *		int col - column of new GamePiece
+	 *		char letter - letter of new GamePiece
+	 *		int mult - multiplier of the new GameTile
+	 * Description:
+	 * 		adds GamePiece to GameBoard object  		
+	 */
 	public void addPiece(int row, int col, char letter, int mult) {
 		GamePiece gamePiece = new GamePiece(letter, false, row, col);
 		if (mult == 3) {
@@ -94,8 +104,14 @@ public class GameBoard extends GridPane{
 		this.add(gamePiece, row, col);
 	}
 	
+	/* 
+	 * Parameters:
+	 *		final int row - row of GamePiece to be removed
+	 *		final int col - column of GamePiece to be removed
+	 * Description:
+	 * 		removes GamePiece from GameBoard object		
+	 */
 	public void removeNodeByRowColumnIndex(final int row,final int column) {
-
 		ObservableList<Node> childrens = this.getChildren();
 		for(Node node : childrens) {
 		    if(node instanceof ImageView && this.getRowIndex(node) == row && this.getColumnIndex(node) == column) {
@@ -107,3 +123,13 @@ public class GameBoard extends GridPane{
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+

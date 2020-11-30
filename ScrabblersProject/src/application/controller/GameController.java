@@ -88,7 +88,16 @@ public class GameController implements Initializable {
 		GameBoardPane.getChildren().add(gameBoard);
 		mainPane.getChildren().add(gamePlayerTray);
 		
-		GameEngine.start(gameBoard, gamePlayerTray);
+		// Initialize game components with save data if it exists
+		if(SaveModel.currentSave != null) {
+			char[][] savedBoardPieces = SaveModel.currentSave.getSavedBoardPieces();
+			LinkedList<String> savedPlayerTray = SaveModel.currentSave.getSavedPlayerTray();
+			LinkedList<String> savedGamePile = SaveModel.currentSave.getSavedGamePile();
+			GameEngine.start(gameBoard, gamePlayerTray, savedBoardPieces, savedPlayerTray, savedGamePile);
+		} else {
+			GameEngine.start(gameBoard, gamePlayerTray);
+		}
+		
 	}
 	
 	@FXML
@@ -111,6 +120,9 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void goHome(ActionEvent event) throws IOException{
+		// Undoes any move that wasn't completed with End Turn before saving
+		GameModel.undoMoves();
+		
 		Alert userConfirmation = new Alert(AlertType.CONFIRMATION);
 		if(SaveModel.currentSave != null) {
 			int currSaveNum = SaveModel.currentSave.getSaveNumber();
@@ -124,7 +136,9 @@ public class GameController implements Initializable {
 
 			userConfirmation.setContentText("Save " + currSaveNum + " has been updated.");	
 		} else {
-			int openSlot = SaveModel.checkOpenSlot(new File("saves"));
+			File saveDir = new File("saves");
+			int openSlot = SaveModel.checkOpenSlot(saveDir);
+			
 			if(openSlot < 0) {
 				// Default overwrite save in slot 1 TODO better default behavior may be overwrite oldest save (how?)
 				File defaultSaveFilePath = new File("saves/1.txt");
@@ -158,7 +172,7 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void CloseWordHelper(ActionEvent event) {
-		HelperModel.close();
+		//HelperModel.close();
 		LoadFxml object = new LoadFxml();
 		Pane view = object.getPage("Blank");
 		WordHelperPane.setCenter(view);

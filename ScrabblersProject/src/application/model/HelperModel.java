@@ -3,7 +3,7 @@ import application.algo.WordThread;
 
 
 public class HelperModel {
-	
+/*	
 	static WordThread thread;
 	static int threadCount = 0;
 	
@@ -20,5 +20,5 @@ public class HelperModel {
 		thread.end();
 		threadCount = 0;
 	}
-	
+	*/
 }
