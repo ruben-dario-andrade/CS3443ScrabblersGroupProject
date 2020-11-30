@@ -141,6 +141,7 @@ public class WordHelperController implements Initializable {
 		if(AllWordsTB.isSelected()) {
 			if(letterSearch == null) {
 				// ** LinkedList below should be for all possible words (includes any/all letters) **
+				wordThread.filterWords();
 				LinkedList<String> LL3 = wordThread.getReccomendations();
 		    	list.setAll(LL3);
 				WordDisplayLV.setItems(list);
@@ -165,6 +166,7 @@ public class WordHelperController implements Initializable {
 			if(letterSearch == null) {
 
 				// ** LinkedList below should be made up of words that can only be made from the player's hand **
+				wordThread.filterWords();
 				LinkedList<String> LL3 = wordThread.getReccomendations();
 		    	list.setAll(LL3);
 				WordDisplayLV.setItems(list);

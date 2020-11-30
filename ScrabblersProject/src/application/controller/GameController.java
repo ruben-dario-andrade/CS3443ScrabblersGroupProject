@@ -70,6 +70,8 @@ public class GameController implements Initializable {
     @FXML
     private Label AlertLabel;
 
+    private int score = 0;
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PopupControl popup = new PopupControl();
@@ -105,12 +107,11 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
-		String text = GameModel.endTurn();
-		
+		String text = GameModel.endTurn();	
+		this.score += GameModel.score;
 		// Player's score should be a running total
-		
 		if (text == "Valid word! Your move.") {
-		scoreTF.setText(String.valueOf(5));
+			scoreTF.setText(String.valueOf(score));
 		}
 		AlertLabel.setText(text);
 	}
