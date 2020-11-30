@@ -54,6 +54,11 @@
 	-fx-font-weight: normal;
 }
 
+.loadSaveButtons {
+	-fx-color: rgb(135,116,196);
+	-fx-text-fill: white;
+}
+
 .radioClass {
 	-fx-font-family: impact;
 	-fx-text-fill: white;
