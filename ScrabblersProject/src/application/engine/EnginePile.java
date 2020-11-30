@@ -74,10 +74,10 @@ public class EnginePile {
 	 * 		popped letter of pile
 	 */
 	public String popLetter() {
-		if (pileLetters.size() < 1) {
+		if (pileLetters.size() > 0) {
 			return pileLetters.pop();
 		}
-		return "";
+		return " ";
 	}
 	
 	
