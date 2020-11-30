@@ -1,4 +1,5 @@
-# CS3443ScrabblersGroupProject
+# CS3443-003 Team Scrabblers: Scrabble Simulator
 
-#This project will be a scrabble implementation for a class group project.
-#It will have basic scrabble functionality and a word assistant to help the player choose the best words.
+### How to Run Application:
+1. 
+
