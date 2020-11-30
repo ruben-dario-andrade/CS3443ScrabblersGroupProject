@@ -7,31 +7,31 @@ import application.engine.GameEngine;
 
 public class WordThread {
 	
-	WordEngine wordEngine;	
+	WordEngineTemp wordEngine;	
 	LinkedList<String> reccomendations;
 	
 	boolean running = false;
   	
 	public WordThread() {
+		wordEngine = new WordEngineTemp();	
 		this.reccomendations = new LinkedList<String>();
-		this.wordEngine = new WordEngine();
+		//this.wordEngine = new WordEngine();
   	}
 
   	public void addS(String s) {
-  		wordEngine.addString(s);
+  		//wordEngine.addString(s);
   	}
   	
   	public void onlyS(String s) {
-  		wordEngine.onlyString(s);
+  		//wordEngine.onlyString(s);
   	}
   	
   	public void filterWords() {
-
-  		wordEngine.combine();
-  		wordEngine.createExclusiveList();
+  		wordEngine.addList(GameEngine.getHand());
+  		wordEngine.createInclusiveList();
+  		wordEngine.removeLettersNotOnBoardOrHand(GameEngine.getHand(), GameEngine.getBoard());
   		this.reccomendations = wordEngine.getCurrentList();
-  		wordEngine.clearLists();
-
+  		//wordEngine.clearLists();
   	}
   	
   	public LinkedList<String> getReccomendations() {
