@@ -34,6 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -44,17 +45,12 @@ public class GameController implements Initializable {
 	
 	@FXML
 	private AnchorPane mainPane;
-	
-	//@FXML
-    //private AnchorPane WordHelperPane;
 
 	@FXML
 	private BorderPane WordHelperPane;
-    //@FXML
-    //private Label WFLabel;
-
-    //@FXML
-    //private ListView<String> WordDisplayLV;
+	
+	@FXML
+    private TextField scoreTF;
     
     @FXML
     private Button EndTurnButton;

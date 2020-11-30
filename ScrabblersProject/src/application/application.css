@@ -1,1 +1,76 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root {
+	-fx-background-color: rgb(47, 47, 47);
+}
+
+.gameScreenButton {
+	-fx-color: rgb(135,116,196);
+	-fx-text-fill: white;
+	
+}
+
+.mainButtons {
+	-fx-color: rgb(135,116,196);
+	-fx-text-fill: white;
+}
+
+#scoreLabel {
+	-fx-font-family: impact;
+	-fx-font-size: 25px;
+	-fx-text-fill: rgb(135,116,196);
+}
+#scrabbleMainTitle {
+	-fx-font-family: impact;
+	-fx-font-size: 55px;
+	-fx-text-fill: white;
+}
+
+#saveGameLabel {
+	-fx-font-family: impact;
+	-fx-font-size: 25px;
+	-fx-text-fill: white;
+}
+
+#loadSavesLabel {
+	-fx-font-family: impact;
+	-fx-font-size: 25px;
+	-fx-text-fill: white;
+}
+
+#WFLabel {
+	-fx-font-family: impact;
+	-fx-font-size: 25px;
+	-fx-text-fill: white;
+}
+
+.displayWordsContent {
+	-fx-font-family: impact;
+	-fx-text-fill: white;
+	-fx-font-weight: normal;
+}
+
+.radioClass {
+	-fx-font-family: impact;
+	-fx-text-fill: white;
+	-fx-font-weight: normal;
+}
+
+#ExitButton {
+	-fx-color: rgb(235,77,75);
+	-fx-text-fill: white;
+}
+
+.saveGameButtons {
+	-fx-color: rgb(135,116,196);
+	-fx-text-fill: white;
+}
+
+.loadSavesButtons {
+	-fx-color: rgb(135,116,196);
+	-fx-text-fill: white;
+}
+
+#showMeButton {
+	-fx-color: rgb(135,116,196);
+	-fx-text-fill: white;
+}
