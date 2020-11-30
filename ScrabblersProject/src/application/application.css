@@ -6,7 +6,6 @@
 .gameScreenButton {
 	-fx-color: rgb(135,116,196);
 	-fx-text-fill: white;
-	
 }
 
 .mainButtons {
@@ -16,13 +15,19 @@
 
 #scoreLabel {
 	-fx-font-family: impact;
-	-fx-font-size: 25px;
-	-fx-text-fill: rgb(135,116,196);
+	-fx-text-fill: white;
+	-fx-font-weight: normal;
 }
 #scrabbleMainTitle {
 	-fx-font-family: impact;
 	-fx-font-size: 55px;
 	-fx-text-fill: white;
+}
+
+#AlertLabel {
+	-fx-font-family: impact;
+	-fx-text-fill: white;
+	-fx-font-weight: normal;
 }
 
 #saveGameLabel {
