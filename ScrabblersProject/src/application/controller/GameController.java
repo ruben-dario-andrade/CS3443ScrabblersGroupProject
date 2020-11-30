@@ -14,7 +14,6 @@ import application.components.GamePlayerTray;
 import application.engine.GameEngine;
 import application.engine.LoadFxml;
 import application.model.GameModel;
-import application.model.HelperModel;
 import application.model.SaveModel;
 
 import java.io.File;

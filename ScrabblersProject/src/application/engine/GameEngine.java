@@ -205,9 +205,9 @@ public class GameEngine {
  		if (!WordVerification.inDictionary(testStrings)) {
  			return 0;
  		}
- 		//System.out.println("I get here");
- 		System.out.println(WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard()));
- 		return 1;
+ 		
+ 		return WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
+ 		
 	}
 	
 	/*

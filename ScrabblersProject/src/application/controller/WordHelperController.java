@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import application.algo.WordThread;
 import application.engine.LoadFxml;
-import application.model.HelperModel;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
