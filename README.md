@@ -10,9 +10,11 @@ Scrabble Simulator provides a fully interactive, single player Scrabble game wit
 
 The word helper enhances this by displaying all the words the user may play given their hand as well as letters they input into it. For example, you could input letters on the board and not in your hand that you may want to base your word off of.
 
+**N.B. When playing a Scrabble game, the first word must be on the center tile according to Scrabble rules. Our word verifier checks for this and a seemingly valid word being marked invalid because it's not placed on the center tile in the first move is expected behavior.**
+
 ## Known Bugs:
-1. If you press undo immediately after pressing replace in the game screen, you have to press replace again in order to properly replace tiles in the player tray
-2. The score isn't stored in the save file and returns to 0 when loading a save.
+1. If you press undo immediately after pressing replace in the game screen, you have to press replace again in order to properly replace tiles in the player tray.
+2. The score isn't stored in the save file and returns to 0 upon reloading a save.
 3. The scoring system is slightly inaccurate compared to the word score output given by the word helper.
 
 ## Planned Features Not Implemented:
