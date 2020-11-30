@@ -25,6 +25,10 @@ public class WordEngineTemp {
 		focusSize = (short) focus.size();
 	}
 	
+	public void addLetters(String string) {
+		int count = 0;
+	}
+	
 	public void createInclusiveList() {
 		list.clear();
 		int size, count;
