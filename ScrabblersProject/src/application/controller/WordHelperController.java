@@ -147,7 +147,6 @@ public class WordHelperController implements Initializable {
 
 			} else {
 				String letters = letterSearch.getText().toString();
-				System.out.println("Letters from the text box are: " + letters);
 				
 				wordThread.onlyS(letters);
 				wordThread.filterWords();
@@ -171,7 +170,6 @@ public class WordHelperController implements Initializable {
 
 			} else {
 				String letters = letterSearch.getText().toString();
-				System.out.println("Letters from the text box are: " + letters);
 				wordThread.addS(letters);
 				wordThread.filterWords();
 
