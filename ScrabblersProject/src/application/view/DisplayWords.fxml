@@ -9,28 +9,37 @@
 
 <AnchorPane fx:id="DisplayWordsAP" prefHeight="449.0" prefWidth="330.0" stylesheets="application/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.WordHelperController">
    <children>
-      <Label fx:id="WFLabel" layoutX="16.0" layoutY="15.0" text="All Words Found" underline="true">
+      <Label fx:id="WFLabel" layoutX="16.0" layoutY="15.0" text="All Words Found">
          <font>
             <Font size="15.0" />
          </font></Label>
       <ListView fx:id="WordDisplayLV" layoutX="15.0" layoutY="48.0" prefHeight="99.0" prefWidth="300.0" />
-      <Label layoutX="53.0" layoutY="351.0" text="Total Points from word:" />
+      <Label layoutX="53.0" layoutY="351.0" styleClass="displayWordsContent" text="Total Points from word:" />
       <TextField fx:id="pointsTF" layoutX="206.0" layoutY="346.0" prefHeight="11.0" prefWidth="51.0" />
-      <Label layoutX="10.0" layoutY="168.0" text="Enter letters you want in your word: " />
+      <Label layoutX="10.0" layoutY="168.0" styleClass="displayWordsContent" text="Enter letters you want in your word: ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
       <TextField fx:id="letterSearch" layoutX="237.0" layoutY="163.0" prefHeight="27.0" prefWidth="62.0" />
-      <RadioButton fx:id="AllWordsTB" layoutX="27.0" layoutY="225.0" mnemonicParsing="false" selected="true" text="Show all words">
+      <RadioButton fx:id="AllWordsTB" layoutX="27.0" layoutY="225.0" mnemonicParsing="false" selected="true" styleClass="radioClass" text="Show all words">
          <toggleGroup>
             <ToggleGroup fx:id="WordHelperTG" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="OnlyMyLettersTB" layoutX="26.0" layoutY="259.0" mnemonicParsing="false" text="Show words with only my letters" toggleGroup="$WordHelperTG" />
-      <Button layoutX="102.0" layoutY="304.0" mnemonicParsing="false" onAction="#populateLL" text="Show me words!" />
-      <Label layoutX="13.0" layoutY="185.0" text="* If you want to search for a specific ">
+         </toggleGroup>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="OnlyMyLettersTB" layoutX="26.0" layoutY="259.0" mnemonicParsing="false" styleClass="radioClass" text="Show words with only my letters" toggleGroup="$WordHelperTG">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></RadioButton>
+      <Button fx:id="showMeButton" layoutX="102.0" layoutY="304.0" mnemonicParsing="false" onAction="#populateLL" text="Show me words!" />
+      <Label layoutX="13.0" layoutY="185.0" styleClass="displayWordsContent" text="* If you want to search for a specific ">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
       <Label layoutX="66.0" layoutY="197.0" />
-      <Label layoutX="20.0" layoutY="198.0" text="word, put double quotes around it.">
+      <Label layoutX="20.0" layoutY="198.0" styleClass="displayWordsContent" text="word, put double quotes around it.">
          <font>
             <Font size="10.0" />
          </font>
