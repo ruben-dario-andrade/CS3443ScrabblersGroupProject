@@ -176,7 +176,7 @@ public class GameController implements Initializable {
 	
 	@FXML
 	public void CloseWordHelper(ActionEvent event) {
-		HelperModel.close();
+		//HelperModel.close();
 		LoadFxml object = new LoadFxml();
 		Pane view = object.getPage("Blank");
 		WordHelperPane.setCenter(view);
