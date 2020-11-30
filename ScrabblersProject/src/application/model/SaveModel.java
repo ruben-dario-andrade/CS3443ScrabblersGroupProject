@@ -70,7 +70,7 @@ public class SaveModel {
 	public static void writeSave(File saveFile) {
 		// Get current game components to save state
 		char[][] boardPieces = GameEngine.getBoard();
-		LinkedList<String> playerTray = GameEngine.getTray().getList();
+		LinkedList<String> playerTray = GameEngine.getHand();
 		LinkedList<String> gamePile = GameEngine.getPile();
 		
 		try {
