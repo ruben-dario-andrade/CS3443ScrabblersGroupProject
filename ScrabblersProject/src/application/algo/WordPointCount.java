@@ -12,7 +12,10 @@ public class WordPointCount {
 	 * 		The Scrabble point value of a char
 	 * */
 	public static int getCharScore(char c) {
-    	switch(c) {
+    	String temp = c+"";
+    	temp = temp.toLowerCase();
+    	char d = temp.charAt(0);
+		switch(d) {
 	    	case 'a':
 	    	case 'e':
 	    	case 'i':

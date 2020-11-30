@@ -206,7 +206,7 @@ public class GameEngine {
  			return 0;
  		}
  		//System.out.println("I get here");
- 		//WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
+ 		System.out.println(WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard()));
  		return 1;
 	}
 	
