@@ -13,7 +13,7 @@ public class GameModel {
 				GameEngine.refillHand();
 				GameEngine.resetTray();
 				GameEngine.clearUsedPieces();
-				return "Valid word! Your/Opponent's move.";
+				return "Valid word! Your move.";
 			} else {
 				GameEngine.returnHand();
 				GameEngine.returnBoard();

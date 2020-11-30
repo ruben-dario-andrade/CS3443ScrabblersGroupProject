@@ -98,11 +98,20 @@ public class GameController implements Initializable {
 			GameEngine.start(gameBoard, gamePlayerTray);
 		}
 		
+		// Player's score should be added and 
+		scoreTF.setText(String.valueOf(0));
+		
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
 		String text = GameModel.endTurn();
+		
+		// Player's score should be a running total
+		
+		if (text == "Valid word! Your move.") {
+		scoreTF.setText(String.valueOf(5));
+		}
 		AlertLabel.setText(text);
 	}
 	
@@ -184,4 +193,5 @@ public class GameController implements Initializable {
 		Pane view = object.getPage("SaveGame");
 		WordHelperPane.setCenter(view);
 	}
+	
 }

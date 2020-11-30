@@ -1,4 +1,5 @@
 package application.model;
+
 import application.algo.WordThread;
 
 
