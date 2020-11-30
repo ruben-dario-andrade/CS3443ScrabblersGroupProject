@@ -174,18 +174,7 @@ public class WordHelperController implements Initializable {
 			}*/
 		}
 	}
-	
-	@FXML
-	public void populateLL2(ActionEvent event) {
-		LinkedList<String> LL3 = new LinkedList<String>();
-		LL3.add("Bow");
-    	LL3.add("Low");
-    	LL3.add("Crow");
-    	list.setAll(LL3);
-		WordDisplayLV.setItems(list);
-	}
-	
-	
+		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.wordThread = new WordThread();

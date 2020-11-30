@@ -11,15 +11,15 @@
    <children>
       <BorderPane fx:id="WordHelperPane" layoutX="629.0" layoutY="117.0" prefHeight="400.0" prefWidth="400.0">
          <left>
-            <VBox prefHeight="400.0" prefWidth="143.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="310.0" prefWidth="143.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#OpenWordHelper" text="Open Word Helper" />
-                  <Button mnemonicParsing="false" onAction="#saveGame" text="Save Game">
+                  <Button mnemonicParsing="false" onAction="#OpenWordHelper" styleClass="gameScreenButton" text="Open Word Helper" />
+                  <Button mnemonicParsing="false" onAction="#saveGame" styleClass="gameScreenButton" text="Save Game">
                      <VBox.margin>
                         <Insets bottom="2.0" left="24.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#CloseWordHelper" text="Close">
+                  <Button mnemonicParsing="false" onAction="#CloseWordHelper" styleClass="gameScreenButton" text="Close">
                      <VBox.margin>
                         <Insets left="43.0" />
                      </VBox.margin></Button>
@@ -37,13 +37,13 @@
       <AnchorPane fx:id="GameBoardPane" layoutX="52.0" layoutY="43.0" prefHeight="555.0" prefWidth="584.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
       <BorderPane layoutX="446.0" layoutY="618.0" prefHeight="99.0" prefWidth="157.0">
          <top>
-            <Button fx:id="EndTurnButton" mnemonicParsing="false" onAction="#endTurn" text="End Turn" BorderPane.alignment="CENTER" />
+            <Button fx:id="EndTurnButton" mnemonicParsing="false" onAction="#endTurn" styleClass="gameScreenButton" text="End Turn" BorderPane.alignment="CENTER" />
          </top>
          <center>
-            <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" text="Undo" BorderPane.alignment="CENTER" />
+            <Button fx:id="UndoButton" mnemonicParsing="false" onAction="#undoMoves" styleClass="gameScreenButton" text="Undo" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
-            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshLetters" text="Replace" BorderPane.alignment="CENTER" />
+            <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshLetters" styleClass="gameScreenButton" text="Replace" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <Label fx:id="AlertLabel" layoutX="111.0" layoutY="580.0">
@@ -51,10 +51,15 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="658.0" layoutY="58.0" text="Score" underline="true">
+      <Label fx:id="scoreLabel" layoutX="658.0" layoutY="44.0" text="Score">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
+      <TextField fx:id="scoreTF" editable="false" layoutX="650.0" layoutY="86.0" prefHeight="51.0" prefWidth="80.0">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
