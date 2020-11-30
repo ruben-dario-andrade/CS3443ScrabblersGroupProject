@@ -17,7 +17,7 @@
 #scoreLabel {
 	-fx-font-family: impact;
 	-fx-font-size: 25px;
-	-fx-text-fill: rgb(135,116,196);
+	-fx-text-fill: white;
 }
 #scrabbleMainTitle {
 	-fx-font-family: impact;
@@ -44,6 +44,12 @@
 }
 
 .displayWordsContent {
+	-fx-font-family: impact;
+	-fx-text-fill: white;
+	-fx-font-weight: normal;
+}
+
+#AlertLabel {
 	-fx-font-family: impact;
 	-fx-text-fill: white;
 	-fx-font-weight: normal;

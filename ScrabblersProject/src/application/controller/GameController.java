@@ -98,11 +98,19 @@ public class GameController implements Initializable {
 			GameEngine.start(gameBoard, gamePlayerTray);
 		}
 		
+		scoreTF.setText(String.valueOf(0));
+		
 	}
 	
 	@FXML
 	public void endTurn(ActionEvent event) {
 		String text = GameModel.endTurn();
+		
+		// Set running total score (where 5 currently is)
+		// Add Ruben's point score to running total
+		if(text == "Valid word! Your move.") {
+			scoreTF.setText(String.valueOf(5));
+		}
 		AlertLabel.setText(text);
 	}
 	
