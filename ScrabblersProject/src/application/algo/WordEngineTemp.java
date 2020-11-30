@@ -107,6 +107,39 @@ public class WordEngineTemp {
 		list = newList;
 	}
 	
+	public void removeLettersNotOnHand(LinkedList<String> hand) {
+		int i, j, size, size2, count;
+		boolean flag;
+		String line;
+		LinkedList<String> existingLetters = new LinkedList<String>();
+		ArrayList<String> newList = new ArrayList<String>();
+		for (i = 0; i < hand.size(); i++) {
+			if (!existingLetters.contains(hand.get(i))) {
+				existingLetters.add(hand.get(i));
+			}
+		}
+		
+		size = list.size();
+		size2 = existingLetters.size();
+		for (i = 0; i < size; i++) {
+			flag = false;
+			line = list.get(i);
+			count = 0;
+			for (j = 0; j < size2; j++) {
+				if (line.indexOf(existingLetters.get(j)) != -1) {
+					count++;
+				}
+			}
+			if (count == line.length()) {
+				flag = true;
+			}
+			if (flag) {
+				newList.add(line);
+			}
+		}
+		list = newList;
+	}
+	
 	public LinkedList<String> getCurrentList() {
 		LinkedList<String> reccomend = new LinkedList<String>();
 		for (int i = 0; i < list.size(); i++) {
