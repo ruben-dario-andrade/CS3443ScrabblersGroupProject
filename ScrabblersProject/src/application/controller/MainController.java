@@ -31,7 +31,7 @@ public class MainController {
 	
 	@FXML
 	public void goGameScreen(ActionEvent event) throws IOException{
-		mainPane = FXMLLoader.load(getClass().getResource("../view/gameScreen.fxml"));
+		mainPane = FXMLLoader.load(getClass().getResource("../view/GameScreen.fxml"));
 		Scene scene = new Scene(mainPane);
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
