@@ -39,6 +39,16 @@ public class LoadSavesController implements Initializable{
 	private Button save4;	
 	@FXML
 	private Button save5;
+	@FXML
+    private Button deleteSave1;
+    @FXML
+    private Button deleteSave2;
+    @FXML
+    private Button deleteSave3;
+    @FXML
+    private Button deleteSave4;
+    @FXML
+    private Button deleteSave5;
 	
 	/**
 	 * Redirects user to Main screen from LoadSaves screen
@@ -83,15 +93,44 @@ public class LoadSavesController implements Initializable{
 	}
 	
 	/**
+	 * Delete save if it exists
+	 * @param event ActionEvent triggered by pressing delete save button
+	 */
+	public void deleteSave(ActionEvent event) {
+		String selectedSave = ((Button)event.getSource()).getId();
+		String saveFileName = selectedSave + ".txt";
+		File saveFilePath = new File("saves/" + saveFileName);
+		
+		if(saveFilePath.delete()) {
+			// Display error to user if save does not exist
+			Alert deleteSuccess = new Alert(AlertType.CONFIRMATION);
+			deleteSuccess.setContentText("Save " + selectedSave + " has been deleted.");
+			deleteSuccess.show();
+		} else {
+			// Display error to user if save does not exist
+			Alert noSave = new Alert(AlertType.ERROR);
+			noSave.setContentText("Save does not exist");
+			noSave.show();
+		}
+	}
+	
+	/**
 	 * Initalizes button IDs
 	 */
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	//Set button IDs to their save number
+    	// Set save button IDs to their save number
         save1.setId("1");
         save2.setId("2");
         save3.setId("3");
         save4.setId("4");
         save5.setId("5");
+        
+        // Set delete buttons to their associated save number
+        deleteSave1.setId("1");
+        deleteSave2.setId("2");
+        deleteSave3.setId("3");
+        deleteSave4.setId("4");
+        deleteSave5.setId("5");
 	}
 }

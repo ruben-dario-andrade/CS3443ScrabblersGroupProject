@@ -16,11 +16,16 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="save1" layoutX="450.0" layoutY="230.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" styleClass="loadSavesButtons" text="Save 1" textAlignment="CENTER" />
-      <Button fx:id="save2" layoutX="450.0" layoutY="280.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" styleClass="loadSavesButtons" text="Save 2" textAlignment="CENTER" />
-      <Button fx:id="save3" layoutX="450.0" layoutY="330.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" styleClass="loadSavesButtons" text="Save 3" textAlignment="CENTER" />
-      <Button fx:id="save5" layoutX="450.0" layoutY="429.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" styleClass="loadSavesButtons" text="Save 5" textAlignment="CENTER" />
-      <Button fx:id="save4" layoutX="450.0" layoutY="380.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" styleClass="loadSavesButtons" text="Save 4" textAlignment="CENTER" />
-      <Button fx:id="homeButton" layoutX="570.0" layoutY="487.0" mnemonicParsing="false" onAction="#goHome" prefHeight="30.0" prefWidth="60.0" styleClass="loadSavesButtons" text="Home" />
+      <Button fx:id="save1" layoutX="450.0" layoutY="230.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" text="Save 1" textAlignment="CENTER" />
+      <Button fx:id="save2" layoutX="450.0" layoutY="280.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" text="Save 2" textAlignment="CENTER" />
+      <Button fx:id="save3" layoutX="450.0" layoutY="330.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" text="Save 3" textAlignment="CENTER" />
+      <Button fx:id="save5" layoutX="450.0" layoutY="429.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" text="Save 5" textAlignment="CENTER" />
+      <Button fx:id="save4" layoutX="450.0" layoutY="380.0" mnemonicParsing="false" onAction="#loadSave" prefHeight="40.0" prefWidth="300.0" text="Save 4" textAlignment="CENTER" />
+      <Button fx:id="homeButton" layoutX="570.0" layoutY="487.0" mnemonicParsing="false" onAction="#goHome" prefHeight="30.0" prefWidth="60.0" text="Home" />
+      <Button fx:id="deleteSave1" layoutX="771.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteSave" text="Delete Save 1" />
+      <Button fx:id="deleteSave2" layoutX="771.0" layoutY="288.0" mnemonicParsing="false" onAction="#deleteSave" text="Delete Save 2" />
+      <Button fx:id="deleteSave3" layoutX="771.0" layoutY="338.0" mnemonicParsing="false" onAction="#deleteSave" text="Delete Save 3" />
+      <Button fx:id="deleteSave4" layoutX="771.0" layoutY="388.0" mnemonicParsing="false" onAction="#deleteSave" text="Delete Save 4" />
+      <Button fx:id="deleteSave5" layoutX="771.0" layoutY="437.0" mnemonicParsing="false" onAction="#deleteSave" text="Delete Save 5" />
    </children>
 </AnchorPane>
