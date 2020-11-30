@@ -190,11 +190,11 @@ public class GameEngine {
 	 * Return:
 	 * 		 boolean that denotes if the entered moves are valid
 	 */
-	public static boolean checkValid() {
+	public static int checkValid() {
 		LinkedList<String> testStrings = new LinkedList<String>();
  		testStrings = WordVerification.validWord(engineBoard.getBoard(), usedChars, usedTiles);
  		if (testStrings == null) {
- 			return false;
+ 			return 0;
  		} else {
  			LinkedList<String> holdStrings = new LinkedList<String>();
  			holdStrings = WordVerification.searchRemaining(engineBoard.getBoard(), usedChars, usedTiles);
@@ -203,10 +203,9 @@ public class GameEngine {
  			}
  		}
  		if (!WordVerification.inDictionary(testStrings)) {
- 			return false;
+ 			return 0;
  		}
- 		//Print this -> WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
- 		return true;
+ 		return WordPointCount.countPoints(usedTiles, testStrings, engineBoard.getBoard());
 	}
 	
 	/*
